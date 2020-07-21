@@ -1,0 +1,405 @@
+<template>
+    <div>
+
+
+
+          <section class="breadcrumb-section set-bg" data-setbg="http://localhost/shopping/public/img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <!-- <h2>Contact Us</h2> -->
+                        <div class="breadcrumb__option">
+                            <!-- <a href="./index.html">รายการสินค้า</a> -->
+                             <h5>G-SHOCK</h5>
+                            <span>Its full form is Gravitaitional Shock.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            <!-- Product Details Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row" >
+                <div class="col-lg-6 col-md-6">
+                    <!-- <div class="product__details__pic" v-for="prolist in  shopdata"  :key="prolist.id"> -->
+                         <div class="product__details__pic" >
+                        <div class="product__details__pic__item" >
+                            <img class="product__details__pic__item--large"
+                              :src="getdata"   alt="">
+
+
+                        </div>
+                        <div  class="product__details__pic__slider owl-carousel">
+                           <img :data-imgbigurl="tempnopic"
+                               :src="tempnopic"  alt="" >
+                            <img :data-imgbigurl="itempicture"
+                                :src="itempicture" alt="">
+                            <img :data-imgbigurl="itempicture"
+                                :src="itempicture" alt="">
+                            <img :data-imgbigurl="itempicture"
+                                :src="itempicture" alt="">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6" >
+                    <div class="product__details__text"  >
+                        <h3>{{shopdata.name}}</h3>
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <span>(18 รีวิว)</span>
+                        </div>
+                        <div class="product__details__price" >{{shopdata.price | currency("฿")}}  <br> <span class="review">{{ shopdata.price | currency("฿")}}  </span> <h4> -50%</h4></div>
+
+                        <p>รับประกันของแท้และสินค้าทุกชิ้นมีใบประกัน</p>
+                        <div class="product__details__quantity">
+                            <div class="quantity">
+                                <div class="pro-qty">
+                                     <a href="javascript:;" class="dec qtybtn" ><span class="fa fa-minus" v-on:click="updateCart('subtract')"></span></a>
+                                     <input type="text" v-model="quantity"  oninput = "value=value.replace(/[^\d]/g,'')">
+                                     <a href="javascript:;" class="inc qtybtn" ><span class="fa fa-plus" v-on:click="updateCart('add')"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:;"  class="primary-btn" v-on:click="addtocart()"><i class="fa fa-shopping-cart"></i>เพิ่มสินค้า</a>
+                        <a href="javascript:;" class="heartload" v-on:click="addtofavorite()">
+                            <span  > <div v-if="heart" class="heart"></div>
+                                      <div v-if="heartset" class="heartset"></div>
+                        <div class="lds-heart-contianer" v-if="loadingheart">
+                        <div class="lds-heart"><div></div></div>
+                        </div>
+                            </span>
+
+
+                        </a>
+                        <ul>
+
+                            <li><b>สินค้าคงหลือ</b> <span>{{shopdata.stock}} inc.</span></li>
+                            <li><b>การจัดสั่ง</b> <span>1-2 วันจัดส่ง <samp>Free pickup today</samp></span></li>
+                            <li><b>น้ำหนัก</b> <span>0.5 kg</span></li>
+                            <li><b>เเชร์</b>
+                                <div class="share">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab"
+                                    aria-selected="false">รายละเอียดสินค้า</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                    aria-selected="false">รีวิว <span>(1)</span></a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <h6>รายละเอียดสินค้า</h6>
+                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
+                                        suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam
+                                        vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.
+                                        Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat,
+                                        accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a
+                                        pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula
+                                        elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
+                                        et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam
+                                        vel, ullamcorper sit amet ligula. Proin eget tortor risus.</p>
+                                        <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
+                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
+                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
+                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
+                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
+                                        porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
+                                        sed sit amet dui. Proin eget tortor risus.</p>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <h6>รีวิว</h6>
+                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
+                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
+                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
+                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
+                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
+                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
+                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
+                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+                                        Proin eget tortor risus.</p>
+                                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
+                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
+                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
+                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
+                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Details Section End -->
+
+    <!-- Related Product Section Begin -->
+    <section class="related-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title related__product__title">
+                        <h2>รายการที่เกี่ยวข้อง</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="http://localhost/shopping/public/img/product/product-1.jpg">
+                            <ul class="product__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="http://localhost/shopping/public/img/product/product-2.jpg">
+                            <ul class="product__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="http://localhost/shopping/public/img/product/product-3.jpg">
+                            <ul class="product__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="http://localhost/shopping/public/img/product/product-7.jpg">
+                            <ul class="product__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Related Product Section End -->
+    </div>
+</template>
+
+<script>
+
+export default {
+    data() {
+         return {
+             csrfToken: null ,
+            imageproURL:'/shopping/public/storage/images/',
+             shopdata:{},
+             getdata:'',
+             itempicture:'',
+             tempnopic:'/shopping/public/storage/images/nopic.png',
+             quantity:1,
+             loadingheart:false,
+             heartset:false,
+             heart:true,
+             checkper: true,
+
+          }
+     },
+       mounted(){
+          this.getshopdetil();
+          this.gettofavorite();
+        },
+
+     props:['id'],
+     methods: {
+        updateCart(updateType) {
+            if (updateType === 'subtract') {
+                    if (this.quantity !== 1) {
+                        this.quantity--;
+                    }
+                    } else {
+                    this.quantity++;
+            }
+         },
+
+         async addtocart() {
+                if(this.checkper == true){
+                    if(this.quantity >0){
+                                if(this.quantity > this.shopdata.stock){
+                                        let showicon='error';
+                                        let showtitle ='จำนวนสินค้าไม่เพียงพอ';
+                                        this.showalert(showicon,showtitle);
+                                }
+                                else{
+
+                                    let showicon='success';
+                                    let showtitle ='เพิ่มสินค้าเรียบร้อย';
+                                            await  axios.get("/shopping/public/cartdetail/adddetail/"+this.id+"/"+this.quantity).then(response => {
+                                                    // bus.$emit('add-to-cart');
+                                                     this.$store.dispatch("addItem")
+                                                     this.showalert(showicon,showtitle);
+                                            }).catch(error => {
+                                                console.log(error.response);
+                                            });
+                                }
+                    }else{
+                            let showicon='warning';
+                            let showtitle ='จำนวนสินค้าต้องมากกว่า 1 รายการ';
+                            this.showalert(showicon,showtitle);
+                    }
+                }
+                else{
+                     window.location.href = "/shopping/public/login";
+                }
+
+          },
+          async getshopdetil(){
+
+                 await axios.post("/shopping/public/shop/shopdetail/"+this.id).then(res => {
+                    this.shopdata = res.data;
+                    this.getdata =  this.imageproURL + res.data.picture;
+                    this.itempicture =  this.imageproURL + res.data.picture;
+                }).catch(error => {
+                     console.log(response.data.errors)
+                    });
+           },
+
+         async  gettofavorite() {
+
+                   await  axios.get("/shopping/public/api/cartdetail/getfavorite/"+this.id
+                   ).then(response => {
+
+                                  if(response.data.favorite !== false){
+
+                                          this.checkper =true;
+
+                                           if(response.data.favorite != null){
+                                                this.heart=false;
+                                                this.heartset=true;
+                                           }
+                                           else{
+                                                 this.heart=true;
+                                                this.heartset=false;
+                                           }
+                                    }
+                                    else{
+                                        this.heart=true;
+                                        this.heartset=false;
+                                        this.checkper =false;
+                                    }
+                         }).catch(error => {
+                             console.log(error.response)
+
+                          });
+           },
+
+         async  addtofavorite() {
+
+                 if(this.checkper != false){
+                    // console.log('เพิ่มข้อมูลได้')
+                          this.loadingheart=true;
+                               await  axios.get("/shopping/public/cartdetail/favorite/"+this.id,
+                               ).then(response => {
+                                this.favoriteList = response.data;
+                                  this.loadingheart=false;
+                                //   console.log(response.data.id)
+                                    if(response.data.id !== undefined){
+                                        this.$store.dispatch("addFavorite")
+                                         this.heart=false;
+                                         this.heartset=true;
+                                    }
+                                    else{
+                                        this.$store.dispatch("addFavorite")
+                                          this.heart=true;
+                                          this.heartset=false;
+                                    }
+
+                                }).catch( error => {
+                                    console.log(error.response);
+                                });
+                 }else{
+                  window.location.href = "/shopping/public/login";
+                //    console.log('เพิ่มข้อมูลไม่ได้')
+                 }
+
+
+        },
+        showalert(showicon,showtitle) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: showicon,
+                        title: showtitle
+                    })
+        },
+     }
+ };
+</script>
+<style>
+
+
+
+</style>

@@ -1,0 +1,149 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700,300");
+
+
+
+.custom-modal .modal-header {
+    padding: 10px !important;
+    border-radius: 0;
+    background-color: #5ba2e6;
+	color: #fff;
+}
+
+.custom-modal .modal-content {
+    background-color: #f7f7f7;
+}
+
+.custom-modal .modal-footer {
+    padding: 10px !important;
+    border-radius: 0;
+    background-color: #f3f3f3;
+}
+
+.custom-modal .close {
+    color: #fff;
+    text-shadow: 0;
+}
+
+.border-left {
+	border-left: 3px solid #eaeaea;
+}
+
+.label-info {
+    background-color: #5bc0de;
+}
+
+/* .select2{
+   font-size: 15px;
+} */
+
+.progress-bar{
+    height: 20px;
+     width: auto;
+     border: 1px solid rgb(118, 221, 255);
+     background :rgb(170, 230, 250)
+}
+.progress-bar-fill{
+    height: 100%;
+    width: 0%;
+    background :rgb(45, 196, 247);
+    display: flex;
+    align-items: center;
+    transition: width 0.25s;
+}
+.progress-bar-text{
+     margin-left: 10px;
+     font-weight: bold;
+
+}
+
+
+
+  .file-input {
+    display: inline-block;
+    text-align: left;
+    background: #fff;
+    /* padding-left: 100px; */
+    /* width: 200px; */
+    position: relative;
+    border-radius: 3px;
+  }
+
+  .file-input > [type='file'] {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  .file-input > .button {
+    display: inline-block;
+    cursor: pointer;
+    background: #eee;
+    padding: 8px 16px;
+    border-radius: 2px;
+    margin-right: 8px;
+  }
+
+  .file-input:hover > .button {
+    background: #6cb2eb;
+    color: white;
+  }
+
+  .file-input > .label {
+    color: #333;
+    white-space: nowrap;
+    opacity: .3;
+  }
+
+  .file-input.-chosen > .label {
+    opacity: 1;
+  }
+  table.dataTable thead tr {
+    background-color: #f3f3f3;
+  }
+
+
+  ion-icon {
+    font-size: 90px;
+    padding-left:50px;
+    color: whitesmoke;
+  }
+
+  .info-box-content{
+
+     text-align: right;
+
+ }
+ .info-box-text{
+    color: #fffbfb;
+    font-size: 17px;
+
+ }
+ .info-box-number{
+    line-height: 40px;
+    color: #fffbfb;
+    font-size: 30px;
+
+ }
+
+ .info-box{
+     /* width: 70%; */
+     height:15.3%;
+ }
+ .text-bold{
+    color: #888888;
+    font-size: 30px;
+}
+.text-bold-detail{
+    font-size: 19px;
+}
+.fa-sign-out
+{
+    font-size: 25px;
+    /* color: white; */
+    float: right;
+}
