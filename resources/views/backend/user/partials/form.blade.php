@@ -93,25 +93,21 @@
                 <label for="readProduct" class="custom-control-label">สินค้า</label>
                 </div>
             </div>
-
-
-
-
             </div>
 
             <div class="col-sm-4">
                 <!-- checkbox -->
                 <div class="form-group">
                   <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" id="read_AcceptOrder" name="read_AcceptOrder" value="1">
+                    <input class="custom-control-input" type="checkbox" name="readToppic[]" id="read_AcceptOrder"  value="4" {{in_array(4,$permissions)? 'checked': ''}}>
                     <label for="read_AcceptOrder" class="custom-control-label">รับ Order</label>
                   </div>
                   <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" id="readPreSent" name="readPreSent" value="1">
+                    <input class="custom-control-input" type="checkbox"   name="readToppic[]" id="readPreSent" value="5"  {{in_array(5,$permissions)? 'checked': ''}}>
                     <label for="readPreSent" class="custom-control-label">เตรียมจัดส่ง</label>
                   </div>
                   <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input" type="checkbox" id="readSent" name="readSent" value="1">
+                      <input class="custom-control-input" type="checkbox" name="readToppic[]" id="readSent"  value="6" {{in_array(6,$permissions)? 'checked': ''}}>
                       <label for="readSent" class="custom-control-label">รายการจัดส่ง</label>
                     </div>
                 </div>
@@ -120,8 +116,8 @@
                 <!-- checkbox -->
                 <div class="form-group">
                   <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" id="readReport" name="readReport" value="1">
-                    <label for="readReport" class="custom-control-label">รายงาน</label>
+                    <input class="custom-control-input" type="checkbox" name="readToppic[]"  id="readReport" value="7" {{in_array(7,$permissions)? 'checked': ''}}>
+                    <label for="readReport" class="custom-control-label">Dashboard</label>
                   </div>
                   <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" type="checkbox" id="readBank" name="readBank" value="1">

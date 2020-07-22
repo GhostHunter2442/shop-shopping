@@ -81,7 +81,7 @@
                             <div>{{ Auth::user()->name }} </div>
                             <span class="arrow_carrot-down"></span>
                             <ul>
-                                <li><a href="{{ route('home')}}">Dashboard</a></li>
+                                @role('admin') <li><a href="{{ route('home')}}">Dashboard</a></li>@endrole
                                 <li><a href="{{ route('order.index')}}">การซื้อขอฉัน</a></li>
                                 <li><a href="{{ route('favorite.index')}}">สินค้าโปรด</a></li>
                                 <li>  <a href="{{ route('logout')}}"

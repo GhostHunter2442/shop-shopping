@@ -38,7 +38,7 @@ Route::get('/keyry', function (Request $request) {
 })->name('keyry.index');
 
 
-Route::get('/','WelcomeController@index')->name('welcome')->middleware('permission:viewSales');;
+Route::get('/','WelcomeController@index')->name('welcome');  //->middleware('permission:viewSales');
 Route::get('/category/{id}','WelcomeController@show')->name('welcome.show');
 Route::any('/showall','WelcomeController@showall')->name('welcome.showall');
 Route::any('/show/discount','WelcomeController@showdiscount')->name('welcome.discount');
@@ -87,9 +87,9 @@ Route::group(['middleware' => ['auth']],function(){
         // Route::post('uploadfile', 'ProductController@uploadfile');
     });
     Route::prefix('backend/invoice')->group(function () {
-        Route::get('', 'InvoicebackendController@index')->name('invoice.index');
-        Route::get('preorder', 'InvoicebackendController@preorder')->name('invoice.preorder');
-        Route::get('order', 'InvoicebackendController@order')->name('invoice.order');
+        Route::get('', 'InvoicebackendController@index')->name('invoice.index')->middleware('permission:viewAcceptOrder');
+        Route::get('preorder', 'InvoicebackendController@preorder')->name('invoice.preorder')->middleware('permission:viewPreOrder');
+        Route::get('order', 'InvoicebackendController@order')->name('invoice.order')->middleware('permission:viewSentOrder');
         Route::post('{id}', 'InvoicebackendController@update');
         Route::delete('{id}', 'InvoicebackendController@delete');
         Route::get('datatables', 'InvoicebackendController@getDatatables');
@@ -107,7 +107,7 @@ Route::group(['middleware' => ['auth']],function(){
     });
 
     Route::prefix('backend/report')->group(function () {
-        Route::get('', 'ReportbackendController@index')->name('report.index');
+        Route::get('', 'ReportbackendController@index')->name('report.index')->middleware('permission:viewDashboardReport');
         Route::get('chartyear', 'ReportbackendController@getchartYearNow');
         Route::get('chartmont', 'ReportbackendController@getchartMonthNow');
         Route::get('chartmontover', 'ReportbackendController@getchartMonthOver');
@@ -122,7 +122,7 @@ Route::group(['middleware' => ['auth']],function(){
     });
 
     Route::prefix('backend/user')->group(function () {
-        Route::get('', 'UserController@index')->name('user.index');
+        Route::get('', 'UserController@index')->name('user.index')->middleware('role:admin');
         Route::post('', 'UserController@store');
         Route::patch('{id}', 'UserController@update');
         Route::delete('{id}', 'UserController@delete');

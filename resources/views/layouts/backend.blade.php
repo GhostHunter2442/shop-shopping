@@ -172,25 +172,22 @@
                   <i class="nav-icon fa fa-home"></i>
                   <p>
                     หน้าหลัก
-
                   </p>
                 </a>
               </li>
-              {{-- @role('admin') --}}
-                {{-- @endrole --}}
+
               @can('viewCategory')
                <li class="nav-item">
                 <a href="{{ route('category.index') }}" class="nav-link {{ request()->routeIs('category.index') ? 'active' :''  }}">
                   <i class="nav-icon fa fa-calendar-plus-o"></i>
                   <p>
                     หมวดสินค้า
-
                   </p>
                 </a>
               </li>
               @endcan
               @can('viewProduct')
-           <li class="nav-item">
+             <li class="nav-item">
             <a href="{{ route('product.index') }}" class="nav-link {{ request()->routeIs('product.index') ? 'active' :''  }}">
               <i class="nav-icon fa fa-th"></i>
               <p>
@@ -200,25 +197,28 @@
             </a>
           </li>
           @endcan
-          <li class="nav-header">ข้อมูลการขาย</li>
+          @can('viewAcceptOrder','viewPreOrder','viewSentOrder')<li class="nav-header">ข้อมูลการขาย</li>  @endcan
+          @can('viewAcceptOrder')
           <li class="nav-item">
             <a href="{{ route('invoice.index') }}" class="nav-link {{ request()->routeIs('invoice.index') ? 'active' :''  }}">
               <i class="nav-icon fa fa-first-order"></i>
               <p>
              รับการการสั่งซื้อ
-
               </p>
             </a>
           </li>
+          @endcan
+          @can('viewPreOrder')
           <li class="nav-item">
             <a href="{{ route('invoice.preorder') }}" class="nav-link {{ request()->routeIs('invoice.preorder') ? 'active' :''  }}">
               <i class="nav-icon fa fa-bookmark-o"></i>
               <p>
              เตรียมจัดส่ง
-
               </p>
             </a>
           </li>
+          @endcan
+          @can('viewSentOrder')
           <li class="nav-item">
             <a href="{{ route('invoice.order') }}" class="nav-link {{ request()->routeIs('invoice.order') ? 'active' :''  }}">
               <i class="nav-icon fa fa-check-square-o"></i>
@@ -228,8 +228,9 @@
               </p>
             </a>
           </li>
-
+          @endcan
           <li class="nav-header">รายงายการขาย</li>
+
           <li class="nav-item has-treeview {{ request()->routeIs('report.index') ? 'menu-open' :''  }}">
             <a href="#" class="nav-link {{ request()->routeIs('report.index') ? 'active' :''  }}">
               <i class="nav-icon fa fa-pie-chart"></i>
@@ -239,21 +240,26 @@
 
               </p>
             </a>
+
             <ul class="nav nav-treeview">
+                @can('viewDashboardReport')
               <li class="nav-item">
                 <a href="{{ route('report.index') }}" class="nav-link {{ request()->routeIs('report.index') ? 'active' :''  }}">
                   <i class="fa fa-dashboard nav-icon" style="font-size:13px"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
+              @endcan
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="#" class="nav-link">
                     <i class="fa fa-bar-chart nav-icon" style="font-size:13px"></i>
                   <p>รายได้ประจำเดือน</p>
                 </a>
               </li>
             </ul>
+
           </li>
+            @role('admin')
           <li class="nav-header">จัดการผู้ใช้งาน</li>
           <li class="nav-item">
             <a href="{{ route('user.index') }}" class="nav-link {{ request()->routeIs('user.index') ? 'active' :''  }}">
@@ -261,7 +267,7 @@
                 <p>ผู้ใช้งาน</p>
               </a>
           </li>
-
+            @endrole
 
                {{-- @endif --}}
 
