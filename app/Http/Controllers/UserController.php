@@ -26,13 +26,16 @@ class UserController extends Controller
 
     public function renderForm(UserRepository $user, $id)
     {
+        $paemission_data = array();
 
         $cate = $user->getById($id);
         $data['title'] = !empty($cate) ? $cate['name'] : 'สร้างผู้ใช้งานใหม่';
         $data['data'] = !empty($cate) ? $cate : $user->castData();
         $data['rolename'] = Role::all();
-        $data['premission'] = Permission::where('model_id',$id)->get();
-        // return $data['premission'];
+        $per= Permission::where('model_id',$id)->pluck('permission_id')->toArray();
+
+          $data['permissions'] =$per;
+        //  return  $data['premission'];
         return view('backend.user.partials.form', $data);
     }
 

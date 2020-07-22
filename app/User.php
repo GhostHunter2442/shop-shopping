@@ -38,8 +38,8 @@ class User extends Authenticatable
     ];
 
 
-
  
+
       // one to one
     // การใช้งาน user()->profile->phonenumber
     public function profile() {

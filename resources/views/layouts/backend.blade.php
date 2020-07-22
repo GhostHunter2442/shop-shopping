@@ -66,9 +66,11 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
 
               </li>
+              @can('viewSales')
               <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('welcome') }}" class="nav-link">ซื้อสินค้า</a>
               </li>
+              @endcan
 
           </ul>
         <ul class="navbar-nav ml-auto">

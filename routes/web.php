@@ -38,7 +38,7 @@ Route::get('/keyry', function (Request $request) {
 })->name('keyry.index');
 
 
-Route::get('/','WelcomeController@index')->name('welcome');
+Route::get('/','WelcomeController@index')->name('welcome')->middleware('permission:viewSales');;
 Route::get('/category/{id}','WelcomeController@show')->name('welcome.show');
 Route::any('/showall','WelcomeController@showall')->name('welcome.showall');
 Route::any('/show/discount','WelcomeController@showdiscount')->name('welcome.discount');
@@ -78,7 +78,7 @@ Route::group(['middleware' => ['auth']],function(){
 
 
     Route::prefix('backend/product')->group(function () {
-        Route::get('', 'ProductController@index')->name('product.index')->middleware('permission:viewProduct');;
+        Route::get('', 'ProductController@index')->name('product.index')->middleware('permission:viewProduct');
         Route::post('', 'ProductController@store');
         Route::post('{id}', 'ProductController@update');
         Route::delete('{id}', 'ProductController@delete');

@@ -68,30 +68,34 @@
       <br>
 
             <div class="form-group">
-            <label for="userrole">เข้าถึงข้อมูล</label>
+            <label for="userrole">เข้าถึงข้อมูล   <span class="text-danger">(กำหนดสิทธิ)</span></label>
         <div class="row">
 
             <div class="col-sm-4">
-              <!-- checkbox -->
 
-              <div class="form-group">
+
+                <div class="form-group">
                 <div class="custom-control custom-checkbox">
-                  <input class="custom-control-input" type="checkbox" id="readSales"  name="readSales" value="0" >
-                  <label for="readSales" class="custom-control-label">รายการขายสินค้า</label>
+                  <input class="custom-control-input" type="checkbox"   name="readToppic[]"  id="readSales" value="1" {{in_array(1,$permissions)? 'checked': ''}}>
+                  <label for="readSales" class="custom-control-label">ซื้อสินค้า</label>
                 </div>
-                <div class="custom-control custom-checkbox">
-                    @foreach($premission as $per)
-                  <input class="custom-control-input" type="checkbox"  name="readCategory" value="1" {{ ($per->permission_id==1 ? ' checked' : '') }}>
-                  @endforeach
-                  <label for="readCategory" class="custom-control-label">ประเภทสินค้า</label>
+            {{-- {{var_dump($permissions)}} --}}
+            {{-- {{var_dump(in_array(1,$permissions))}} --}}
+
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" type="checkbox" name="readToppic[]" id="readCategory" value="2" {{in_array(2,$permissions)? 'checked': ''}}>
+                <label for="readCategory" class="custom-control-label">ประเภทสินค้า</label>
+            </div>
+
+
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" type="checkbox"  name="readToppic[]"  id="readProduct" value="3" {{in_array(3,$permissions)? 'checked': ''}}>
+                <label for="readProduct" class="custom-control-label">สินค้า</label>
                 </div>
-                <div class="custom-control custom-checkbox">
-                    @foreach($premission as $per)
-                    <input class="custom-control-input" type="checkbox"  name="readProduct" value="2"  {{ ($per->permission_id==2 ? ' checked' : '') }}>
-                    @endforeach
-                    <label for="readProduct" class="custom-control-label">รายการสินค้า</label>
-                  </div>
-              </div>
+            </div>
+
+
+
 
             </div>
 

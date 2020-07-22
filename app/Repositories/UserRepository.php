@@ -3,6 +3,8 @@
 namespace App\Repositories;
 use App\User;
 use App\Role;
+use DB;
+use App\Permission;
 use Illuminate\Support\Facades\Hash;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
@@ -51,7 +53,7 @@ class UserRepository
 
     public function store($request)
     {
-
+        $paemission_data = $request->readToppic;
 
 
         $user = new User;
@@ -61,18 +63,15 @@ class UserRepository
         $user->userrole = $request->userrole;
         $user->save();
         $this->getById($user->id)->assignRole($request->userrole);  // สร้าง role ใหม่
+        $this->getById($user->id)->syncPermissions($paemission_data); //สร้าง permission ใหม่
         return  $user->id;
     }
 
     public function update($request, $id)
     {
-        $paemission_data = array();
-        array_push( $paemission_data,
-                     $request->readCategory,
-                     $request->readProduct
-                    );
 
-        // dd($paemission_data);
+        $paemission_data = $request->readToppic;
+
         $user = $this->getById($id);
         if (empty($user)) {
             return false;
@@ -90,9 +89,8 @@ class UserRepository
 
         $user->assignRole($request->userrole);  // สร้าง role ใหม่
 
-        //add perission
+        // add perission
         $user->syncPermissions($paemission_data);
-        // $user->revokePermissionTo(['viewCategory','viewProduct']); // ลบ permission
         // $user->givePermissionTo('viewCategory');
 
       return true;
@@ -106,12 +104,22 @@ class UserRepository
 
     public function delete($id)
     {
+        $name_per = array();
         $user = $this->getById($id);
         if (empty($user)) {
             return false;
         }
 
         $user->delete();
+        $user->removeRole($user->userrole);
+
+        $id_per =  Permission::where('model_id',$id)->pluck('permission_id')->toArray();
+        foreach ( $id_per as $top_no => $id_per_name ){
+            $name = DB::table('permissions')->where('id', $id_per_name)->pluck('name');
+            array_push( $name_per, $name[0] );
+        }
+        $user->revokePermissionTo($name_per); // ลบ permission
+
         return true;
     }
 
