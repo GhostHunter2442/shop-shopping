@@ -117,7 +117,7 @@ mix.copy('node_modules/admin-lte/plugins/summernote/summernote-bs4.css', 'public
 mix.copy('node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css', 'public/css/backend/all.min.css');
 
 
-// mix.copy('node_modules/admin-lte/plugins/select2/css/select2.min.css','public/css/backend/select2.min.css');
+mix.copy('node_modules/admin-lte/plugins/select2/css/select2.min.css','public/css/backend/select2.min.css');
 
 mix.copy('node_modules/sweetalert2/dist/sweetalert2.min.css', 'public/css/backend/sweetalert2.min.css');
 mix.copy('node_modules/select2/dist/css/select2.min.css', 'public/css/backend/select2.min.css');
