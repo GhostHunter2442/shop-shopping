@@ -38,14 +38,13 @@
  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/backend/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/custom.css') }}">
-   
+
 
     <link rel="stylesheet" href="{{ asset('css/toastr.css')}}">
 
     <script type="text/javascript">
         var APP_URL = {!! json_encode(url('http://localhost/shopping/public/backend')) !!}
         var APP_LINK = {!! json_encode(Storage::url('images')) !!}
-        // var APP_LINK = {!! json_encode(Storage::url('http://localhost/shopping/public/storage/images/')) !!}
         var APP_IMG = {!! json_encode(url('http://localhost/shopping/public/storage/images/resize/')) !!}
         var APP_IMG_SLIP = {!! json_encode(url('http://localhost/shopping/public/storage/images/slipbank/')) !!}
         var APP_IMG_BANK = {!! json_encode(url('http://localhost/shopping/public/storage/images/bank/')) !!}
