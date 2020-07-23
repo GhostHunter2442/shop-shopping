@@ -43,7 +43,18 @@
             </tr>
             <tr>
                 <td class="font-weight-bold w-25">สลิป</td>
-                <td><img src="{{ asset('storage/images/slipbank/'.$invoice->paypic)}}" alt="" width="50"></td>
+                <td>
+
+                    {{-- <img src="{{ asset('storage/images/slipbank/'.$invoice->paypic)}}" alt="" width="50"> --}}
+
+                    <div><img id="myView" style="display:none;"  src="{{ asset('storage/images/slipbank/'.$invoice->paypic)}}" alt="IceShake" width="250">
+                    </div>
+                    <div>
+                    <a id="show-image">เเสดงหลังฐาน </a>
+                    </div>
+
+
+                </td>
             </tr>
             @endif
             @if(!@empty($invoice->payment_id))
@@ -64,3 +75,6 @@
        <button type="submit" class="btn btn-primary ">รับ Order</button>
     </div>
 </form>
+<style>
+    a{cursor:pointer;}
+</style>

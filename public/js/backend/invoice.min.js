@@ -114,7 +114,9 @@ $(document).ready(function () {
     $.LoadingOverlay('hide');
     /* handle validate */
        $('#ajaxModal').on('shown.bs.modal', function (e) {
-
+        $('#show-image').on("click", function(){
+            $('#myView').toggle('slow');
+            });
         $('#saveForm').on('submit', function(event){
             var id = $('input[name=id]').val();
 
@@ -154,8 +156,12 @@ $(document).ready(function () {
             }
            })
         })
+
+
+
+
     });
 
 
-
 });
+

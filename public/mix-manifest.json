@@ -67,5 +67,6 @@
     "/css/backend/bootstrap-datepicker3.min.css": "/css/backend/bootstrap-datepicker3.min.css",
     "/css/backend/switchery.min.css": "/css/backend/switchery.min.css",
     "/css/backend/custom.css": "/css/backend/custom.css",
-    "/css/backend/style.css": "/css/backend/style.css"
+    "/css/backend/style.css": "/css/backend/style.css",
+    "/css/backend/magnific-popup.css": "/css/backend/magnific-popup.css"
 }
