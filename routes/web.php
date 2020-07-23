@@ -132,6 +132,12 @@ Route::group(['middleware' => ['auth']],function(){
 
     });
 
+    Route::prefix('backend/reportdetail')->group(function () {
+        Route::get('', 'ReportdetailController@index')->name('reportdetail.index');
+        Route::get('datatables', 'ReportdetailController@gettopdata');
+
+    });
+
     Route::prefix('backend/user')->group(function () {
         Route::get('', 'UserController@index')->name('user.index')->middleware('role:admin');
         Route::post('', 'UserController@store');

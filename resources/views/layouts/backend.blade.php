@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Dashboard | {{ config('app.name')}}</title>
+<title>@yield('title')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -233,8 +233,8 @@
           @endcan
           <li class="nav-header">รายงายการขาย</li>
 
-          <li class="nav-item has-treeview {{ request()->routeIs('report.index') ? 'menu-open' :''  }}">
-            <a href="#" class="nav-link {{ request()->routeIs('report.index') ? 'active' :''  }}">
+          <li class="nav-item has-treeview {{ request()->routeIs('report.index') ? 'menu-open' : request()->routeIs('reportdetail.index') ? 'menu-open' :''  }}">
+            <a href="#" class="nav-link {{ request()->routeIs('report.index') ? 'active' : request()->routeIs('reportdetail.index') ? 'active' :''  }}">
               <i class="nav-icon fa fa-pie-chart"></i>
               <p>
                 รายงาน
@@ -253,9 +253,9 @@
               </li>
               @endcan
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('reportdetail.index') }}" class="nav-link {{ request()->routeIs('reportdetail.index') ? 'active' :''  }}">
                     <i class="fa fa-bar-chart nav-icon" style="font-size:13px"></i>
-                  <p>รายได้ประจำเดือน</p>
+                  <p>ยอดขายตามธนาคาร</p>
                 </a>
               </li>
             </ul>
@@ -265,20 +265,20 @@
           <li class="nav-header">จัดการทั่วไป</li>
           <li class="nav-item">
             <a href="{{ route('user.index') }}" class="nav-link {{ request()->routeIs('user.index') ? 'active' :''  }}">
-                <i class="fa fa-user nav-icon" style="font-size:13px"></i>
+                <i class="fa fa-user nav-icon" ></i>
                 <p>ผู้ใช้งาน</p>
               </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('bank.index') }}" class="nav-link {{ request()->routeIs('bank.index') ? 'active' :''  }}">
-                <i class="fa fa-university nav-icon" style="font-size:13px"></i>
-                <p>จัดการธนาคาร</p>
+                <i class="fa fa-university nav-icon" ></i>
+                <p>ธนาคาร</p>
               </a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="fa fa-cogs nav-icon" style="font-size:13px"></i>
-                <p>จัดการข้อมูลเวป</p>
+                <i class="fa fa-cogs nav-icon" ></i>
+                <p>ข้อมูลเวป</p>
               </a>
           </li>
             @endrole
@@ -298,22 +298,20 @@
         <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
+
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h3 class="m-0 text-dark">@yield('title')</h3>
                         </div>
-                        <!-- /.col -->
+
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">หน้าหลัก</a></li>
                                 <li class="breadcrumb-item active">@yield('title')</li>
                             </ol>
                         </div>
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.container-fluid -->
             </div>
          <!-- /.content-header -->
          @yield('content')

@@ -40,7 +40,7 @@ class ReportbackendController extends Controller
     }
     public function getchartMonthOver(ChartovermonthRepository $monthover)
     {
-        //  return $monthover->getAllMonths();
+       
         return $monthover->getMonthlyPostData();
     }
 
@@ -57,34 +57,33 @@ class ReportbackendController extends Controller
 
     public function  getchartPayLastMonth(ChartpaylastmonthRepository $paylastmonth)
     {
-        // return $paylastmonth->getAllMonths();
+
         return $paylastmonth->getMonthlyPostData();
     }
 
     public function  getchartTopYear(CharttopyearRepository $topyear)
     {
-        // return $topyear->getAllMonths();
+
         return $topyear->getMonthlyPostData();
     }
 
     public function  getchartTopMonth(CharttopmonthRepository $topmonth)
     {
-        // return $topmonth->getAllMonths();
+
         return $topmonth->getMonthlyPostData();
     }
 
 
     public function  getchartTopLastMonth(CharttoplastmonthRepository $toplastmonth)
     {
-        // return $toplastmonth->getAllMonths();
+
         return $toplastmonth->getMonthlyPostData();
     }
 
 
     public function  getTable(CharttableRepository $tableyear,Request $request,$status)
     {
-        // $request->status=1;
-        // dd($request->status);
+
         if($status==1){
             $data = $tableyear->getDatatablesyear();
             return DataTables::of($data)->blacklist(['id'])->make(true);

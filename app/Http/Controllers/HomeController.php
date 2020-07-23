@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
+use App\Invoice;
 use App\User;
 class HomeController extends Controller
 {
@@ -28,6 +29,7 @@ class HomeController extends Controller
         $categoryCount = Category::count();
         $productCount = Product::count();
         $UserCount = User::count();
+        $OrderCount = Invoice::where('status_order',2)->count();
 
 
 
@@ -36,6 +38,7 @@ class HomeController extends Controller
                 'categoryCount'=> $categoryCount,
                 'productCount' =>$productCount,
                 'UserCount'=> $UserCount,
+                'OrderCount'=> $OrderCount,
             ]);
             }else{
                 auth()->user()->assignRole("member");  // สร้าง role ใหม่

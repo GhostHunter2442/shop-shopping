@@ -16,6 +16,11 @@ class Invoice extends Model
 
     public function bank(){
         return  $this->belongsTo(Bank::class);
+        // return $this->hasMany(Bank::class);
+      }
+      public function banks(){
+       
+        return $this->hasMany(Bank::class);
       }
       public function address(){
         return  $this->belongsTo(Address::class);
