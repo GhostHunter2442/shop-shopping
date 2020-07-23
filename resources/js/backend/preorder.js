@@ -17,9 +17,7 @@ $(document).ready(function () {
                 {data: 'iuser_named',name: 'user_name'},
                 {data: 'paymentid',name: 'paymentid'},
                 {data: 'bank_name',name: 'bank_name'},
-                // {data: 'paypic',name: 'paypic'},
                 {data: 'price',name: 'price'},
-                {data: 'payment_id',name: 'payment_id'},
                 {data: 'status_order',name: 'status_order'},
                 {data: 'id',name: 'id'},
         ],
@@ -50,24 +48,22 @@ $(document).ready(function () {
             targets: 3,
             orderable: false,
             render: function (data, type, row) {
-                 if(data ===''){
-                    var dataBank='-';
+                if(data ===''){
+
+                    if(row['paymentid']==='2'){
+                        var dataBank='<img   src="'+APP_IMG_BANK+'cod.png" alt="" width="50">' ;
+                    }
+                    else{
+                        var dataBank='<img   src="'+APP_IMG_BANK+'craditcart.png" alt="" width="50">' ;
+                    }
                  }
                  else{
-                    var dataBank='<img   src="'+APP_IMG_BANK+row.bank_name+'" alt="" width="30">' ;
+                    var dataBank='<img   src="'+APP_IMG_BANK+row.bank_name+'" alt="" width="40">' ;
                  }
                 return dataBank;
             },
         },
-        // {
-        //     targets: 4,
-        //     orderable: false,
-        //     render: function (data, type, row) {
-        //         //  var dataPicture = '<img src="'+APP_IMG_SLIP+row['paypic']+'" alt="" width="60">';
-        //         var dataPicture=row['paypic'];
-        //         return dataPicture;
-        //     },
-        // },
+
         {
             targets: 4,
             orderable: false,
@@ -81,15 +77,6 @@ $(document).ready(function () {
             targets: 5,
             orderable: false,
             render: function (data, type, row) {
-                var dataPayID = row['payment_id'];
-                return dataPayID;
-
-            },
-        },
-        {
-            targets: 6,
-            orderable: false,
-            render: function (data, type, row) {
                 // var dataStatus = row['status_order'];
                 var status = 'info';
                 var strStatus = 'เตรียมจัดส่ง';
@@ -100,7 +87,7 @@ $(document).ready(function () {
             },
         },
         {
-            targets: 7,
+            targets: 6,
             orderable: false,
             render: function (data, type, row) {
                 //  var dataId = row['id'];
@@ -137,7 +124,7 @@ $(document).ready(function () {
               if(resp!=''){
                 var id=1;
               }
-      
+
         Swal.fire({
             title: 'ต้องการจัดส่งสิ้นค้าทั้งหมด?',
             showCancelButton: true,

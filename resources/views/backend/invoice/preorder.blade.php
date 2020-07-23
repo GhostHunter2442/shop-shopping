@@ -11,12 +11,12 @@
 
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                        {{-- <h3 class="card-title">หมวดหมู่สินค้า </h3> --}}
+                      
                         <div class="pull-right">
                             <a data-href="http://localhost/shopping/public/backend/invoice/order_file/export" role="button" class="btn btn-success btn-exportall">
                                 จัดส่งทั้งหมด
                             </a>
-                            {{-- {{ route('invoice.export') }} --}}
+
                         </div>
                     </div>
                     <div class="card-body">
@@ -27,9 +27,8 @@
                                     <th scope="col">ผู้สั่ง (user ใช้งาน)</th>
                                     <th scope="col">ชำระเงิน</th>
                                     <th scope="col">ธนาคาร</th>
-                                    {{-- <th scope="col">สลิป</th> --}}
+
                                     <th scope="col">ยอดเงิน</th>
-                                    <th scope="col">จ่ายผ่านบัตร</th>
                                     <th scope="col">สถานะ</th>
                                     <th scope="col" style="width: 100px;">ดำเนินการ</th>
                                 </tr>

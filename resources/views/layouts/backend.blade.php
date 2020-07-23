@@ -197,7 +197,10 @@
             </a>
           </li>
           @endcan
-          @can('viewAcceptOrder','viewPreOrder','viewSentOrder')<li class="nav-header">ข้อมูลการขาย</li>  @endcan
+
+          @if(Gate::check('viewPreOrder') || Gate::check('viewPreOrder') || Gate::check('viewSentOrder'))
+            <li class="nav-header">ข้อมูลการขาย</li>
+          @endif
           @can('viewAcceptOrder')
           <li class="nav-item">
             <a href="{{ route('invoice.index') }}" class="nav-link {{ request()->routeIs('invoice.index') ? 'active' :''  }}">
@@ -260,11 +263,23 @@
 
           </li>
             @role('admin')
-          <li class="nav-header">จัดการผู้ใช้งาน</li>
+          <li class="nav-header">จัดการทั่วไป</li>
           <li class="nav-item">
             <a href="{{ route('user.index') }}" class="nav-link {{ request()->routeIs('user.index') ? 'active' :''  }}">
                 <i class="fa fa-user nav-icon" style="font-size:13px"></i>
                 <p>ผู้ใช้งาน</p>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('bank.index') }}" class="nav-link {{ request()->routeIs('bank.index') ? 'active' :''  }}">
+                <i class="fa fa-university nav-icon" style="font-size:13px"></i>
+                <p>จัดการธนาคาร</p>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fa fa-cogs nav-icon" style="font-size:13px"></i>
+                <p>จัดการข้อมูลเวป</p>
               </a>
           </li>
             @endrole

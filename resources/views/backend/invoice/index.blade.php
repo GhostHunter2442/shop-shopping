@@ -10,7 +10,7 @@
                 <!-- Default box -->
 
                 <div class="card card-info card-outline">
-                    
+
                     <div class="card-body">
                         <table class="table table-bordered table-hover" id="invoice-table">
                             <thead>
@@ -19,9 +19,8 @@
                                     <th scope="col">ผู้สั่ง</th>
                                     <th scope="col">ชำระเงิน</th>
                                     <th scope="col">ธนาคาร</th>
-                                    {{-- <th scope="col">สลิป</th> --}}
                                     <th scope="col">ยอดเงิน</th>
-                                    <th scope="col">จ่ายผ่านบัตร</th>
+                                    <th scope="col">จ่ายผ่านบัตร (paymentID)</th>
                                     <th scope="col">สถานะ</th>
                                     <th scope="col" style="width: 150px;">ดำเนินการ</th>
                                 </tr>

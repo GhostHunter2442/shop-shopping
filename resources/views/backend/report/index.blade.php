@@ -1,4 +1,4 @@
-@extends('layouts.backend') @section('title', 'รายงาน')
+@extends('layouts.backend') @section('title', 'Dashboard ยอดขาย')
 
 @section('content')
 <div id="app">
@@ -8,39 +8,6 @@
           <div class="row">
 
             <div class="col-md-8">
-
-              {{-- <div class="card">
-                <div class="card-header">
-                    <div class="pull-left">
-                    <h6 ><span id="price_sum"></span></h6>
-                  <h3 class="card-title"><span id="sale_year"></span></h3>
-                </div>
-                  <div class="pull-right">
-                  <div class="btn-group">
-                    <button type="button" id="monthly" class="btn btn-default btn-years">ปี 2020</button>
-                    <button type="button" id="month12" class="btn btn-default btn-month12">12 เดือน</button>
-                    <button type="button" id="years" class="btn btn-default  btn-monthly">ยอดขายเดือนนี้</button>
-                  </div>
-
-                </div>
-                </div>
-
-                <div class="card-body p-0">
-                  <div class="d-md-flex">
-                    <div class="p-1 flex-fill" style="overflow: hidden">
-
-                      <div id="world-map-markers" style="height: 325px; overflow: hidden">
-                        <div >
-                            <canvas id="myAreaChart" width="100%" height="30%"></canvas>
-
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div> --}}
 
               <div class="card">
 

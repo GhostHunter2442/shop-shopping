@@ -130,10 +130,6 @@ export default {
       props:['paymentid','addressid','bankid'],
         mounted() {
             this.getcartdetail();
-
-
-
-
        },
 
         data(){

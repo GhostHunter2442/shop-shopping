@@ -26,7 +26,7 @@ class CheckoutController extends Controller
         return response()->json($listaddress);
     }
     public function getbank(){
-        $listbank =  Bank::all();
+        $listbank =  Bank::where('status','normal')->get();
         return response()->json($listbank);
     }
     public function getaddressid($id){
@@ -98,7 +98,7 @@ class CheckoutController extends Controller
         }
         else{
             $string = preg_replace("/[^0-9\.]/",'', $latest->id);
-           
+
             $string_date =  preg_replace("/^[0-9]{4}/",'',$string);
             $expNum = 'SPV'.date('Y').sprintf('%05d', $string_date+1);
         }

@@ -107,6 +107,16 @@ Route::group(['middleware' => ['auth']],function(){
 
     });
 
+    Route::prefix('backend/bank')->group(function () {
+        Route::get('', 'BankController@index')->name('bank.index');
+        Route::post('', 'BankController@store');
+        Route::post('{id}', 'BankController@update');
+        Route::delete('{id}', 'BankController@delete');
+        Route::get('datatables', 'BankController@getDatatables');
+        Route::get('form/{id}', 'BankController@renderForm');
+    });
+
+
     Route::prefix('backend/report')->group(function () {
         Route::get('', 'ReportbackendController@index')->name('report.index')->middleware('permission:viewDashboardReport');
         Route::get('chartyear', 'ReportbackendController@getchartYearNow');

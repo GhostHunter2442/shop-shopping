@@ -58,8 +58,7 @@
                     @foreach($rolename as $rolename)
                     <option value="{{ $rolename->id}}" @if($rolename->id==$data->userrole) selected @endif>{{ $rolename->name }}</option>
                     @endforeach
-                    {{-- <option value="member" @if($data->userrole==='member') selected @endif>สมาชิกทั่วไป</option>
-                    <option value="admin" @if($data->userrole==='admin') selected @endif>ผู้ดูแลระบบ</option> --}}
+
                 </select>
             </div>
         </div>
@@ -69,7 +68,7 @@
 
 
             <div class="form-group">
-            <label for="userrole">เข้าถึงข้อมูล   <span class="text-danger">(กำหนดสิทธิ)</span></label> 
+            <label for="userrole">เข้าถึงข้อมูล   <span class="text-danger">(กำหนดสิทธิ)</span></label>
         <div class="row">
 
             <div class="col-sm-4">
@@ -120,14 +119,6 @@
                     <input class="custom-control-input" type="checkbox" name="readToppic[]"  id="readReport" value="7" {{in_array(7,$permissions)? 'checked': ''}}>
                     <label for="readReport" class="custom-control-label">Dashboard</label>
                   </div>
-                  <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" id="readBank" name="readBank" value="1">
-                    <label for="readBank" class="custom-control-label">ธนาคาร</label>
-                  </div>
-                  <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input" type="checkbox" id="readDetail" name="readDetail" value="1">
-                      <label for="readDetail" class="custom-control-label">รายละเอียดร้านค้า</label >
-                    </div>
                 </div>
               </div>
         </div>

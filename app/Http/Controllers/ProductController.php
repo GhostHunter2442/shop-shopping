@@ -44,10 +44,9 @@ class ProductController extends Controller
   }
   public function update(ProductRepository $product,Request $request, $id)
   {
-    //    dd('kkkk'.$id);
-    //    dd($request->picture,$request->stock,$request->hasFile('picture'),$id);
+
       $result = $product->update($request, $id);
-      $message = $result ? 'บันทึกข้อมูลสำเร็จ' : 'เกิดข้อผิดพลาดนะจะ!';
+      $message = $result ? 'บันทึกข้อมูลสำเร็จ' : 'เกิดข้อผิดพลาด!';
       $status = $result ? 'success' : 'error';
       return response()->json([
           'message' => $message,

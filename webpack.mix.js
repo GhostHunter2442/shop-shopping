@@ -47,6 +47,10 @@ mix.scripts([
     'resources/js/backend/user.js'
 ], 'public/js/backend/user.min.js');
 
+mix.scripts([
+    'resources/js/backend/bank.js'
+], 'public/js/backend/bank.min.js');
+
 
 mix.scripts([
     'resources/js/backend/create-charts.js'

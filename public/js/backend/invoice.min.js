@@ -49,23 +49,20 @@ $(document).ready(function () {
             orderable: false,
             render: function (data, type, row) {
                  if(data ===''){
-                    var dataBank='-';
+
+                    if(row['paymentid']==='2'){
+                        var dataBank='<img   src="'+APP_IMG_BANK+'cod.png" alt="" width="50">' ;
+                    }
+                    else{
+                        var dataBank='<img   src="'+APP_IMG_BANK+'craditcart.png" alt="" width="50">' ;
+                    }
                  }
                  else{
-                    var dataBank='<img   src="'+APP_IMG_BANK+row.bank_name+'" alt="" width="30">' ;
+                    var dataBank='<img   src="'+APP_IMG_BANK+row.bank_name+'" alt="" width="40">' ;
                  }
                 return dataBank;
             },
         },
-        // {
-        //     targets: 4,
-        //     orderable: false,
-        //     render: function (data, type, row) {
-        //         //  var dataPicture = '<img src="'+APP_IMG_SLIP+row['paypic']+'" alt="" width="60">';
-        //         var dataPicture=row['paypic'];
-        //         return dataPicture;
-        //     },
-        // },
         {
             targets: 4,
             orderable: false,
@@ -79,7 +76,13 @@ $(document).ready(function () {
             targets: 5,
             orderable: false,
             render: function (data, type, row) {
-                var dataPayID = row['payment_id'];
+                if(data == null){
+                    var dataPayID ='-';
+                }
+                else{
+                    var dataPayID = row['payment_id'];
+                }
+
                 return dataPayID;
 
             },
@@ -88,7 +91,7 @@ $(document).ready(function () {
             targets: 6,
             orderable: false,
             render: function (data, type, row) {
-                // var dataStatus = row['status_order'];
+
                 var status = row['status_order']==='1' ? 'primary':row['status_order']==='2' ? 'warning' : 'danger';
                 var strStatus = row['status_order']==='1' ? 'สั่งซื้อ' : row['status_order']==='2' ? 'จัดส่ง' :  'ยกเลิก';
                 var dataStatus = '<span class="badge badge-'+status+'">'+strStatus+'</span>';
