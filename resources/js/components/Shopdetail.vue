@@ -292,8 +292,14 @@ export default {
                                                      this.$store.dispatch("addItem")
                                                      this.showalert(showicon,showtitle);
                                             }).catch(error => {
-                                                console.log(error.response);
-                                            });
+
+
+                                                //  if (error.response && error.response.status ===403) {
+                                                        let showicon='warning';
+                                                        let showtitle ='ไม่มีสิทธิการสั่งซื้อสินค้า';
+                                                        this.showalert(showicon,showtitle);
+                                                    // }
+                                                });
                                 }
                     }else{
                             let showicon='warning';

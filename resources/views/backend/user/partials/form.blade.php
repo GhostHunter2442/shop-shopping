@@ -67,8 +67,9 @@
 
       <br>
 
+
             <div class="form-group">
-            <label for="userrole">เข้าถึงข้อมูล   <span class="text-danger">(กำหนดสิทธิ)</span></label>
+            <label for="userrole">เข้าถึงข้อมูล   <span class="text-danger">(กำหนดสิทธิ)</span></label> 
         <div class="row">
 
             <div class="col-sm-4">
@@ -131,6 +132,7 @@
               </div>
         </div>
           </div>
+
   </div>
 
     </div>

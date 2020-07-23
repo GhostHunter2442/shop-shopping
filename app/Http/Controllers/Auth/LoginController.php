@@ -29,6 +29,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+    // protected $redirectAfterLogout = '/contact';
   // login เเล้วไปที่หน้าไหน
     /**
      * Create a new controller instance.
@@ -38,7 +39,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        // $this->middleware('role:admin|employee|member')->except('logout');
+      
     }
 
 

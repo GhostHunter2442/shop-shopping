@@ -8736,7 +8736,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this.showalert(_showicon, _showtitle);
                 })["catch"](function (error) {
-                  console.log(error.response);
+                  //  if (error.response && error.response.status ===403) {
+                  var showicon = 'warning';
+                  var showtitle = 'ไม่มีสิทธิการสั่งซื้อสินค้า';
+
+                  _this.showalert(showicon, showtitle); // }
+
                 });
 
               case 12:
@@ -9252,6 +9257,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 })["catch"](function (error) {
                   if (error.response && error.response.status === 401) {
                     window.location.href = "login";
+                  } else if (error.response && error.response.status === 403) {
+                    var Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 1500,
+                      timerProgressBar: true,
+                      onOpen: function onOpen(toast) {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                      }
+                    });
+                    Toast.fire({
+                      icon: 'warning',
+                      title: 'ไม่มีสิทธิการสั่งซื้อสินค้า'
+                    });
                   }
                 });
 

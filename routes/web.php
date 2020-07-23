@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use \AfterShip\AfterShipException;
 
 
-Route::get('/keyry', function (Request $request) {
+// Route::get('/keyry', function (Request $request) {
 
     // $key = config('aftership.api_key');
 
@@ -35,10 +35,11 @@ Route::get('/keyry', function (Request $request) {
     //         dd($responses);
 
 
-})->name('keyry.index');
+// })->name('keyry.index');
 
 
-Route::get('/','WelcomeController@index')->name('welcome');  //->middleware('permission:viewSales');
+Route::get('/','WelcomeController@index')->name('welcome');
+//->middleware('permission:viewSales');
 Route::get('/category/{id}','WelcomeController@show')->name('welcome.show');
 Route::any('/showall','WelcomeController@showall')->name('welcome.showall');
 Route::any('/show/discount','WelcomeController@showdiscount')->name('welcome.discount');
@@ -179,8 +180,8 @@ Route::group(['middleware' => ['auth']],function(){
     Route::prefix('cartdetail')->group(function () {
         Route::get('', 'Cartdetailcontroller@cartdetail')->name('cart.cartdetail');
         Route::get('detail', 'Cartdetailcontroller@getcartdetail')->name('cartdetail.get');
-        Route::get('adddetail/{product_id}/{valueqtr}', 'Cartdetailcontroller@addcartdetail')->name('cartdetail.add');
-        Route::get('downdetail/{product_id}/{valueqtr}', 'Cartdetailcontroller@downcartdetail')->name('downdetail.down');
+        Route::get('adddetail/{product_id}/{valueqtr}', 'Cartdetailcontroller@addcartdetail')->name('cartdetail.add')->middleware('permission:viewSales');
+        Route::get('downdetail/{product_id}/{valueqtr}', 'Cartdetailcontroller@downcartdetail')->name('downdetail.down')->middleware('permission:viewSales');
         Route::get('favorite/{product_id}', 'Cartdetailcontroller@addfavorite')->name('cartdetail.addfavorite');
         Route::get('deldetail/{product_id}', 'Cartdetailcontroller@delcartdetail')->name('cartdetail.del');
         Route::get('confirm', 'Cartdetailcontroller@confirm')->name('cartdetail.confirm');

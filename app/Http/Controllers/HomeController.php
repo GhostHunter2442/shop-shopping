@@ -30,14 +30,7 @@ class HomeController extends Controller
         $UserCount = User::count();
 
 
-        // auth()->user()->assignRole('member');  // สร้าง role ใหม่
-        // if(auth()->user()->hasRole("member")){
-        //     return redirect('/');
-        //     // return view('welcome');
-        // }
-        // if(auth()->user()->hasRole("admin")){
-        //     return redirect('/home');
-            // redirect()->to('home');
+
             if(auth()->user()->hasRole("admin|employee")){
             return view('home',[
                 'categoryCount'=> $categoryCount,
@@ -46,6 +39,7 @@ class HomeController extends Controller
             ]);
             }else{
                 auth()->user()->assignRole("member");  // สร้าง role ใหม่
+                auth()->user()->givePermissionTo('viewSales');// สร้าง per ซื้อสินค้า
                 return redirect('/');
             }
 
