@@ -235,6 +235,7 @@
             </a>
           </li>
           @endcan
+          @can('viewDashboardReport')
           <li class="nav-header">รายงายการขาย</li>
 
           <li class="nav-item has-treeview {{ request()->routeIs('report.index') ? 'menu-open' : request()->routeIs('reportdetail.index') ? 'menu-open' :''  }}">
@@ -248,14 +249,14 @@
             </a>
 
             <ul class="nav nav-treeview">
-                @can('viewDashboardReport')
+
               <li class="nav-item">
                 <a href="{{ route('report.index') }}" class="nav-link {{ request()->routeIs('report.index') ? 'active' :''  }}">
                   <i class="fa fa-dashboard nav-icon" style="font-size:13px"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
-              @endcan
+
               <li class="nav-item">
                 <a href="{{ route('reportdetail.index') }}" class="nav-link {{ request()->routeIs('reportdetail.index') ? 'active' :''  }}">
                     <i class="fa fa-bar-chart nav-icon" style="font-size:13px"></i>
@@ -265,6 +266,7 @@
             </ul>
 
           </li>
+          @endcan
             @role('admin')
           <li class="nav-header">จัดการทั่วไป</li>
           <li class="nav-item">

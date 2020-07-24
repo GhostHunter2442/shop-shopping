@@ -117,7 +117,7 @@
                 <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" type="checkbox" name="readToppic[]"  id="readReport" value="7" {{in_array(7,$permissions)? 'checked': ''}}>
-                    <label for="readReport" class="custom-control-label">Dashboard</label>
+                    <label for="readReport" class="custom-control-label">Dashboard รายงาน</label>
                   </div>
                 </div>
               </div>
