@@ -13,9 +13,14 @@
                     <div class="card-header">
                         <div class="pull-left">
                             {{-- <button class="btn btn-success btn-exporttrack" >โหลดฟอร์ม</button> --}}
-                            <a data-href="http://localhost/shopping/public/backend/invoice/order_file/trackexport" role="button" class="btn btn-success btn-exporttrack">
+                            <a data-href="http://localhost/shopping/public/backend/invoice/order_file/trackexport" id="btn_exporttrack" role="button" class="btn btn-success btn-exporttrack">
                                 โหลดฟอร์ม
                             </a>
+                            <button class="btn btn-success d-none" id="loading_btn_export" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true">  <i class="fas fa-sync fa-spin"></i></span>
+
+                                กำลังโหลด...
+                            </button>
                         </div>
                         <div class="pull-right">
                             <form  id="saveForm" method="post" enctype="multipart/form-data" >

@@ -106,11 +106,13 @@ $(document).ready(function () {
         });
        });
 
-
+       var loading_btn_export = document.getElementById("loading_btn_export");
+       var btn_exporttrack = document.getElementById("btn_exporttrack");
        $('body').on('click', '.btn-exporttrack', async function (event) {
-
+        btn_exporttrack.classList.add("d-none");
+        loading_btn_export.classList.remove("d-none");
         var url = $(this).data('href');
-        // alert(url);
+
 
         window.location.href = url;
 
@@ -127,7 +129,8 @@ $(document).ready(function () {
           data: 1,
           success:function(resp)
           {
-
+            loading_btn_export.classList.add("d-none");
+            btn_exporttrack.classList.remove("d-none");
 
           }
          })
@@ -159,9 +162,11 @@ $(document).ready(function () {
         const progressBarFill = document.querySelector("#progressBar > .progress-bar-fill");
         const progressBarText = progressBarFill.querySelector(".progress-bar-text");
 
-        var progressBar = document.getElementById("progressBar");
-           var upload_btn = document.getElementById("uploadSubmit");
+            var progressBar = document.getElementById("progressBar");
+            var upload_btn = document.getElementById("uploadSubmit");
             var loading_btn = document.getElementById("loading_btn");
+
+
 
 
         $('#saveForm').on('submit', function(event){
