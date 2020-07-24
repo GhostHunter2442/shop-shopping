@@ -134,7 +134,7 @@ Route::group(['middleware' => ['auth']],function(){
 
     Route::prefix('backend/reportdetail')->group(function () {
         Route::get('', 'ReportdetailController@index')->name('reportdetail.index');
-        Route::get('datatables', 'ReportdetailController@gettopdata');
+        Route::get('datatables/{year}/{month}', 'ReportdetailController@gettopdata');
 
     });
 

@@ -49,6 +49,7 @@
         var APP_IMG_SLIP = {!! json_encode(url('http://localhost/shopping/public/storage/images/slipbank/')) !!}
         var APP_IMG_BANK = {!! json_encode(url('http://localhost/shopping/public/storage/images/bank/')) !!}
         var APP_USERID = {!! json_encode(Auth::id()) !!}
+        var APP_LANG = {!! json_encode(asset('js/backend/datatables-th.lang')) !!}
     </script>
 
 </head>

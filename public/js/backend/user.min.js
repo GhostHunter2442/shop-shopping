@@ -7,7 +7,11 @@ var app = new Vue({
 $(document).ready(function () {
     loadingCustom();
     var table = $('#user-table').DataTable({
+        language: {
+            url: APP_LANG
+        },
         serverSide: true,
+        processing: false,
         ajax: APP_URL + '/user/datatables',
         columns: [{
                 data: 'email',

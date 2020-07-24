@@ -55,6 +55,9 @@ mix.scripts([
     'resources/js/backend/reporttopbank.js'
 ], 'public/js/backend/reporttopbank.min.js');
 
+mix.scripts([
+    'resources/js/backend/datatables-th.lang'
+], 'public/js/backend/datatables-th.lang');
 
 
 mix.scripts([

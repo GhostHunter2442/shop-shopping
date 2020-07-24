@@ -134,7 +134,7 @@
 
     var chart_talbel={
         tablePrice: function (status) {
-  
+       
             var d = new Date();
             var n = d.getFullYear();
             if(status==1){

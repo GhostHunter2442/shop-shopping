@@ -4,14 +4,27 @@ var app = new Vue({
         data: {}
     }
 });
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+
 $(document).ready(function () {
+
+
+
     loadingCustom();
 
     /* handle tables */
     var table =  $('#preorder-table').DataTable({
-        // processing: true,
+        language: {
+            url: APP_LANG
+        },
         serverSide: true,
+        processing: false,
         ajax: APP_URL + '/invoice/preorder/datatables',
+        order: [
+            [0, 'desc'] //เรียงขอมูลล่าสุดขึ้นก่อน
+        ],
         columns: [
                 {data: 'id',name: 'id'},
                 {data: 'iuser_named',name: 'user_name'},
@@ -68,7 +81,7 @@ $(document).ready(function () {
             targets: 4,
             orderable: false,
             render: function (data, type, row) {
-                var dataPrice = row['price'];
+                var dataPrice = numberWithCommas(row['price']);
                 return dataPrice;
 
             },

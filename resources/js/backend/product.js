@@ -4,13 +4,19 @@ var app = new Vue({
         data: {}
     }
 });
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
 $(document).ready(function () {
     loadingCustom();
 
     /* handle tables */
     var table =  $('#product-table').DataTable({
-        // processing: true,
+        language: {
+            url: APP_LANG
+        },
         serverSide: true,
+        processing: false,
         ajax: APP_URL + '/product/datatables',
         columns: [
                 {data: 'id',name: 'id'},
@@ -39,7 +45,7 @@ $(document).ready(function () {
             orderable: false,
 
             render: function (data, type, row) {
-                var dataPrice = row['price'];
+                var dataPrice = numberWithCommas(row['price']);
                 return dataPrice;
             },
         },

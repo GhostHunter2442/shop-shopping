@@ -9,7 +9,11 @@ $(document).ready(function () {
 
     /* handle tables */
     var table =  $('#bank-table').DataTable({
+        language: {
+            url: APP_LANG
+        },
         serverSide: true,
+        processing: false,
         ajax: APP_URL + '/bank/datatables',
         columns: [
                 {data: 'id',name: 'id'},

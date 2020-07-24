@@ -13,6 +13,7 @@
     "/js/backend/user.min.js": "/js/backend/user.min.js",
     "/js/backend/bank.min.js": "/js/backend/bank.min.js",
     "/js/backend/reporttopbank.min.js": "/js/backend/reporttopbank.min.js",
+    "/js/backend/datatables-th.lang": "/js/backend/datatables-th.lang",
     "/js/backend/create-charts.min.js": "/js/backend/create-charts.min.js",
     "/js/sweetalert.min.js": "/js/sweetalert.min.js",
     "/js/sweetalert2.all.min.js": "/js/sweetalert2.all.min.js",

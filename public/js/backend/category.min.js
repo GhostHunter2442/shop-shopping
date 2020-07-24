@@ -8,10 +8,12 @@ $(document).ready(function () {
     loadingCustom();
     /* handle tables */
     var table = $('#category-table').DataTable({
-        // processing: true,
+        language: {
+            url: APP_LANG
+        },
         serverSide: true,
+        processing: false,
         ajax: APP_URL + '/category/datatables',
-        // ajax: "{{ route('backend.category.datatables') }}",
         columns: [{
                 data: 'name',
                 name: 'name'

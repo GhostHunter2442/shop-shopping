@@ -19,10 +19,10 @@ class ReportdetailRepository
         $this->dateE = now();
     }
 
-    public function getDatatabsort()
+    public function getDatatabsort($year,$month)
     {
-        $query = Invoice::where('invoices.status_order', '!=', 3)
-            ->whereYear('invoices.created_at', $this->year_now)
+        if($year==0 && $month==0){
+            $query = Invoice::where('invoices.status_order', '!=', 3)
             ->join('banks', 'invoices.bank_id', '=', 'banks.id')
             ->select(
                 'banks.detail',
@@ -31,7 +31,48 @@ class ReportdetailRepository
             ->groupBy('banks.detail')
             ->orderBy('total', 'DESC')
             ->latest('invoices.id');
-        return $query;
+             return $query;
+        }else if($year !=0  && $month==0){
+            $query = Invoice::where('invoices.status_order', '!=', 3)
+            ->whereYear('invoices.created_at', $year)
+            ->join('banks', 'invoices.bank_id', '=', 'banks.id')
+            ->select(
+                'banks.detail',
+                DB::raw('sum(invoices.price) as total')
+            )
+            ->groupBy('banks.detail')
+            ->orderBy('total', 'DESC')
+            ->latest('invoices.id');
+             return $query;
+        }
+        else if($year ==0  && $month !=0){
+            $query = Invoice::where('invoices.status_order', '!=', 3)
+            ->whereMonth('invoices.created_at', $month)
+            ->join('banks', 'invoices.bank_id', '=', 'banks.id')
+            ->select(
+                'banks.detail',
+                DB::raw('sum(invoices.price) as total')
+            )
+            ->groupBy('banks.detail')
+            ->orderBy('total', 'DESC')
+            ->latest('invoices.id');
+             return $query;
+        }else{
+            $query = Invoice::where('invoices.status_order', '!=', 3)
+            ->whereYear('invoices.created_at', $year)
+            ->whereMonth('invoices.created_at', $month)
+            ->join('banks', 'invoices.bank_id', '=', 'banks.id')
+            ->select(
+                'banks.detail',
+                DB::raw('sum(invoices.price) as total')
+            )
+            ->groupBy('banks.detail')
+            ->orderBy('total', 'DESC')
+            ->latest('invoices.id');
+             return $query;
+        }
+
+
     }
     public function getMonth()
     {

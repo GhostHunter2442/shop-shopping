@@ -40,17 +40,9 @@
                    </select>
             </div>
             <div class="form-group col-md-2 col-sm-12">
-                <button class="btn btn-info btn-search">ค้นหา</button>
+                <button class="btn btn-info btn-search" id="search_btn">ค้นหา</button>
             </div>
         </div>
-
-
-
-
-
-
-
-
                         </div>
 
                     </div>

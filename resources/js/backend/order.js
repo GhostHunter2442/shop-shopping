@@ -11,9 +11,11 @@ $(document).ready(function () {
 
     /* handle tables */
     var table =  $('#order-table').DataTable({
-        // dom: "Bfrtip",
-        // processing: true,
+        language: {
+            url: APP_LANG
+        },
         serverSide: true,
+        processing: false,
         ajax: APP_URL + '/invoice/order/datatables',
         columns: [
                 {data: 'id',name: 'id'},

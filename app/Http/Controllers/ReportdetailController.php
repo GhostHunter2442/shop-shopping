@@ -15,13 +15,14 @@ class ReportdetailController extends Controller
         return view('backend.reportdetail.topbank',$data);
     }
 
-    public function gettopdata(ReportdetailRepository $topbank){
+    public function gettopdata(ReportdetailRepository $topbank,$year,$month){
 
-    //    return $topbank->getYear();
-        $data = $topbank->getDatatabsort();
+        // dd($request->year);
+        $data = $topbank->getDatatabsort($year,$month);
         $datatables = app('datatables');
         return $datatables->eloquent($data)
              ->make(true);
+
 
     }
 }
