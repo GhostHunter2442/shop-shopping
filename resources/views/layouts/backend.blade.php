@@ -277,7 +277,7 @@
               </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('renderForm.index') }}" class="nav-link {{ request()->routeIs('renderForm.index') ? 'active' :''  }}">
                 <i class="fa fa-cogs nav-icon" ></i>
                 <p>ข้อมูลเวป</p>
               </a>
@@ -394,7 +394,7 @@
       </script> --}}
 
       @yield('script')
-
+      @yield('footerscript')
     </body>
 
 </html>

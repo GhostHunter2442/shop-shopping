@@ -138,6 +138,13 @@ Route::group(['middleware' => ['auth']],function(){
 
     });
 
+    Route::prefix('backend/general')->group(function () {
+        Route::post('', 'GeneralController@update')->name('updateForm.index');
+        Route::get('form', 'GeneralController@renderForm')->name('renderForm.index');
+
+    });
+
+
     Route::prefix('backend/user')->group(function () {
         Route::get('', 'UserController@index')->name('user.index')->middleware('role:admin');
         Route::post('', 'UserController@store');
