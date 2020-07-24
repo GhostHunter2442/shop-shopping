@@ -19,8 +19,8 @@ class CreateGeneralsTable extends Migration
             $table->string('email')->unique();
             $table->string('adress',250);
             $table->string('phonenumber',12);
-            $table->dateTime('open_time');
-            $table->dateTime('close_time');
+            $table->string('open_time',12);
+            $table->string('close_time',12);
             $table->string('latitude',100);
             $table->string('longitude',100);
             $table->timestamps();

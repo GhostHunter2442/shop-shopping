@@ -4,12 +4,13 @@ $('.modal').on('shown.bs.modal', function(e){
     //     theme: 'bootstrap4'
     // });
 
-    $('.datepicker').datepicker({
-        format: 'dd/mm/yyyy',
-        autoclose: true,
-        todayHighlight: true
-    });
+    // $('.datepicker').datepicker({
+    //     format: 'dd/mm/yyyy',
+    //     autoclose: true,
+    //     todayHighlight: true
+    // });
 });
+  //Timepicker
 
 
 /* handle active menu */

@@ -118,19 +118,23 @@ mix.copy('node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js', 'public/
 mix.copy('node_modules/gasparesganga-jquery-loading-overlay/dist/loadingoverlay.min.js', 'public/js/backend/loadingoverlay.min.js');
 mix.copy('node_modules/select2/dist/js/select2.min.js', 'public/js/backend/select2.min.js');
 mix.copy('node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js', 'public/js/backend/bootstrap-datepicker.min.js');
-
 mix.copy('node_modules/admin-lte/dist/js/adminlte.min.js', 'public/js/backend/adminlte.min.js');
 mix.copy('node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js', 'public/js/backend/bootstrap.bundle.min.js');
 mix.copy('node_modules/admin-lte/plugins/summernote/summernote-bs4.min.js', 'public/js/backend/summernote-bs4.min.js');
 
 
+mix.copy('node_modules/admin-lte/plugins/inputmask/min/jquery.inputmask.bundle.min.js', 'public/js/backend/jquery.inputmask.bundle.min.js');
+mix.copy('node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js', 'public/js/backend/daterangepicker.js');
+mix.copy('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js', 'public/js/backend/tempusdominus-bootstrap-4.min.js');
+
+
+mix.copy('node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css', 'public/css/backend/daterangepicker.css');
+mix.copy('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css', 'public/css/backend/tempusdominus-bootstrap-4.min.css');
+
 mix.copy('node_modules/admin-lte/dist/css/adminlte.min.css', 'public/css/backend/adminlte.min.css');
 mix.copy('node_modules/admin-lte/plugins/summernote/summernote-bs4.css', 'public/css/backend/summernote-bs4.css');
 mix.copy('node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css', 'public/css/backend/all.min.css');
-
-
 //  mix.copy('node_modules/admin-lte/plugins/select2/css/select2.min.css','public/css/backend/select2.min.css');
-
 mix.copy('node_modules/sweetalert2/dist/sweetalert2.min.css', 'public/css/backend/sweetalert2.min.css');
 mix.copy('node_modules/select2/dist/css/select2.min.css', 'public/css/backend/select2.min.css');
 mix.copy('node_modules/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css', 'public/css/backend/select2-bootstrap4.min.css');

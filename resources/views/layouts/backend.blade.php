@@ -10,8 +10,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-{{--
-    <link rel="stylesheet" href="{{ asset('css/backend/bootstrap.min.css') }}"> --}}
+{{--<link rel="stylesheet" href="{{ asset('css/backend/bootstrap.min.css') }}"> --}}
    {{-- <link rel="stylesheet" href="{{ asset('css/backend/all.min.css') }}"> --}}
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -20,9 +19,12 @@
    <link rel="stylesheet" href="{{ asset('css/backend/switchery.min.css') }}">
    <link rel="stylesheet" href="{{ asset('css/backend/sweetalert2.min.css') }}">
 
+
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
    {{-- <link rel="stylesheet" href="{{ asset('css/backend/select2.min.css') }}">--}}
    {{-- <link rel="stylesheet" href="{{ asset('css/backend/select2-bootstrap4.min.css') }}"> --}}
+   {{-- <link rel="stylesheet" href="{{ asset('css/backend/daterangepicker.css') }}"> --}}
+
 
    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -38,6 +40,7 @@
  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/backend/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/backend/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/tempusdominus-bootstrap-4.min.css') }}">
 
 
     <link rel="stylesheet" href="{{ asset('css/toastr.css')}}">
@@ -338,12 +341,16 @@
     <script src="{{ asset('js/backend/modernizr.min.js') }}"></script>
 
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script> --}}
-
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> --}}
      <script src="{{ asset('js/backend/jquery.min.js') }}"></script>
-
+     <script src="{{ asset('js/backend/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/backend/moment.min.js') }}"></script>
+    <script src="{{ asset('js/backend/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('js/backend/Chart.min.js') }}"></script>
+    <script src="{{ asset('js/backend/daterangepicker.js') }}"></script>
+    <script src="{{ asset('js/backend/tempusdominus-bootstrap-4.min.js') }}"></script>
+
+
 
 
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
@@ -361,11 +368,10 @@
 
     <script src="{{ asset('js/backend/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js')}}"></script>
-
     <script src="{{ asset('js/select2.full.min.js') }}"></script>
-    {{-- <script src="{{ asset('js/backend/select2.min.js') }}"></script> --}}
 
-    <script src="{{ asset('js/backend/bootstrap-datepicker.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/backend/bootstrap-datepicker.min.js') }}"></script> --}}
+
 
     <script src="{{ asset('js/backend/detect.js') }}"></script>
     <script src="{{ asset('js/backend/fastclick.js') }}"></script>
@@ -377,7 +383,8 @@
 
     <script src="{{ asset('js/backend/loadingoverlay.min.js') }}"></script>
     <script src="{{ asset('js/backend/adminlte.min.js') }}"></script>
-    <script src="{{ asset('js/backend/bootstrap.bundle.min.js') }}"></script>
+
+
     <script src="{{ asset('js/backend/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('js/backend/custom.min.js') }}"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"> --}}
