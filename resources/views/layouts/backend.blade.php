@@ -360,10 +360,10 @@
     <script src="{{ asset('js/backend/bootstrap.min.js') }}"></script>
     <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
 
-    {{-- <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> --}}
+
     <script src="{{ asset('js/backend/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('js/backend/dataTables.bootstrap4.js') }}"></script>
-  {{-- <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script> --}}
+
 
     <script src="{{ asset('js/backend/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/backend/messages_th.js') }}"></script>
@@ -372,7 +372,7 @@
     <script src="{{ asset('js/toastr.min.js')}}"></script>
     <script src="{{ asset('js/select2.full.min.js') }}"></script>
 
-    {{-- <script src="{{ asset('js/backend/bootstrap-datepicker.min.js') }}"></script> --}}
+
 
 
     <script src="{{ asset('js/backend/detect.js') }}"></script>

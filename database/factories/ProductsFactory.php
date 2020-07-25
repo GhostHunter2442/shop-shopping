@@ -10,7 +10,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
         'stock'=> $faker->biasedNumberBetween(0,10),
         'discount'=> $faker->biasedNumberBetween(0,50),
         'weight'=> $faker->biasedNumberBetween(1,2),
-        // 'detail'=> $faker->text($maxNbChars = 3000),
+        'detail'=> $faker->text($maxNbChars = 500),
         'category_id'=> $faker->biasedNumberBetween(1,5),
         'created_at'=> $faker->dateTime($max='now'),
         'updated_at'=> $faker->dateTime($max='now'),

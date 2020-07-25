@@ -144,4 +144,4 @@ mix.copy('resources/css/switchery.min.css', 'public/css/backend/switchery.min.cs
 mix.copy('resources/css/custom.css', 'public/css/backend/custom.css');
 mix.copy('resources/css/style.css', 'public/css/backend/style.css');
 
-
+ 

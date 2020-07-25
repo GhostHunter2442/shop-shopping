@@ -102,14 +102,25 @@ $(document).ready(function () {
     ]
     });
     $.LoadingOverlay('hide');
-    /* handle validate */
-    $('#ajaxModal').on('shown.bs.modal', function (e) {
 
-        $('#textarea').summernote();
+
+    $('#ajaxModal').on('shown.bs.modal', function (e) {
+        var myElement = $('#detail');
+        // myElement.summernote();
+
+
+        myElement.summernote({
+
+            height: 50,
+            minHeight: 100,
+            codemirror: {
+              theme: 'default'
+            }
+     });
+
         $('.select2').select2();
         var id = $('input[name=id]').val();
         $('#saveForm').on('submit', function(event){
-
 
 
           event.preventDefault();
@@ -148,49 +159,99 @@ $(document).ready(function () {
               }
              })
 
-        }).validate({
-                     rules: {
-                name: {
-                    required: true
-                },
-                category_id: {
-                    required: true
-                },
-                price: {
-                    required: true,
-                    // digits:true
-                },
-                stock: {
-                    required: true,
-                    // digits:true
-                },
-
-            },
-            messages: {},
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass("error-block");
-                    error.addClass("invalid-feedback");
-                    if (element.prop("type") === "checkbox") {
-                        error.insertAfter(element.parent("label"));
-                    } else if (element.parent('.input-group').length) {
-                        error.insertAfter(element.parent()); /* radio checkbox? */
-                    } else if (element.hasClass('select2')) {
-                        error.insertAfter(element.next('span')); /* select2 */
-                    } else {
-                        error.insertAfter(element);
-                    }
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).parents('.form-group').addClass('has-error').removeClass('has-success');
-                    $(element).addClass('is-invalid').removeClass('is-valid');
-
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).parents('.form-group').addClass('has-success').removeClass('has-error');
-                    $(element).addClass('is-valid').removeClass('is-invalid');
-                }
         });
+        $('#saveForm').validate({
+            ignore: ":hidden, [contenteditable='true']:not([detail])",
+                  rules: {
+                    name: {
+                        required: true
+                    },
+                    category_id: {
+                        required: true
+                    },
+                    price: {
+                        required: true,
+                        // digits:true
+                    },
+                    stock: {
+                        required: true,
+                        // digits:true
+                    }
+
+                },
+
+                messages: {},
+                    errorElement: 'span',
+                    errorPlacement: function (error, element) {
+                        error.addClass("error-block");
+                        error.addClass("invalid-feedback");
+                        if (element.prop("type") === "checkbox") {
+                            error.insertAfter(element.parent("label"));
+                        } else if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent()); /* radio checkbox? */
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span')); /* select2 */
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).parents('.form-group').addClass('has-error').removeClass('has-success');
+                        $(element).addClass('is-invalid').removeClass('is-valid');
+
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).parents('.form-group').addClass('has-success').removeClass('has-error');
+                        $(element).addClass('is-valid').removeClass('is-invalid');
+                    }
+          });
+
+        // .validate({
+
+        //              rules: {
+        //         name: {
+        //             required: true
+        //         },
+        //         category_id: {
+        //             required: true
+        //         },
+        //         price: {
+        //             required: true,
+        //             // digits:true
+        //         },
+        //         stock: {
+        //             required: true,
+        //             // digits:true
+        //         }
+
+        //     },
+
+        //     messages: {},
+        //         errorElement: 'span',
+        //         errorPlacement: function (error, element) {
+        //             error.addClass("error-block");
+        //             error.addClass("invalid-feedback");
+        //             if (element.prop("type") === "checkbox") {
+        //                 error.insertAfter(element.parent("label"));
+        //             } else if (element.parent('.input-group').length) {
+        //                 error.insertAfter(element.parent()); /* radio checkbox? */
+        //             } else if (element.hasClass('select2')) {
+        //                 error.insertAfter(element.next('span')); /* select2 */
+        //             } else {
+        //                 error.insertAfter(element);
+        //             }
+        //         },
+        //         highlight: function (element, errorClass, validClass) {
+        //             $(element).parents('.form-group').addClass('has-error').removeClass('has-success');
+        //             $(element).addClass('is-invalid').removeClass('is-valid');
+
+        //         },
+        //         unhighlight: function (element, errorClass, validClass) {
+        //             $(element).parents('.form-group').addClass('has-success').removeClass('has-error');
+        //             $(element).addClass('is-valid').removeClass('is-invalid');
+        //         }
+        // });
+
 
 
 
@@ -234,67 +295,6 @@ $(document).ready(function () {
     $('#ajaxModal').on('hidden.bs.modal', function (e) {
         openModal = false;
     });
-
-
-    //   var openModal = false;
-    //   $('#ajaxModal').on('shown.bs.modal', function (e) {
-    //       $('body').on('change', '#file', function (e) {
-    //           if(openModal) return false;
-    //           openModal = true;
-    //           e.preventDefault();
-    //           loadingCustom();
-    //           $.ajaxSetup({
-    //               headers: {
-    //                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //               }
-    //           });
-
-    //         //   var fileInput = document.getElementById('file');
-    //         //   var file = fileInput.files[0];
-    //         //   var formData = new FormData();
-    //         //   formData.append('file', file);
-
-    //           var form_data = new FormData();
-    //           form_data.append('file', this.files[0]);
-    //           $.ajax({
-    //               url: APP_URL+'/product/uploadfile',
-    //               data: form_data,
-    //               type: 'POST',
-    //               contentType: false,
-    //               processData: false,
-    //               success: function (resp) {
-    //                   $.LoadingOverlay('hide');
-    //                   if(resp.status==='success'){
-    //                       alert(resp.data);
-    //                       $('#picture').val(resp.data);
-    //                     //   $('.btn-view-file').removeClass('invisible').addClass('visible');
-    //                     //   $('.btn-view-file').attr('href', APP_LINK+resp.data);
-    //                   } else {
-    //                     //   showBox(resp.message.file[0], 'error');
-    //                       toastr["warning"](resp.message.file[0],'warning', {
-    //                         progressBar: true,
-    //                         timeOut: 1500,
-    //                         extendedTimeOut: 1500
-    //                       });
-    //                   }
-    //               },
-    //               error: function (xhr, textStatus, errorThrown) {
-    //                   $.LoadingOverlay('hide');
-    //                 //   showBox(textStatus, 'error', errorThrown);
-    //                 toastr["error"](textStatus,errorThrown, {
-    //                     progressBar: true,
-    //                     timeOut: 1500,
-    //                     extendedTimeOut: 1500
-    //                   });
-
-    //               }
-    //           });
-    //       });
-    //   });
-
-    //   $('#ajaxModal').on('hidden.bs.modal', function (e) {
-    //     openModal = false;
-    // });
 
 
 });

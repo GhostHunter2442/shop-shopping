@@ -71,10 +71,9 @@
             <div class="form-group col-md-12 col-sm-12">
                 <label for="textarea">รายละเอียดสินค้า</label>
                 <div class="mb-2">
-                  <textarea class="textarea" id="textarea"  name="textarea" placeholder="Place some text here"
-                  style="display:none;" >
+                  <textarea class="textarea" id="detail"  name="detail" style="display:none;" >
 
-                  {{ $data->discount }}
+                  {{ $data->detail }}
                 </textarea>
                 </div>
 

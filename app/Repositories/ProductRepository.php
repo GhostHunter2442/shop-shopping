@@ -51,6 +51,7 @@ class ProductRepository
 
     public function store($request)
     {
+
         $product = new Product;
         $product->name = $request->name;
         $product->slug = str_slug($request->slug);
@@ -58,9 +59,8 @@ class ProductRepository
         $product->stock = $request->stock;
         $product->discount = $request->discount;
         $product->weight = $request->weight;
-
         $product->detail = $request->detail;
-        
+
         $product->status = $request->status;
         $product->category_id = $request->category_id;
 
@@ -83,10 +83,16 @@ class ProductRepository
     }
     public function update($request, $id)
     {
+        // dd($request->detail);
         $product = $this->getById($id);
         $product->name = $request->name;
+        $product->slug = str_slug($request->slug);
         $product->price = $request->price;
         $product->stock = $request->stock;
+        $product->discount = $request->discount;
+        $product->weight = $request->weight;
+        $product->detail = $request->detail;
+
         $product->status = $request->status;
         $product->category_id = $request->category_id;
 
