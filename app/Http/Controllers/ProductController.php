@@ -35,7 +35,8 @@ class ProductController extends Controller
   }
   public function store(ProductRepository $product,Request $request)
   {
-
+    // dd($request->hasFile('picture'));
+    // dd($request->file('picture'));
       $result = $product->store($request);
       return response()->json([
           'message' => 'บันทึกข้อมูลสำเร็จ',
@@ -44,7 +45,8 @@ class ProductController extends Controller
   }
   public function update(ProductRepository $product,Request $request, $id)
   {
-
+// dd($request->hasFile('picture'));
+// dd($request->picture);
       $result = $product->update($request, $id);
       $message = $result ? 'บันทึกข้อมูลสำเร็จ' : 'เกิดข้อผิดพลาด!';
       $status = $result ? 'success' : 'error';

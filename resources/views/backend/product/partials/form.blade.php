@@ -1,6 +1,9 @@
-<form id="saveForm" method="post" enctype="multipart/form-data" >
+{{-- <form id="saveForm" method="post" enctype="multipart/form-data" >
+    @csrf --}}
+    {!! Form::open(['novalidate','id' => 'saveForm','method' => 'post', 'files' => true,'class'=> ($errors->any()) ? 'was-validated' : 'needs-validation']) !!}
+    {{-- <form id="saveForm" method="POST" id="needs" novalidate enctype="multipart/form-data">
+        {{csrf_field()}} --}}
 
-    @csrf
     <input type="hidden" name="id" value="{{ $data->id }}">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{ $title }}</h5>
@@ -10,13 +13,13 @@
     </div>
     <div class="modal-body">
         <div class="form-row">
-            <div class="form-group col-md-6 col-sm-12">
+            <div class="form-group col-md-4 col-sm-8">
                 <label for="name">ชื่อสินค้า
                     <span class="text-danger">*</span>
                 </label>
                 <input type="text" name="name" value="{{ $data->name }}" class="form-control">
             </div>
-            <div class="form-group col-md-6 col-sm-12">
+            <div class="form-group col-md-3 col-sm-8">
                 <label for="category_id">ประเภท
                     <span class="text-danger">*</span>
                 </label>
@@ -28,44 +31,39 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group col-md-5 col-sm-8">
+                <label for="slug">slug
+                    <span class="text-danger">*</span>
+                </label>
+                <input type="text" name="slug" value="{{ $data->slug }}" class="form-control">
+            </div>
         </div>
-        <div class="form-row">
-        <div class="form-group col-md-12 col-sm-4">
-            <label for="slug">slug
-                <span class="text-danger">*</span>
-            </label>
-            <input type="text" name="slug" value="{{ $data->slug }}" class="form-control">
-        </div>
-      </div>
         <div class="form-row">
 
-            <div class="form-group col-md-6 col-sm-4">
+            <div class="form-group col-md-3 col-sm-6">
                 <label for="stock">จำนวน
                     <span class="text-danger">*</span>
                 </label>
                 <input type="text" name="stock" value="{{ $data->stock }}" class="form-control">
             </div>
-            <div class="form-group col-md-6 col-sm-4">
+            <div class="form-group col-md-3 col-sm-6">
                 <label for="weight">น้ำหนัก kg
                     <span class="text-danger"></span>
                 </label>
                 <input type="text" name="weight" value="{{ $data->weight }}" class="form-control">
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6 col-sm-4">
+            <div class="form-group col-md-3 col-sm-6">
                 <label for="price">ราคา
                     <span class="text-danger">*</span>
                 </label>
                 <input type="text" name="price" value="{{ $data->price }}" class="form-control">
             </div>
-            <div class="form-group col-md-6 col-sm-4">
+            <div class="form-group col-md-3 col-sm-6">
                 <label for="discount">ส่วนลด %
                     <span class="text-danger">*</span>
                 </label>
                 <input type="text" name="discount" value="{{ $data->discount }}" class="form-control">
             </div>
-
         </div>
         <div class="form-row">
             <div class="form-group col-md-12 col-sm-12">

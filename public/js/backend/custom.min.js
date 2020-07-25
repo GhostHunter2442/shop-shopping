@@ -144,6 +144,56 @@ var saveForm = function (id, url, table) {
         }
     });
 }
+var saveFormProduct = function (id, url, table) {
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
+    // formData = $('#saveForm').serialize();
+    var form = $('#saveForm')[0];
+    var formData = new FormData(form);
+
+//File data
+var file_data = $('input[name="picture"]')[0].files;
+for (var i = 0; i < file_data.length; i++) {
+    formData.append("picture", file_data[i]);
+}
+
+
+    // event.preventDefault();
+   var methodType ='post';
+    var castUrl = (id) ? url + '/update/' + id : url;
+    console.log(castUrl);
+    console.log(id);
+     $.ajax({
+      url:castUrl,
+      type: methodType,
+      processData: false,
+      contentType: false,
+      data: formData,
+      success:function(resp)
+      {
+          if(resp.status=='success'){
+            toastr[resp.status](resp.message, '', {
+                progressBar: true,
+                timeOut: 1500,
+                extendedTimeOut: 1500
+              });
+                $('#ajaxModal').modal('hide');
+                table.ajax.reload();
+
+          }
+         else{
+            toastr[resp.status](resp.message, '', {
+                progressBar: true,
+                timeOut: 1500,
+                extendedTimeOut: 1500
+              });
+          }
+      }
+     });
+}
 
 
 var deleteForm = function(url, table) {

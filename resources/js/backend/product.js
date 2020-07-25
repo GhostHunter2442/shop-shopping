@@ -106,14 +106,11 @@ $(document).ready(function () {
 
     $('#ajaxModal').on('shown.bs.modal', function (e) {
         var myElement = $('#detail');
-        // myElement.summernote();
-        // Nunito Sans
 
         myElement.summernote({
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
-                ['fontsize', ['fontsize']],
                 ['fontname', ['fontname']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
@@ -122,53 +119,21 @@ $(document).ready(function () {
             height: 50,
             minHeight: 100,
             codemirror: {
-              theme: 'default'
+              theme: 'paper'
             }
      });
 
         $('.select2').select2();
         var id = $('input[name=id]').val();
-        $('#saveForm').on('submit', function(event){
+           //   event.preventDefault();
 
-
-          event.preventDefault();
-
-            var url = APP_URL + '/product';
-            var methodType ='post';
-            var castUrl = (id) ? url + '/' + id :url;
-            // alert(castUrl);
-             $.ajax({
-              url:castUrl,
-              method:methodType,
-              data: new FormData(this),
-              contentType: false,
-              cache:false,
-              processData: false,
-              dataType:"json",
-              success:function(resp)
-              {
-                  if(resp.status=='success'){
-                    toastr[resp.status](resp.message, '', {
-                        progressBar: true,
-                        timeOut: 1500,
-                        extendedTimeOut: 1500
-                      });
-                        $('#ajaxModal').modal('hide');
-                        table.ajax.reload();
-
-                  }
-                 else{
-                    toastr[resp.status](resp.message, '', {
-                        progressBar: true,
-                        timeOut: 1500,
-                        extendedTimeOut: 1500
-                      });
-                  }
-              }
-             })
-
-        }).validate({
-            ignore: ":hidden, [contenteditable='true']:not([detail])",
+            $('#saveForm').validate({
+                submitHandler: function (form) {
+                    var id = $('input[name=id]').val();
+                    var url = APP_URL + '/product';
+                    saveFormProduct(id, url, table);
+                },
+                 ignore: ":hidden, [contenteditable='true']:not([detail])",
                   rules: {
                     name: {
                         required: true

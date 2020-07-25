@@ -49,7 +49,7 @@
 
 
 {{-- ajax model --}}
-@include('layouts.large_modal')
+@include('layouts.extra_modal')
 @endsection
 
 @section('script')
