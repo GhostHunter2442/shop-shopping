@@ -151,24 +151,24 @@ $(document).ready(function () {
                     },
                     slug:{
                        required: true,
-                        remote: {
-                            url: APP_URL + '/product/check_slug',
-                            type: 'get',
-                            data: {
-                                slugname: function () {
-                                    return $('input[name=slug]').val();
-                                },
-                                id: $('input[name=id]').val()
-                            }
-                        }
+                        // remote: {
+                        //     url: APP_URL + '/product/check_slug',
+                        //     type: 'get',
+                        //     data: {
+                        //         slug: function () {
+                        //             return $('input[name=slug]').val();
+                        //         },
+                        //         id: $('input[name=id]').val()
+                        //     }
+                        // }
 
                     }
                 },
 
                 messages: {
-                    slug: {
-                        remote: 'slug "{0}" ถูกใช้แล้ว กรุณาระบุค่าใหม่'
-                    },
+                    // slug: {
+                    //     remote: 'slug "{0}" ถูกใช้แล้ว กรุณาระบุค่าใหม่'
+                    // },
                 },
                     errorElement: 'span',
                     errorPlacement: function (error, element) {

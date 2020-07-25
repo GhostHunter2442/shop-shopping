@@ -164,8 +164,7 @@ for (var i = 0; i < file_data.length; i++) {
     // event.preventDefault();
    var methodType ='post';
     var castUrl = (id) ? url + '/update/' + id : url;
-    console.log(castUrl);
-    console.log(id);
+
      $.ajax({
       url:castUrl,
       type: methodType,
