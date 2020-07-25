@@ -107,10 +107,18 @@ $(document).ready(function () {
     $('#ajaxModal').on('shown.bs.modal', function (e) {
         var myElement = $('#detail');
         // myElement.summernote();
-
+        // Nunito Sans
 
         myElement.summernote({
-
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']]
+              ],
             height: 50,
             minHeight: 100,
             codemirror: {

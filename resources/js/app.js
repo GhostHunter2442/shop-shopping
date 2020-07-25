@@ -12,10 +12,13 @@ import VueThaiAddressInput from 'vue-thai-address-input';
 
 import 'vue-thai-address-input/dist/vue-thai-address-input.css';
 
+
+
+
 window.Vue = require('vue');
 window.bus = new Vue();
 
-
+ 
 Vue.use(Vue2Filters);
 Vue.use(VueLazyload);
 Vue.use(VueRouter);

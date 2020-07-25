@@ -8645,23 +8645,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -92390,12 +92373,35 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(6)
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c("div", { staticClass: "product__details__tab" }, [
+              _vm._m(6),
+              _vm._v(" "),
+              _c("div", { staticClass: "tab-content" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "tab-pane active",
+                    attrs: { id: "tabs-1", role: "tabpanel" }
+                  },
+                  [
+                    _c("div", { staticClass: "product__details__tab__desc" }, [
+                      _c("span", {
+                        domProps: { innerHTML: _vm._s(_vm.shopdata.detail) }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(7)
+              ])
+            ])
+          ])
         ])
       ])
     ]),
     _vm._v(" "),
-    _vm._m(7)
+    _vm._m(8)
   ])
 }
 var staticRenderFns = [
@@ -92505,95 +92511,69 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-12" }, [
-      _c("div", { staticClass: "product__details__tab" }, [
-        _c("ul", { staticClass: "nav nav-tabs", attrs: { role: "tablist" } }, [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: {
-                  "data-toggle": "tab",
-                  href: "#tabs-1",
-                  role: "tab",
-                  "aria-selected": "false"
-                }
-              },
-              [_vm._v("รายละเอียดสินค้า")]
+    return _c(
+      "ul",
+      { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
+      [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                "data-toggle": "tab",
+                href: "#tabs-1",
+                role: "tab",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("รายละเอียดสินค้า")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                "data-toggle": "tab",
+                href: "#tabs-2",
+                role: "tab",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("รีวิว "), _c("span", [_vm._v("(1)")])]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "tab-pane", attrs: { id: "tabs-2", role: "tabpanel" } },
+      [
+        _c("div", { staticClass: "product__details__tab__desc" }, [
+          _c("h6", [_vm._v("รีวิว")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.\n                                    Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.\n                                    Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam\n                                    sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo\n                                    eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.\n                                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent\n                                    sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac\n                                    diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante\n                                    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;\n                                    Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.\n                                    Proin eget tortor risus."
             )
           ]),
           _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: {
-                  "data-toggle": "tab",
-                  href: "#tabs-2",
-                  role: "tab",
-                  "aria-selected": "false"
-                }
-              },
-              [_vm._v("รีวิว "), _c("span", [_vm._v("(1)")])]
+          _c("p", [
+            _vm._v(
+              "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem\n                                    ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet\n                                    elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum\n                                    porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus\n                                    nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a."
             )
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "tab-content" }, [
-          _c(
-            "div",
-            {
-              staticClass: "tab-pane active",
-              attrs: { id: "tabs-1", role: "tabpanel" }
-            },
-            [
-              _c("div", { staticClass: "product__details__tab__desc" }, [
-                _c("h6", [_vm._v("รายละเอียดสินค้า")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.\n                                    Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus\n                                    suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam\n                                    vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.\n                                    Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat,\n                                    accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a\n                                    pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula\n                                    elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus\n                                    et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam\n                                    vel, ullamcorper sit amet ligula. Proin eget tortor risus."
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem\n                                    ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet\n                                    elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum\n                                    porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus\n                                    nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.\n                                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed\n                                    porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum\n                                    sed sit amet dui. Proin eget tortor risus."
-                  )
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "tab-pane",
-              attrs: { id: "tabs-2", role: "tabpanel" }
-            },
-            [
-              _c("div", { staticClass: "product__details__tab__desc" }, [
-                _c("h6", [_vm._v("รีวิว")]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.\n                                    Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.\n                                    Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam\n                                    sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo\n                                    eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.\n                                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent\n                                    sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac\n                                    diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante\n                                    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;\n                                    Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.\n                                    Proin eget tortor risus."
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem\n                                    ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet\n                                    elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum\n                                    porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus\n                                    nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a."
-                  )
-                ])
-              ])
-            ]
-          )
         ])
-      ])
-    ])
+      ]
+    )
   },
   function() {
     var _vm = this
