@@ -167,8 +167,7 @@ $(document).ready(function () {
               }
              })
 
-        });
-        $('#saveForm').validate({
+        }).validate({
             ignore: ":hidden, [contenteditable='true']:not([detail])",
                   rules: {
                     name: {
@@ -183,12 +182,29 @@ $(document).ready(function () {
                     },
                     stock: {
                         required: true,
-                        // digits:true
-                    }
 
+                    },
+                    slug:{
+                       required: true,
+                        remote: {
+                            url: APP_URL + '/product/check_slug',
+                            type: 'get',
+                            data: {
+                                slugname: function () {
+                                    return $('input[name=slug]').val();
+                                },
+                                id: $('input[name=id]').val()
+                            }
+                        }
+
+                    }
                 },
 
-                messages: {},
+                messages: {
+                    slug: {
+                        remote: 'slug "{0}" ถูกใช้แล้ว กรุณาระบุค่าใหม่'
+                    },
+                },
                     errorElement: 'span',
                     errorPlacement: function (error, element) {
                         error.addClass("error-block");
@@ -213,56 +229,6 @@ $(document).ready(function () {
                         $(element).addClass('is-valid').removeClass('is-invalid');
                     }
           });
-
-        // .validate({
-
-        //              rules: {
-        //         name: {
-        //             required: true
-        //         },
-        //         category_id: {
-        //             required: true
-        //         },
-        //         price: {
-        //             required: true,
-        //             // digits:true
-        //         },
-        //         stock: {
-        //             required: true,
-        //             // digits:true
-        //         }
-
-        //     },
-
-        //     messages: {},
-        //         errorElement: 'span',
-        //         errorPlacement: function (error, element) {
-        //             error.addClass("error-block");
-        //             error.addClass("invalid-feedback");
-        //             if (element.prop("type") === "checkbox") {
-        //                 error.insertAfter(element.parent("label"));
-        //             } else if (element.parent('.input-group').length) {
-        //                 error.insertAfter(element.parent()); /* radio checkbox? */
-        //             } else if (element.hasClass('select2')) {
-        //                 error.insertAfter(element.next('span')); /* select2 */
-        //             } else {
-        //                 error.insertAfter(element);
-        //             }
-        //         },
-        //         highlight: function (element, errorClass, validClass) {
-        //             $(element).parents('.form-group').addClass('has-error').removeClass('has-success');
-        //             $(element).addClass('is-invalid').removeClass('is-valid');
-
-        //         },
-        //         unhighlight: function (element, errorClass, validClass) {
-        //             $(element).parents('.form-group').addClass('has-success').removeClass('has-error');
-        //             $(element).addClass('is-valid').removeClass('is-invalid');
-        //         }
-        // });
-
-
-
-
     });
 
     /* handle delete */

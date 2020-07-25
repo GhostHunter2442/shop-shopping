@@ -42,6 +42,11 @@ class ProductRepository
         $product = Product::find($id);
         return $product;
     }
+    public function getBySlug($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+        return $product;
+    }
 
     public function getDatatables()
     {

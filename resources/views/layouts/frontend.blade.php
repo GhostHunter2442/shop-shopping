@@ -113,7 +113,7 @@
                     <ul>
                     <li class=" {{ request()->routeIs('welcome') ? 'active' :''  }}">
                         <a href="{{ route('welcome')}}">หน้าเเรก</a></li>
-                        <li ><a href="./shop-grid.html">ซื้อสินค้า</a></li>
+                        {{-- <li ><a href="./shop-grid.html">ซื้อสินค้า</a></li> --}}
                         <li><a href="#">สินค้าลดราคา</a></li>
                         <li ><a href="#">ส่วนลด</a></li>
                     <li class=" {{ request()->routeIs('contact.index') ? 'active' :''  }}">

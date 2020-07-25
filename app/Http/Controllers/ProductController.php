@@ -65,4 +65,15 @@ class ProductController extends Controller
       ], 200);
   }
 
+  public function checkSlug(ProductRepository $product, Request $request)
+  {
+      $result = $product->getBySlug($request->slug);
+      $data = true;
+      if(!empty($result)){
+          $data = $result->id != $request->id ? false : true;
+          return response()->json($data);
+      }
+
+  }
+
 }

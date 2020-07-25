@@ -67,7 +67,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']],function(){
 
-
+//catergory
     Route::prefix('backend/category')->group(function () {
         Route::get('', 'CategoryController@index')->name('category.index')->middleware('permission:viewCategory');
         Route::post('', 'CategoryController@store');
@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth']],function(){
         Route::get('form/{id}', 'CategoryController@renderForm');
     });
 
-
+//product
     Route::prefix('backend/product')->group(function () {
         Route::get('', 'ProductController@index')->name('product.index')->middleware('permission:viewProduct');
         Route::post('', 'ProductController@store');
@@ -85,8 +85,11 @@ Route::group(['middleware' => ['auth']],function(){
         Route::delete('{id}', 'ProductController@delete');
         Route::get('datatables', 'ProductController@getDatatables');
         Route::get('form/{id}', 'ProductController@renderForm');
+        Route::get('check_slug', 'ProductController@checkSlug');
         // Route::post('uploadfile', 'ProductController@uploadfile');
     });
+
+  //incoice
     Route::prefix('backend/invoice')->group(function () {
         Route::get('', 'InvoicebackendController@index')->name('invoice.index')->middleware('permission:viewAcceptOrder');
         Route::get('preorder', 'InvoicebackendController@preorder')->name('invoice.preorder')->middleware('permission:viewPreOrder');
