@@ -90516,11 +90516,7 @@ var render = function() {
                           [
                             _c(
                               "a",
-                              {
-                                attrs: {
-                                  href: _vm.shopURL + list.id + "/detail"
-                                }
-                              },
+                              { attrs: { href: _vm.shopURL + list.slug } },
                               [
                                 _c("img", {
                                   directives: [
@@ -93045,25 +93041,19 @@ var render = function() {
                   [
                     _c("div", { staticClass: "product__item" }, [
                       _c("div", { staticClass: "product__item__pic set-bg" }, [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: _vm.shopURL + list.id + "/detail" }
-                          },
-                          [
-                            _c("img", {
-                              directives: [
-                                {
-                                  name: "lazy",
-                                  rawName: "v-lazy",
-                                  value: _vm.imageUrl + list.picture,
-                                  expression: "imageUrl+list.picture"
-                                }
-                              ],
-                              attrs: { lazy: "loading" }
-                            })
-                          ]
-                        ),
+                        _c("a", { attrs: { href: _vm.shopURL + list.slug } }, [
+                          _c("img", {
+                            directives: [
+                              {
+                                name: "lazy",
+                                rawName: "v-lazy",
+                                value: _vm.imageUrl + list.picture,
+                                expression: "imageUrl+list.picture"
+                              }
+                            ],
+                            attrs: { lazy: "loading" }
+                          })
+                        ]),
                         _vm._v(" "),
                         _vm.getcreateDate(list.created_at) == _vm.timestamp
                           ? _c(

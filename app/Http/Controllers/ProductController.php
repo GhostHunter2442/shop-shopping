@@ -53,48 +53,7 @@ class ProductController extends Controller
           'status' => $status,
       ], 200);
   }
-//   public function uploadfile(ProductRepository $product,Request $request)
-//   {
-//     //   $validator = Validator::make($request->all(), ['file' => 'required|image|mimes:jpeg,jpg,png'],
-//     //   [
-//     //       'file.mimes' => 'กรุณาเลือกไฟล์ที่เป็นรูปภภาพเท่านั้น',
-//     //       'file.required' => 'ระบุไฟล์เพื่ออัพโหลด',
-//     //       'file.mimes' => 'กรุณาเลือกไฟล์นามสุกุล jpeg,jpg,png'
-//     //   ]);
-//     $validator =  Validator::make($request->all(),[
-//         'file' => 'required|image|mimes:jpeg,jpg,png',
-//     ],[
-//         'file.required' => 'ระบุไฟล์เพื่ออัพโหลด',
-//         'file.image' => 'กรุณาเลือกไฟล์ที่เป็นรูปภภาพเท่านั้น',
-//         'file.mimes' => 'กรุณาเลือกไฟล์นามสุกุล jpeg,jpg,png',
-//     ]);
-//       $status = 'success';
-//       $message = 'อัพโหลดเสร็จสมบูรณ์';
-//       $data = null;
-//       if ($validator->fails()) {
-//           $status = 'warning';
-//           $message = $validator->errors();
-//       }
 
-//       $input = $request->all();
-//       $input['image'] = time().'.'.$request->file->extension();
-//       $request->file->move(public_path('images'), $input['image']);
-
-
-//     //   AjaxImage::create($input);
-
-//     //  $data = uniqid().'.'.$request->file->extension();
-//     //  $request->file->storeAs('images',$data,'public'); //public เปลี่ยนเป็น amazon S3
-
-
-
-//       return response()->json([
-//           'message' => $message,
-//           'status' => $status,
-//           'data' =>  $input['image'],
-//         //   'result' => $result
-//       ], 200);
-//   }
   public function delete(ProductRepository $product, $id)
   {
       $result = $product->delete($id);

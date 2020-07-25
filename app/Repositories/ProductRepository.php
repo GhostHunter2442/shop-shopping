@@ -14,9 +14,17 @@ class ProductRepository
         $data = [
             'id' => null,
             'name' => null,
+            'slug' => null,
             'price'=> null,
             'stock'=> null,
+            'discount'=> null,
+            'weight'=> null,
+            'detail'=> null,
             'picture'=> null,
+            'picture_detail_one'=> null,
+            'picture_detail_two'=> null,
+            'picture_detail_three'=> null,
+            'picture_detail_four'=> null,
             'status'=> null,
             'category_id'=> null,
             'created_at'=> null,
@@ -45,8 +53,14 @@ class ProductRepository
     {
         $product = new Product;
         $product->name = $request->name;
+        $product->slug = str_slug($request->slug);
         $product->price = $request->price;
         $product->stock = $request->stock;
+        $product->discount = $request->discount;
+        $product->weight = $request->weight;
+
+        $product->detail = $request->detail;
+        
         $product->status = $request->status;
         $product->category_id = $request->category_id;
 

@@ -43,7 +43,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" v-for="(list,index)  in  favoriteList.data"  :key="list.id">
                     <div class="featured__item" >
                         <div class="featured__item__pic set-bg" >
-                              <a :href="shopURL+list.id+'/detail'">
+                              <a :href="shopURL+list.slug">
                                  <img v-lazy="imageUrl+list.picture" lazy="loading">
                              </a>
                               <div class="featured__close__pic">
@@ -139,7 +139,7 @@ computed: {
              },
             async delfavorite(id,index){
                 await axios.get("/shopping/public/favorite/detail/getdata/delfavorite/"+id).then(res => {
-                          
+
                             this.getfavorite();
                             this.$store.dispatch("addFavorite")
                             this.favoriteList.data.splice(index,1);

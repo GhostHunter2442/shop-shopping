@@ -16,8 +16,17 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',250);
+            $table->string('slug')->unique();
             $table->decimal('price',10,2);
+            $table->integer('stock');
+            $table->integer('discount')->default('0');
+            $table->string('weight',10)->nullable();
+            $table->mediumText('detail')->nullable();
             $table->string('picture',200)->default('nopic.png');
+            $table->string('picture_detail_one',200)->default('nopic.png');
+            $table->string('picture_detail_two',200)->default('nopic.png');
+            $table->string('picture_detail_three',200)->default('nopic.png');
+            $table->string('picture_detail_four',200)->default('nopic.png');
             $table->enum('status', ['normal', 'canceled'])->default('normal');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');

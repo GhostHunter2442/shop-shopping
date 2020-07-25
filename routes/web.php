@@ -48,7 +48,7 @@ Route::get('/show/category', 'WelcomeController@getcategory')->name('welcome.get
 
 
 
-Route::get('/shop/{id}/detail', 'ShopController@index')->name('shop.index');
+Route::get('/shop/{id}', 'ShopController@index')->name('shop.index');
 Route::any('/shop/shopdetail/{id}', 'ShopController@getshop')->name('shop.shopdetail');
 
 

@@ -108,7 +108,7 @@
                         <div class="product__item__pic set-bg" >
 
 
-                            <a :href="shopURL+list.id+'/detail'">
+                            <a :href="shopURL+list.slug">
                             <img v-lazy="imageUrl+list.picture" lazy="loading">
                             </a>
                                <div class="product__new__wrawper" v-if=" getcreateDate(list.created_at) == timestamp" >

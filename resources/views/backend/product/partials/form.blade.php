@@ -30,24 +30,55 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-4 col-sm-12">
-                <label for="price">ราคา
-                    <span class="text-danger">*</span>
-                </label>
-                <input type="text" name="price" value="{{ $data->price }}" class="form-control">
-            </div>
-            <div class="form-group col-md-4 col-sm-12">
+        <div class="form-group col-md-12 col-sm-4">
+            <label for="slug">slug
+                <span class="text-danger">*</span>
+            </label>
+            <input type="text" name="slug" value="{{ $data->slug }}" class="form-control">
+        </div>
+      </div>
+        <div class="form-row">
+
+            <div class="form-group col-md-6 col-sm-4">
                 <label for="stock">จำนวน
                     <span class="text-danger">*</span>
                 </label>
                 <input type="text" name="stock" value="{{ $data->stock }}" class="form-control">
             </div>
-            {{-- <div class="form-group col-md-4 col-sm-12">
-                <label for="wage">น้ำหนัก
+            <div class="form-group col-md-6 col-sm-4">
+                <label for="weight">น้ำหนัก kg
                     <span class="text-danger"></span>
                 </label>
-                <input type="text" name="wage" value="" class="form-control">
-            </div> --}}
+                <input type="text" name="weight" value="{{ $data->weight }}" class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 col-sm-4">
+                <label for="price">ราคา
+                    <span class="text-danger">*</span>
+                </label>
+                <input type="text" name="price" value="{{ $data->price }}" class="form-control">
+            </div>
+            <div class="form-group col-md-6 col-sm-4">
+                <label for="discount">ส่วนลด %
+                    <span class="text-danger">*</span>
+                </label>
+                <input type="text" name="discount" value="{{ $data->discount }}" class="form-control">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12 col-sm-12">
+                <label for="textarea">รายละเอียดสินค้า</label>
+                <div class="mb-2">
+                  <textarea class="textarea" id="textarea"  name="textarea" placeholder="Place some text here"
+                  style="display:none;" >
+
+                  {{ $data->discount }}
+                </textarea>
+                </div>
+
+            </div>
         </div>
 
         <div class="form-row">
@@ -64,16 +95,7 @@
             </div>
         </div>
 
-        {{-- <div class="form-row">
-            <div class="form-group col-md-12 col-sm-12">
-                <label for="textarea">รายละเอียดสินค้า</label>
-                <div class="mb-2">
-                  <textarea class="textarea" id="textarea"  name="textarea" placeholder="Place some text here"
-                  style="display:none;"></textarea>
-                </div>
 
-            </div>
-        </div> --}}
 
         <div class="form-row">
         <div class="form-group col-md-4 col-sm-12">
