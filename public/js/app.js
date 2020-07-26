@@ -7145,6 +7145,8 @@ var Errors = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -7226,17 +7228,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       limit: 3,
       shopURL: '/shopping/public/shop/',
       imageUrl: "/shopping/public/storage/images/",
-      favoriteList: {}
+      favoriteList: {},
+      timestamp: ''
     };
   },
   mounted: function mounted() {
     this.getfavorite();
+    this.getNow();
   },
   computed: {
     totalQuantity: function totalQuantity() {
@@ -7250,6 +7296,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    getcreateDate: function getcreateDate(datemont) {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(String(datemont)).format('MM');
+    },
+    getNow: function getNow() {
+      var today = new Date();
+      var mont = (today.getMonth() + 1 < 10 ? '0' : '') + (today.getMonth() + 1);
+      var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date + ' ' + time;
+      this.timestamp = mont;
+    },
     getfavorite: function getfavorite() {
       var _arguments = arguments,
           _this = this;
@@ -8618,40 +8675,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       csrfToken: null,
       imageproURL: '/shopping/public/storage/images/',
+      shopURL: '/shopping/public/shop/',
       shopdata: {},
+      concerned: [],
       getdata: '',
       itempicture: '',
       itempicture1: '',
@@ -8669,8 +8700,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     this.getshopdetil();
     this.gettofavorite();
+    this.getProductConcerned();
   },
-  props: ['id'],
+  props: ['id', 'cat_id'],
   methods: {
     updateCart: function updateCart(updateType) {
       if (updateType === 'subtract') {
@@ -8774,7 +8806,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.itempicture2 = _this2.imageproURL + res.data.picture_detail_two;
                   _this2.itempicture3 = _this2.imageproURL + res.data.picture_detail_three;
                 })["catch"](function (error) {
-                  console.log(response.data.errors);
+                  console.log(res.data.errors);
                 });
 
               case 2:
@@ -8785,7 +8817,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    gettofavorite: function gettofavorite() {
+    getProductConcerned: function getProductConcerned() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
@@ -8794,24 +8826,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios.get("/shopping/public/api/cartdetail/getfavorite/" + _this3.id).then(function (response) {
-                  if (response.data.favorite !== false) {
-                    _this3.checkper = true;
-
-                    if (response.data.favorite != null) {
-                      _this3.heart = false;
-                      _this3.heartset = true;
-                    } else {
-                      _this3.heart = true;
-                      _this3.heartset = false;
-                    }
-                  } else {
-                    _this3.heart = true;
-                    _this3.heartset = false;
-                    _this3.checkper = false;
-                  }
+                return axios.post("/shopping/public/shop/concerned/" + _this3.cat_id).then(function (res) {
+                  _this3.concerned = res.data; //  console.log( this.concerned)
                 })["catch"](function (error) {
-                  console.log(error.response);
+                  console.log(res.data.errors);
                 });
 
               case 2:
@@ -8822,43 +8840,112 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    addtofavorite: function addtofavorite() {
+    adddetail: function adddetail(id) {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var qrt;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                if (!(_this4.checkper != false)) {
-                  _context4.next = 6;
+                qrt = 1;
+                _context4.next = 3;
+                return axios.get("/shopping/public/cartdetail/adddetail/" + id + "/" + qrt).then(function (response) {
+                  _this4.$store.dispatch("addItem");
+
+                  var showicon = 'success';
+                  var showtitle = 'เพิ่มสินค้าเรียบร้อย';
+
+                  _this4.showalert(showicon, showtitle);
+                })["catch"](function (error) {
+                  if (error.response && error.response.status === 401) {
+                    window.location.href = "/shopping/public/login";
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    gettofavorite: function gettofavorite() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return axios.get("/shopping/public/api/cartdetail/getfavorite/" + _this5.id).then(function (response) {
+                  if (response.data.favorite !== false) {
+                    _this5.checkper = true;
+
+                    if (response.data.favorite != null) {
+                      _this5.heart = false;
+                      _this5.heartset = true;
+                    } else {
+                      _this5.heart = true;
+                      _this5.heartset = false;
+                    }
+                  } else {
+                    _this5.heart = true;
+                    _this5.heartset = false;
+                    _this5.checkper = false;
+                  }
+                })["catch"](function (error) {
+                  console.log(error.response);
+                });
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    addtofavorite: function addtofavorite() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                if (!(_this6.checkper != false)) {
+                  _context6.next = 6;
                   break;
                 }
 
                 // console.log('เพิ่มข้อมูลได้')
-                _this4.loadingheart = true;
-                _context4.next = 4;
-                return axios.get("/shopping/public/cartdetail/favorite/" + _this4.id).then(function (response) {
-                  _this4.favoriteList = response.data;
-                  _this4.loadingheart = false; //   console.log(response.data.id)
+                _this6.loadingheart = true;
+                _context6.next = 4;
+                return axios.get("/shopping/public/cartdetail/favorite/" + _this6.id).then(function (response) {
+                  _this6.favoriteList = response.data;
+                  _this6.loadingheart = false; //   console.log(response.data.id)
 
                   if (response.data.id !== undefined) {
-                    _this4.$store.dispatch("addFavorite");
+                    _this6.$store.dispatch("addFavorite");
 
-                    _this4.heart = false;
-                    _this4.heartset = true;
+                    _this6.heart = false;
+                    _this6.heartset = true;
                   } else {
-                    _this4.$store.dispatch("addFavorite");
+                    _this6.$store.dispatch("addFavorite");
 
-                    _this4.heart = true;
-                    _this4.heartset = false;
+                    _this6.heart = true;
+                    _this6.heartset = false;
                   }
                 })["catch"](function (error) {
                   console.log(error.response);
                 });
 
               case 4:
-                _context4.next = 7;
+                _context6.next = 7;
                 break;
 
               case 6:
@@ -8866,10 +8953,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 7:
               case "end":
-                return _context4.stop();
+                return _context6.stop();
             }
           }
-        }, _callee4);
+        }, _callee6);
       }))();
     },
     showalert: function showalert(showicon, showtitle) {
@@ -90490,7 +90577,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "row featured__filter my-4" },
+                { staticClass: "row  my-4" },
                 _vm._l(_vm.favoriteList.data, function(list, index) {
                   return _c(
                     "div",
@@ -90500,10 +90587,10 @@ var render = function() {
                         "col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"
                     },
                     [
-                      _c("div", { staticClass: "featured__item" }, [
+                      _c("div", { staticClass: "product__item" }, [
                         _c(
                           "div",
-                          { staticClass: "featured__item__pic set-bg" },
+                          { staticClass: "product__item__pic set-bg" },
                           [
                             _c(
                               "a",
@@ -90542,9 +90629,21 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
+                            _vm.getcreateDate(list.created_at) == _vm.timestamp
+                              ? _c(
+                                  "div",
+                                  { staticClass: "product__new__wrawper" },
+                                  [
+                                    _c("div", { staticClass: "item_wrawper" }, [
+                                      _vm._v("ใหม่")
+                                    ])
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
                             _c(
                               "ul",
-                              { staticClass: "featured__item__pic__hover" },
+                              { staticClass: "product__item__pic__hover" },
                               [
                                 _c("li", [
                                   _c(
@@ -90565,16 +90664,32 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "featured__item__text" }, [
+                        _c("div", { staticClass: "product__item__text" }, [
                           _c("h6", [
                             _c("a", { attrs: { href: "#" } }, [
-                              _vm._v(_vm._s(_vm._f("truncate")(list.name, 20)))
+                              _vm._v(
+                                " " + _vm._s(_vm._f("truncate")(list.name, 25))
+                              )
                             ])
                           ]),
                           _vm._v(" "),
                           _c("h5", [
-                            _vm._v(_vm._s(_vm._f("currency")(list.price, "฿")))
-                          ])
+                            _vm._v(
+                              " " +
+                                _vm._s(_vm._f("currency")(list.price, "฿")) +
+                                "  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "review" }, [
+                            _vm._v(
+                              _vm._s(_vm._f("currency")(list.price, "฿")) + "  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v(" -50%")]),
+                          _vm._v(" "),
+                          _vm._m(3, true)
                         ])
                       ])
                     ]
@@ -90661,6 +90776,24 @@ var staticRenderFns = [
     return _c("button", { staticClass: "site-btn" }, [
       _c("i", { staticClass: "fa fa-shopping-cart" }),
       _vm._v(" เพิ่มไปยังรถเข็น")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "product__details__rating" }, [
+      _c("i", { staticClass: "fa fa-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-star-half-o" }),
+      _vm._v(" "),
+      _c("span", [_vm._v("(18 รีวิว)")])
     ])
   }
 ]
@@ -92409,7 +92542,84 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(8)
+    _c("section", { staticClass: "related-product" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(8),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.concerned, function(list) {
+            return _c(
+              "div",
+              {
+                key: list.id,
+                staticClass: "col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"
+              },
+              [
+                _c("div", { staticClass: "product__item" }, [
+                  _c("div", { staticClass: "product__item__pic set-bg" }, [
+                    _c("a", { attrs: { href: _vm.shopURL + list.slug } }, [
+                      _c("img", {
+                        directives: [
+                          {
+                            name: "lazy",
+                            rawName: "v-lazy",
+                            value: _vm.imageproURL + list.picture,
+                            expression: "imageproURL+list.picture"
+                          }
+                        ],
+                        attrs: { lazy: "loading" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "product__item__pic__hover" }, [
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "javascript:;" },
+                            on: {
+                              click: function($event) {
+                                return _vm.adddetail(list.id)
+                              }
+                            }
+                          },
+                          [_vm._m(9, true)]
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "product__item__text" }, [
+                    _c("h6", [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _vm._v(" " + _vm._s(_vm._f("truncate")(list.name, 25)))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h5", [
+                      _vm._v(
+                        " " + _vm._s(_vm._f("currency")(list.price, "฿")) + "  "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "review" }, [
+                      _vm._v(_vm._s(_vm._f("currency")(list.price, "฿")) + "  ")
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", [_vm._v(" -50%")]),
+                    _vm._v(" "),
+                    _vm._m(10, true)
+                  ])
+                ])
+              ]
+            )
+          }),
+          0
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -92587,204 +92797,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "related-product" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-12" }, [
-            _c(
-              "div",
-              { staticClass: "section-title related__product__title" },
-              [_c("h2", [_vm._v("รายการที่เกี่ยวข้อง")])]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-3 col-md-4 col-sm-6" }, [
-            _c("div", { staticClass: "product__item" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "product__item__pic set-bg",
-                  attrs: {
-                    "data-setbg":
-                      "http://localhost/shopping/public/img/product/product-1.jpg"
-                  }
-                },
-                [
-                  _c("ul", { staticClass: "product__item__pic__hover" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-heart" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-retweet" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-shopping-cart" })
-                      ])
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "product__item__text" }, [
-                _c("h6", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _vm._v("Crab Pool Security")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("h5", [_vm._v("$30.00")])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-3 col-md-4 col-sm-6" }, [
-            _c("div", { staticClass: "product__item" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "product__item__pic set-bg",
-                  attrs: {
-                    "data-setbg":
-                      "http://localhost/shopping/public/img/product/product-2.jpg"
-                  }
-                },
-                [
-                  _c("ul", { staticClass: "product__item__pic__hover" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-heart" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-retweet" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-shopping-cart" })
-                      ])
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "product__item__text" }, [
-                _c("h6", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _vm._v("Crab Pool Security")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("h5", [_vm._v("$30.00")])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-3 col-md-4 col-sm-6" }, [
-            _c("div", { staticClass: "product__item" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "product__item__pic set-bg",
-                  attrs: {
-                    "data-setbg":
-                      "http://localhost/shopping/public/img/product/product-3.jpg"
-                  }
-                },
-                [
-                  _c("ul", { staticClass: "product__item__pic__hover" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-heart" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-retweet" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-shopping-cart" })
-                      ])
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "product__item__text" }, [
-                _c("h6", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _vm._v("Crab Pool Security")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("h5", [_vm._v("$30.00")])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-lg-3 col-md-4 col-sm-6" }, [
-            _c("div", { staticClass: "product__item" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "product__item__pic set-bg",
-                  attrs: {
-                    "data-setbg":
-                      "http://localhost/shopping/public/img/product/product-7.jpg"
-                  }
-                },
-                [
-                  _c("ul", { staticClass: "product__item__pic__hover" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-heart" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-retweet" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("i", { staticClass: "fa fa-shopping-cart" })
-                      ])
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "product__item__text" }, [
-                _c("h6", [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _vm._v("Crab Pool Security")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("h5", [_vm._v("$30.00")])
-              ])
-            ])
-          ])
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-12" }, [
+        _c("div", { staticClass: "section-title related__product__title" }, [
+          _c("h2", [_vm._v("รายการที่เกี่ยวข้อง")])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "site-btn" }, [
+      _c("i", { staticClass: "fa fa-shopping-cart" }),
+      _vm._v(" เพิ่มไปยังรถเข็น")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "product__details__rating" }, [
+      _c("i", { staticClass: "fa fa-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-star-half-o" }),
+      _vm._v(" "),
+      _c("span", [_vm._v("(18 รีวิว)")])
     ])
   }
 ]

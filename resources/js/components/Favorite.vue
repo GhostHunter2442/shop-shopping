@@ -39,7 +39,8 @@
 
         <div class="container">
         <h5>รายการที่ท่านชื่นชอบทั้งหมด {{$store.getters.getfavorite}} รายการ</h5>
-            <div class="row featured__filter my-4">
+
+            <!-- <div class="row featured__filter my-4">
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" v-for="(list,index)  in  favoriteList.data"  :key="list.id">
                     <div class="featured__item" >
                         <div class="featured__item__pic set-bg" >
@@ -63,7 +64,47 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+             <div class="row  my-4">
+            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" v-for="(list,index)  in  favoriteList.data"  :key="list.id">
+
+                <div class="product__item" >
+                        <div class="product__item__pic set-bg" >
+                            <a :href="shopURL+list.slug">
+                            <img v-lazy="imageUrl+list.picture" lazy="loading">
+                            </a>
+                                <div class="featured__close__pic">
+
+                                        <div class="close-container"  v-on:click="delfavorite(list.id,index)">
+                                        <div class="leftright"></div>
+                                        <div class="rightleft"></div>
+                                        </div>
+                              </div>
+                               <div class="product__new__wrawper" v-if=" getcreateDate(list.created_at) == timestamp" >
+                                  <div class="item_wrawper">ใหม่</div>
+                                </div>
+                                <!-- <div class="product__new__percent">-20%</div> -->
+                        <ul class="product__item__pic__hover">
+                              <li><a href="javascript:;"  v-on:click="adddetail(list.id)"><button  class="site-btn"><i class="fa fa-shopping-cart"></i> เพิ่มไปยังรถเข็น</button></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                    <h6><a href="#"> {{ list.name | truncate(25)}}</a></h6>
+                    <h5> {{ list.price | currency("฿")}}  </h5>
+                    <span class="review">{{ list.price | currency("฿")}}  </span> <h4> -50%</h4>
+                     <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <span>(18 รีวิว)</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+
 
                     <pagination :data="favoriteList" :limit="limit"  v-on:pagination-change-page="getfavorite">
                     <span slot="prev-nav"><i class="fa fa-long-arrow-left"></i></span>
@@ -74,6 +115,7 @@
     </div>
 </template>
 <script>
+import moment from 'moment'
     export default {
         data(){
             return {
@@ -81,12 +123,12 @@
                shopURL:'/shopping/public/shop/',
                imageUrl: "/shopping/public/storage/images/",
                favoriteList:{},
-
-
+               timestamp: '',
             }
         },
         mounted(){
             this.getfavorite();
+              this.getNow();
         },
 computed: {
 
@@ -101,6 +143,18 @@ computed: {
                 },
          },
         methods:{
+               getcreateDate(datemont) {
+                 return moment(String(datemont)).format('MM')
+
+            },
+                  getNow() {
+                    const today = new Date();
+                    const mont = ((today.getMonth() + 1) < 10 ? '0' : '') + (today.getMonth() + 1);
+                    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                    const dateTime = date +' '+ time;
+                    this.timestamp = mont;
+                },
             async getfavorite(page=1){
 
                    await  axios.get("/shopping/public/favorite/detail/getdata?page=" +page).then(res => {

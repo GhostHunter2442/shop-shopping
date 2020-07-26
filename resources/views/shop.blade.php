@@ -2,7 +2,7 @@
 
 @section('content')
 
-        <shop-detail id={!!$id!!}></shop-detail>
+        <shop-detail id={!!$id!!} cat_id={!!$cat_id!!}></shop-detail>
 
 @endsection
 

@@ -155,68 +155,40 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="http://localhost/shopping/public/img/product/product-1.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
+                <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" v-for="(list)  in concerned"  :key="list.id">
+
+                <div class="product__item" >
+                        <div class="product__item__pic set-bg" >
+                            <a :href="shopURL+list.slug">
+                            <img v-lazy="imageproURL+list.picture" lazy="loading">
+                            </a>
+
+                               <!-- <div class="product__new__wrawper" v-if=" getcreateDate(list.created_at) == timestamp" >
+                                  <div class="item_wrawper">ใหม่</div>
+                                </div> -->
+
+                        <ul class="product__item__pic__hover">
+                              <li><a href="javascript:;"  v-on:click="adddetail(list.id)"><button  class="site-btn"><i class="fa fa-shopping-cart"></i> เพิ่มไปยังรถเข็น</button></a></li>
+                        </ul>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="http://localhost/shopping/public/img/product/product-2.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="http://localhost/shopping/public/img/product/product-3.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="http://localhost/shopping/public/img/product/product-7.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                    <div class="product__item__text">
+                    <h6><a href="#"> {{ list.name | truncate(25)}}</a></h6>
+                    <h5> {{ list.price | currency("฿")}}  </h5>
+                    <span class="review">{{ list.price | currency("฿")}}  </span> <h4> -50%</h4>
+                     <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <span>(18 รีวิว)</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
         </div>
     </section>
     <!-- Related Product Section End -->
@@ -230,7 +202,10 @@ export default {
          return {
              csrfToken: null ,
             imageproURL:'/shopping/public/storage/images/',
+
+             shopURL:'/shopping/public/shop/',
              shopdata:{},
+             concerned:[],
              getdata:'',
              itempicture:'',
              itempicture1:'',
@@ -249,9 +224,10 @@ export default {
        mounted(){
           this.getshopdetil();
           this.gettofavorite();
+          this.getProductConcerned();
         },
 
-     props:['id'],
+     props:['id','cat_id'],
      methods: {
         updateCart(updateType) {
             if (updateType === 'subtract') {
@@ -302,6 +278,7 @@ export default {
           },
           async getshopdetil(){
 
+
                  await axios.post("/shopping/public/shop/shopdetail/"+this.id).then(res => {
                     this.shopdata = res.data;
                     this.getdata =  this.imageproURL + res.data.picture;
@@ -310,9 +287,31 @@ export default {
                     this.itempicture2= this.imageproURL + res.data.picture_detail_two;
                       this.itempicture3= this.imageproURL + res.data.picture_detail_three;
                 }).catch(error => {
-                     console.log(response.data.errors)
+                     console.log(res.data.errors)
                     });
            },
+               async getProductConcerned(){
+// console.log(this.cat_id)
+                 await axios.post("/shopping/public/shop/concerned/"+this.cat_id).then(res => {
+                        this.concerned=res.data;
+                        //  console.log( this.concerned)
+                }).catch(error => {
+                     console.log(res.data.errors)
+                    });
+           },
+           async adddetail(id){
+                 let qrt =1;
+                        await  axios.get("/shopping/public/cartdetail/adddetail/"+id+"/"+qrt).then(response => {
+                                     this.$store.dispatch("addItem")
+                                    let showicon='success';
+                                    let showtitle ='เพิ่มสินค้าเรียบร้อย';
+                                   this.showalert(showicon,showtitle);
+                        }).catch(function(error) {
+                            if (error.response && error.response.status === 401) {
+                            window.location.href = "/shopping/public/login";
+                            }
+                        });
+             },
 
          async  gettofavorite() {
 
