@@ -1,6 +1,7 @@
-<form id="saveForm" method="post" enctype="multipart/form-data" >
+{{-- <form id="saveForm" method="post" enctype="multipart/form-data" >
+    @csrf --}}
+    {!! Form::open(['novalidate','id' => 'saveForm','method' => 'post', 'files' => true,'class'=> ($errors->any()) ? 'was-validated' : 'needs-validation']) !!}
 
-    @csrf
     <input type="hidden" name="id" value="{{ $data->id }}">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{ $title }}</h5>
@@ -46,11 +47,25 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-4 col-sm-12">
+            {{-- <div class="form-group col-md-4 col-sm-12">
                 <label for="picture">รูปภาพ</label>
                 <input type="file" name="picture" id="picture" class="form-control-file">
                 <br>
                 <a  target="_blank" role="button" class="btn btn-view-file btn-sm
+                    @if(empty($data->bankpic)) invisible @else visible @endif">  @if(!empty($data->bankpic))
+                  <img  id="previewHolder"  src="{{ asset('storage/images/bank/'.$data->bankpic) }} " width="70"> @endif
+                 </a>
+                <img id="previewHolder" width="70">
+            </div> --}}
+            <div class="form-group col-md-6 col-sm-8">
+                <label for="picture">รูปภาพ</label><br>
+                <div class='file-picture'>
+                    <input type="file"  name="picture" id="picture" />
+                    <span class='button'>  <i class="fa fa-file-image-o" aria-hidden="true"></i> Choose </span>
+                    <span class='label' data-js-label>เลือกไฟล์ &nbsp;&nbsp;</label>
+                  </div>
+                  <br>
+                  <a  target="_blank" role="button" class="btn btn-view-file btn-sm
                     @if(empty($data->bankpic)) invisible @else visible @endif">  @if(!empty($data->bankpic))
                   <img  id="previewHolder"  src="{{ asset('storage/images/bank/'.$data->bankpic) }} " width="70"> @endif
                  </a>

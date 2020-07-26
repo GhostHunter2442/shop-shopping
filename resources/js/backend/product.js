@@ -143,10 +143,19 @@ $(document).ready(function () {
                     },
                     price: {
                         required: true,
-                        // digits:true
+                        number: true
                     },
                     stock: {
                         required: true,
+                        digits:true
+
+                    },
+                    weight: {
+                        number: true
+
+                    },
+                    discount: {
+                        digits:true
 
                     },
                     slug:{
@@ -239,6 +248,12 @@ $(document).ready(function () {
                  else if(id==1){
                     $('#previewHolder_one').attr('src', e.target.result);
                  }
+                 else if(id==2){
+                    $('#previewHolder_two').attr('src', e.target.result);
+                 }
+                 else{
+                    $('#previewHolder_three').attr('src', e.target.result);
+                 }
           }
 
           reader.readAsDataURL(input.files[0]);
@@ -253,6 +268,14 @@ $(document).ready(function () {
         });
         $('body').on('change', '#picture_detail_one', function (e) {
             readURL(this,1);
+
+        });
+        $('body').on('change', '#picture_detail_two', function (e) {
+            readURL(this,2);
+
+        });
+        $('body').on('change', '#picture_detail_three', function (e) {
+            readURL(this,3);
 
         });
     });

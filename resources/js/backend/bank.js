@@ -65,96 +65,83 @@ $(document).ready(function () {
 
     $('#ajaxModal').on('shown.bs.modal', function (e) {
 
+
         $('.select2').select2();
         var id = $('input[name=id]').val();
-        $('#saveForm').on('submit', function(event){
 
-          event.preventDefault();
-
-            var url = APP_URL + '/bank';
-            var methodType ='post';
-            var castUrl = (id) ? url + '/' + id :url;
-             $.ajax({
-              url:castUrl,
-              method:methodType,
-              data: new FormData(this),
-              contentType: false,
-              cache:false,
-              processData: false,
-              dataType:"json",
-              success:function(resp)
-              {
-                  if(resp.status=='success'){
-                    toastr[resp.status](resp.message, '', {
-                        progressBar: true,
-                        timeOut: 1500,
-                        extendedTimeOut: 1500
-                      });
-                        $('#ajaxModal').modal('hide');
-                        table.ajax.reload();
-
-                  }
-                 else{
-                    toastr[resp.status](resp.message, '', {
-                        progressBar: true,
-                        timeOut: 1500,
-                        extendedTimeOut: 1500
-                      });
-                  }
-              }
-             })
-
-        }).validate({
-                     rules: {
-                name: {
-                    required: true
+            $('#saveForm').validate({
+                submitHandler: function (form) {
+                    var id = $('input[name=id]').val();
+                    var url = APP_URL + '/bank';
+                    saveFormBank(id, url, table);
                 },
-                detail: {
-                    required: true
-                },
-                subdetail: {
-                    required: true,
+                rules: {
+                    name: {
+                        required: true
+                    },
+                    detail: {
+                        required: true
+                    },
+                    subdetail: {
+                        required: true,
+
+                    },
+                    account: {
+                        required: true,
+
+                    },
+                    accountid: {
+                        required: true,
+
+                    },
 
                 },
-                account: {
-                    required: true,
+                messages: {},
+                    errorElement: 'span',
+                    errorPlacement: function (error, element) {
+                        error.addClass("error-block");
+                        error.addClass("invalid-feedback");
+                        if (element.prop("type") === "checkbox") {
+                            error.insertAfter(element.parent("label"));
+                        } else if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent()); /* radio checkbox? */
+                        } else if (element.hasClass('select2')) {
+                            error.insertAfter(element.next('span')); /* select2 */
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).parents('.form-group').addClass('has-error').removeClass('has-success');
+                        $(element).addClass('is-invalid').removeClass('is-valid');
 
-                },
-                accountid: {
-                    required: true,
-
-                },
-
-            },
-            messages: {},
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass("error-block");
-                    error.addClass("invalid-feedback");
-                    if (element.prop("type") === "checkbox") {
-                        error.insertAfter(element.parent("label"));
-                    } else if (element.parent('.input-group').length) {
-                        error.insertAfter(element.parent()); /* radio checkbox? */
-                    } else if (element.hasClass('select2')) {
-                        error.insertAfter(element.next('span')); /* select2 */
-                    } else {
-                        error.insertAfter(element);
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).parents('.form-group').addClass('has-success').removeClass('has-error');
+                        $(element).addClass('is-valid').removeClass('is-invalid');
                     }
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).parents('.form-group').addClass('has-error').removeClass('has-success');
-                    $(element).addClass('is-invalid').removeClass('is-valid');
+          });
 
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).parents('.form-group').addClass('has-success').removeClass('has-error');
-                    $(element).addClass('is-valid').removeClass('is-invalid');
-                }
-        });
+          var inputs = document.querySelectorAll('.file-picture')
 
+          for (var i = 0, len = inputs.length; i < len; i++) {
+            customInput(inputs[i])
+          }
+      function customInput (el) {
+            const fileInput = el.querySelector('[type="file"]')
+            const label = el.querySelector('[data-js-label]')
 
+            fileInput.onchange =
+            fileInput.onmouseout = function () {
+              if (!fileInput.value) return
 
+              var value = fileInput.value.replace(/^.*[\\\/]/, '')
+              el.className += ' -chose'
+              label.innerText = value
+            }
+          }
     });
+
 
     // /* handle delete */
     $('body').on('click', '.btn-delete', function (e) {

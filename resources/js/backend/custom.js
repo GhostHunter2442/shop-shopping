@@ -185,6 +185,47 @@ for (var i = 0; i < file_data.length; i++) {
      });
 }
 
+var saveFormBank = function (id, url, table) {
+    var form = $('#saveForm')[0];
+    var formData = new FormData(form);
+
+//File data
+var file_data = $('input[name="picture"]')[0].files;
+for (var i = 0; i < file_data.length; i++) {
+    formData.append("picture", file_data[i]);
+}
+   var methodType ='post';
+    var castUrl = (id) ? url + '/' + id : url+'/insert';
+
+     $.ajax({
+      url:castUrl,
+      type: methodType,
+      processData: false,
+      contentType: false,
+      data: formData,
+      success:function(resp)
+      {
+          if(resp.status=='success'){
+            toastr[resp.status](resp.message, '', {
+                progressBar: true,
+                timeOut: 1500,
+                extendedTimeOut: 1500
+              });
+                $('#ajaxModal').modal('hide');
+                table.ajax.reload();
+
+          }
+         else{
+            toastr[resp.status](resp.message, '', {
+                progressBar: true,
+                timeOut: 1500,
+                extendedTimeOut: 1500
+              });
+          }
+      }
+     });
+}
+
 
 var deleteForm = function(url, table) {
     $.ajaxSetup({

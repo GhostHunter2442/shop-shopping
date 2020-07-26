@@ -44,13 +44,13 @@ class ProductRepository
     }
     public function getBySlug($slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::where('slug',str_slug($slug))->first();
         return $product;
     }
 
     public function getDatatables()
     {
-        $query = Product::select('id', 'name', 'price', 'stock', 'picture', 'status', 'category_id')->latest('id');
+        $query = Product::select('id', 'name', 'price', 'stock', 'picture', 'status', 'category_id','weight','discount')->latest('id');
         return $query;
     }
 
@@ -104,10 +104,24 @@ class ProductRepository
         $product->status = $request->status;
         $product->category_id = $request->category_id;
 
+
         if($request->hasFile('picture')){
         $product->picture = $this->saveImage($request->picture);
         $this->resizeImage($request->picture,$product->picture);
         }
+        if($request->hasFile('picture_detail_one')){
+            $product->picture_detail_one = $this->saveImage($request->picture_detail_one);
+            $this->resizeImage($request->picture_detail_one,$product->picture_detail_one);
+        }
+        if($request->hasFile('picture_detail_two')){
+            $product->picture_detail_two = $this->saveImage($request->picture_detail_two);
+            $this->resizeImage($request->picture_detail_two,$product->picture_detail_two);
+        }
+        if($request->hasFile('picture_detail_three')){
+            $product->picture_detail_three = $this->saveImage($request->picture_detail_three);
+            $this->resizeImage($request->picture_detail_three,$product->picture_detail_three);
+        }
+
 
 
         $product->save();
@@ -133,6 +147,19 @@ class ProductRepository
             $product->picture = $this->updateImage($request->picture,$product->picture);
             $this->resizeImage($request->picture,$product->picture);
         }
+        if($request->hasFile('picture_detail_one')){
+            $product->picture_detail_one = $this->updateImage($request->picture_detail_one,$product->picture_detail_one);
+            $this->resizeImage($request->picture_detail_one,$product->picture_detail_one);
+        }
+        if($request->hasFile('picture_detail_two')){
+            $product->picture_detail_two = $this->updateImage($request->picture_detail_two,$product->picture_detail_two);
+            $this->resizeImage($request->picture_detail_two,$product->picture_detail_two);
+        }
+        if($request->hasFile('picture_detail_three')){
+            $product->picture_detail_three = $this->updateImage($request->picture_detail_three,$product->picture_detail_three);
+            $this->resizeImage($request->picture_detail_three,$product->picture_detail_three);
+        }
+
 
 
         $product->update();

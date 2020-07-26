@@ -33,14 +33,15 @@
 
                         </div>
                         <div  class="product__details__pic__slider owl-carousel">
-                           <img :data-imgbigurl="tempnopic"
-                               :src="tempnopic"  alt="" >
+
                             <img :data-imgbigurl="itempicture"
                                 :src="itempicture" alt="">
-                            <img :data-imgbigurl="itempicture"
-                                :src="itempicture" alt="">
-                            <img :data-imgbigurl="itempicture"
-                                :src="itempicture" alt="">
+                            <img :data-imgbigurl="itempicture1"
+                                :src="itempicture1" alt="">
+                            <img :data-imgbigurl="itempicture2"
+                                :src="itempicture2" alt="">
+                                 <img :data-imgbigurl="itempicture3"
+                                :src="itempicture3" alt="">
 
                         </div>
                     </div>
@@ -232,6 +233,10 @@ export default {
              shopdata:{},
              getdata:'',
              itempicture:'',
+             itempicture1:'',
+             itempicture2:'',
+             itempicture3:'',
+             itempicture4:'',
              tempnopic:'/shopping/public/storage/images/nopic.png',
              quantity:1,
              loadingheart:false,
@@ -301,6 +306,9 @@ export default {
                     this.shopdata = res.data;
                     this.getdata =  this.imageproURL + res.data.picture;
                     this.itempicture =  this.imageproURL + res.data.picture;
+                    this.itempicture1= this.imageproURL + res.data.picture_detail_one;
+                    this.itempicture2= this.imageproURL + res.data.picture_detail_two;
+                      this.itempicture3= this.imageproURL + res.data.picture_detail_three;
                 }).catch(error => {
                      console.log(response.data.errors)
                     });

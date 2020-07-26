@@ -8645,6 +8645,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -8653,6 +8654,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       shopdata: {},
       getdata: '',
       itempicture: '',
+      itempicture1: '',
+      itempicture2: '',
+      itempicture3: '',
+      itempicture4: '',
       tempnopic: '/shopping/public/storage/images/nopic.png',
       quantity: 1,
       loadingheart: false,
@@ -8765,6 +8770,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.shopdata = res.data;
                   _this2.getdata = _this2.imageproURL + res.data.picture;
                   _this2.itempicture = _this2.imageproURL + res.data.picture;
+                  _this2.itempicture1 = _this2.imageproURL + res.data.picture_detail_one;
+                  _this2.itempicture2 = _this2.imageproURL + res.data.picture_detail_two;
+                  _this2.itempicture3 = _this2.imageproURL + res.data.picture_detail_three;
                 })["catch"](function (error) {
                   console.log(response.data.errors);
                 });
@@ -92189,14 +92197,6 @@ var render = function() {
                 [
                   _c("img", {
                     attrs: {
-                      "data-imgbigurl": _vm.tempnopic,
-                      src: _vm.tempnopic,
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("img", {
-                    attrs: {
                       "data-imgbigurl": _vm.itempicture,
                       src: _vm.itempicture,
                       alt: ""
@@ -92205,16 +92205,24 @@ var render = function() {
                   _vm._v(" "),
                   _c("img", {
                     attrs: {
-                      "data-imgbigurl": _vm.itempicture,
-                      src: _vm.itempicture,
+                      "data-imgbigurl": _vm.itempicture1,
+                      src: _vm.itempicture1,
                       alt: ""
                     }
                   }),
                   _vm._v(" "),
                   _c("img", {
                     attrs: {
-                      "data-imgbigurl": _vm.itempicture,
-                      src: _vm.itempicture,
+                      "data-imgbigurl": _vm.itempicture2,
+                      src: _vm.itempicture2,
+                      alt: ""
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("img", {
+                    attrs: {
+                      "data-imgbigurl": _vm.itempicture3,
+                      src: _vm.itempicture3,
                       alt: ""
                     }
                   })

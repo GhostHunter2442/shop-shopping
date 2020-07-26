@@ -1,8 +1,6 @@
-{{-- <form id="saveForm" method="post" enctype="multipart/form-data" >
-    @csrf --}}
+
     {!! Form::open(['novalidate','id' => 'saveForm','method' => 'post', 'files' => true,'class'=> ($errors->any()) ? 'was-validated' : 'needs-validation']) !!}
-    {{-- <form id="saveForm" method="POST" id="needs" novalidate enctype="multipart/form-data">
-        {{csrf_field()}} --}}
+
 
     <input type="hidden" name="id" value="{{ $data->id }}">
     <div class="modal-header">
@@ -79,7 +77,7 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-4 col-sm-12">
+            <div class="form-group col-md-3 col-sm-6">
                 <label for="picture">รูปภาพหลัก</label><br>
                 <div class='file-picture'>
                     <input type="file"  name="picture" id="picture" />
@@ -93,7 +91,7 @@
                  </a>
                 <img id="previewHolder" width="70">
             </div>
-            <div class="form-group col-md-4 col-sm-12">
+            <div class="form-group col-md-3 col-sm-6">
                 <label for="picture_detail_one">รูปภาพ 1</label><br>
                 <div class='file-picture'>
                     <input type="file"  name="picture_detail_one" id="picture_detail_one" />
@@ -103,9 +101,37 @@
                   <br>
                   <a  target="_blank" role="button" class="btn btn-view-file btn-sm
                     @if(empty($data->picture_detail_one)) invisible @else visible @endif">  @if(!empty($data->picture_detail_one))
-                  <img  id="previewHolder_one"  src="{{ asset('storage/images/detail/'.$data->picture_detail_one) }} " width="70"> @endif
+                  <img  id="previewHolder_one"  src="{{ asset('storage/images/resize/'.$data->picture_detail_one) }} " width="70"> @endif
                  </a>
                 <img id="previewHolder_one" width="70">
+            </div>
+            <div class="form-group col-md-3 col-sm-6">
+                <label for="picture_detail_two">รูปภาพ 2</label><br>
+                <div class='file-picture'>
+                    <input type="file"  name="picture_detail_two" id="picture_detail_two" />
+                    <span class='button'>  <i class="fa fa-file-image-o" aria-hidden="true"></i> Choose </span>
+                    <span class='label' data-js-label>เลือกไฟล์ &nbsp;&nbsp;</label>
+                  </div>
+                  <br>
+                  <a  target="_blank" role="button" class="btn btn-view-file btn-sm
+                    @if(empty($data->picture_detail_two)) invisible @else visible @endif">  @if(!empty($data->picture_detail_two))
+                  <img  id="previewHolder_two"  src="{{ asset('storage/images/resize/'.$data->picture_detail_two) }} " width="70"> @endif
+                 </a>
+                <img id="previewHolder_two" width="70">
+            </div>
+            <div class="form-group col-md-3 col-sm-6">
+                <label for="picture_detail_three">รูปภาพ 3</label><br>
+                <div class='file-picture'>
+                    <input type="file"  name="picture_detail_three" id="picture_detail_three" />
+                    <span class='button'>  <i class="fa fa-file-image-o" aria-hidden="true"></i> Choose </span>
+                    <span class='label' data-js-label>เลือกไฟล์ &nbsp;&nbsp;</label>
+                  </div>
+                  <br>
+                  <a  target="_blank" role="button" class="btn btn-view-file btn-sm
+                    @if(empty($data->picture_detail_three)) invisible @else visible @endif">  @if(!empty($data->picture_detail_three))
+                  <img  id="previewHolder_three"  src="{{ asset('storage/images/resize/'.$data->picture_detail_three) }} " width="70"> @endif
+                 </a>
+                <img id="previewHolder_three" width="70">
             </div>
         </div>
 

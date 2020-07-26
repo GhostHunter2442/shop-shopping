@@ -112,7 +112,7 @@ Route::group(['middleware' => ['auth']],function(){
 
     Route::prefix('backend/bank')->group(function () {
         Route::get('', 'BankController@index')->name('bank.index');
-        Route::post('', 'BankController@store');
+        Route::post('insert', 'BankController@store');
         Route::post('{id}', 'BankController@update');
         Route::delete('{id}', 'BankController@delete');
         Route::get('datatables', 'BankController@getDatatables');
