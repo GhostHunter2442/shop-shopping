@@ -153,5 +153,100 @@
     color: #666565;
 }
 
+/* ---------- */
+.file-picture{
+    display: inline-block;
+    text-align: left;
+    background: #fff;
+    /* padding-left: 100px; */
+    /* width: 200px; */
+    position: relative;
+    border-radius: 3px;
+  }
 
- 
+  .file-picture > [type='file'] {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  .file-picture > .button {
+    display: inline-block;
+    cursor: pointer;
+    background: #6cb2eb;
+    padding: 8px 16px;
+    border-radius: 2px;
+    margin-right: 8px;
+  }
+
+  .file-picture:hover > .button {
+    background: #1d93f3;
+    color: white;
+  }
+
+  .file-picture > .label {
+    color: #333;
+    white-space: nowrap;
+    opacity: .3;
+  }
+
+  .file-picture.-chosen > .label {
+    opacity: 1;
+  }
+  table.dataTable thead tr {
+    background-color: #f3f3f3;
+  }
+
+
+  ion-icon {
+    font-size: 90px;
+    padding-left:50px;
+    color: whitesmoke;
+  }
+
+  .info-box-content{
+
+     text-align: right;
+
+ }
+ .info-box-text{
+    color: #fffbfb;
+    font-size: 17px;
+
+ }
+ .info-box-number{
+    line-height: 40px;
+    color: #fffbfb;
+    font-size: 30px;
+
+ }
+
+ .info-box{
+     /* width: 70%; */
+     height:15.3%;
+ }
+ .text-bold{
+    color: #888888;
+    font-size: 30px;
+}
+.text-bold-detail{
+    font-size: 19px;
+}
+.fa-sign-out
+{
+    font-size: 25px;
+    /* color: white; */
+    float: right;
+}
+.custom-control-label
+{
+    font-size: 13px;
+    color: #666565;
+}
+
+
+

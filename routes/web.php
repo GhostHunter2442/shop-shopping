@@ -80,8 +80,8 @@ Route::group(['middleware' => ['auth']],function(){
 //product
     Route::prefix('backend/product')->group(function () {
         Route::get('', 'ProductController@index')->name('product.index')->middleware('permission:viewProduct');
-        Route::post('', 'ProductController@store');
-        Route::post('update/{id}', 'ProductController@update');
+        Route::post('insert', 'ProductController@store');
+        Route::post('{id}', 'ProductController@update');
         Route::delete('{id}', 'ProductController@delete');
         Route::get('datatables', 'ProductController@getDatatables');
         Route::get('form/{id}', 'ProductController@renderForm');

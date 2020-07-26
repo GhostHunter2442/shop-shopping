@@ -70,12 +70,12 @@ class ProductController extends Controller
   public function checkSlug(ProductRepository $product, Request $request)
   {
       $result = $product->getBySlug($request->slug);
-      $data = true;
+      $status = true;
       if(!empty($result)){
-          $data = $result->id != $request->id ? false : true;
-          return response()->json($data);
-      }
+          $status = $result->id != $request->id ? false : true;
 
+      }
+      return response()->json($status);
   }
 
 }

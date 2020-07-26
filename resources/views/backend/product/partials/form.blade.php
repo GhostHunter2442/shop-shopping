@@ -80,15 +80,32 @@
 
         <div class="form-row">
             <div class="form-group col-md-4 col-sm-12">
-                <label for="picture">รูปภาพหลัก</label>
-                <input type="file" name="picture" id="picture" class="form-control-file">
+                <label for="picture">รูปภาพหลัก</label><br>
+                <div class='file-picture'>
+                    <input type="file"  name="picture" id="picture" />
+                    <span class='button'>  <i class="fa fa-file-image-o" aria-hidden="true"></i> Choose </span>
+                    <span class='label' data-js-label>เลือกไฟล์ &nbsp;&nbsp;</label>
+                  </div>
                 <br>
-                <a  target="_blank" role="button" class="btn btn-view-file btn-sm
+                  <a  target="_blank" role="button" class="btn btn-view-file btn-sm
                     @if(empty($data->picture)) invisible @else visible @endif">  @if(!empty($data->picture))
                   <img  id="previewHolder"  src="{{ asset('storage/images/resize/'.$data->picture) }} " width="70"> @endif
                  </a>
-                {{-- <input type="hidden" name="picture" value="{{ $data->picture }}" id="picture"> --}}
                 <img id="previewHolder" width="70">
+            </div>
+            <div class="form-group col-md-4 col-sm-12">
+                <label for="picture_detail_one">รูปภาพ 1</label><br>
+                <div class='file-picture'>
+                    <input type="file"  name="picture_detail_one" id="picture_detail_one" />
+                    <span class='button'>  <i class="fa fa-file-image-o" aria-hidden="true"></i> Choose </span>
+                    <span class='label' data-js-label>เลือกไฟล์ &nbsp;&nbsp;</label>
+                  </div>
+                  <br>
+                  <a  target="_blank" role="button" class="btn btn-view-file btn-sm
+                    @if(empty($data->picture_detail_one)) invisible @else visible @endif">  @if(!empty($data->picture_detail_one))
+                  <img  id="previewHolder_one"  src="{{ asset('storage/images/detail/'.$data->picture_detail_one) }} " width="70"> @endif
+                 </a>
+                <img id="previewHolder_one" width="70">
             </div>
         </div>
 

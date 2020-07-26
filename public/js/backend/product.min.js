@@ -151,24 +151,24 @@ $(document).ready(function () {
                     },
                     slug:{
                        required: true,
-                        // remote: {
-                        //     url: APP_URL + '/product/check_slug',
-                        //     type: 'get',
-                        //     data: {
-                        //         slug: function () {
-                        //             return $('input[name=slug]').val();
-                        //         },
-                        //         id: $('input[name=id]').val()
-                        //     }
-                        // }
+                        remote: {
+                            url: APP_URL + '/product/check_slug',
+                            type: 'get',
+                            data: {
+                                slug: function () {
+                                    return $('input[name=slug]').val();
+                                },
+                                id: $('input[name=id]').val()
+                            }
+                        }
 
                     }
                 },
 
                 messages: {
-                    // slug: {
-                    //     remote: 'slug "{0}" ถูกใช้แล้ว กรุณาระบุค่าใหม่'
-                    // },
+                    slug: {
+                        remote: 'slug "{0}" ถูกใช้แล้ว กรุณาระบุค่าใหม่'
+                    },
                 },
                     errorElement: 'span',
                     errorPlacement: function (error, element) {
@@ -194,6 +194,25 @@ $(document).ready(function () {
                         $(element).addClass('is-valid').removeClass('is-invalid');
                     }
           });
+
+          var inputs = document.querySelectorAll('.file-picture')
+
+          for (var i = 0, len = inputs.length; i < len; i++) {
+            customInput(inputs[i])
+          }
+      function customInput (el) {
+            const fileInput = el.querySelector('[type="file"]')
+            const label = el.querySelector('[data-js-label]')
+
+            fileInput.onchange =
+            fileInput.onmouseout = function () {
+              if (!fileInput.value) return
+
+              var value = fileInput.value.replace(/^.*[\\\/]/, '')
+              el.className += ' -chose'
+              label.innerText = value
+            }
+          }
     });
 
     /* handle delete */
@@ -210,11 +229,16 @@ $(document).ready(function () {
       });
 
 
-      function readURL(input) {
+      function readURL(input,id) {
         if (input.files && input.files[0]) {
           var reader = new FileReader();
           reader.onload = function(e) {
-            $('#previewHolder').attr('src', e.target.result);
+                 if(id==0){
+                    $('#previewHolder').attr('src', e.target.result);
+                 }
+                 else if(id==1){
+                    $('#previewHolder_one').attr('src', e.target.result);
+                 }
           }
 
           reader.readAsDataURL(input.files[0]);
@@ -224,16 +248,19 @@ $(document).ready(function () {
      $('#ajaxModal').on('shown.bs.modal', function (e) {
 
         $('body').on('change', '#picture', function (e) {
-            readURL(this);
+            readURL(this,0);
 
+        });
+        $('body').on('change', '#picture_detail_one', function (e) {
+            readURL(this,1);
 
-
-      });
+        });
     });
 
     $('#ajaxModal').on('hidden.bs.modal', function (e) {
         openModal = false;
     });
+
 
 
 });

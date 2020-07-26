@@ -54,6 +54,41 @@ class ProductRepository
         return $query;
     }
 
+    public function saveImage($picture){
+
+            $newFileName = uniqid().'.'.$picture->extension();
+            //upload file
+            $picture->storeAs('images',$newFileName,'public'); //public เปลี่ยนเป็น amazon S3
+            return $newFileName;
+
+
+
+    }
+    public function updateImage($picture,$old_picture){
+
+        //delete file
+
+        if ($old_picture != 'nopic.png') {
+        Storage::disk('public')->delete('images/'.$old_picture);
+        Storage::disk('public')->delete('images/resize/'.$old_picture);
+        }
+
+        $newFileName = uniqid().'.'.$picture->extension();
+        //upload file
+        $picture->storeAs('images',$newFileName,'public'); //public เปลี่ยนเป็น amazon S3
+        return $newFileName;
+
+
+
+ }
+ public function resizeImage($picture,$newFileName){
+            //resize
+        $path = Storage::disk('public')->path('images/resize/');
+        Image::make($picture->getRealPath(), $newFileName)->resize(270,270,function($constraint){
+            $constraint->aspectRatio();
+        })->save($path.$newFileName); //width ,higth
+ }
+
     public function store($request)
     {
 
@@ -70,17 +105,10 @@ class ProductRepository
         $product->category_id = $request->category_id;
 
         if($request->hasFile('picture')){
-            $newFileName = uniqid().'.'.$request->picture->extension();
-            //upload file
-            $request->picture->storeAs('images',$newFileName,'public'); //public เปลี่ยนเป็น amazon S3
-            $product->picture = $newFileName;
-            //resize
-            $path = Storage::disk('public')->path('images/resize/');
-            Image::make($request->picture->getRealPath(), $newFileName)->resize(270,270,function($constraint){
-                $constraint->aspectRatio();
-            })->save($path.$newFileName); //width ,higth
+        $product->picture = $this->saveImage($request->picture);
+        $this->resizeImage($request->picture,$product->picture);
+        }
 
-         }
 
         $product->save();
 
@@ -102,23 +130,10 @@ class ProductRepository
         $product->category_id = $request->category_id;
 
         if($request->hasFile('picture')){
-                  //delete file
-                if ($product->picture != 'nopic.png') {
-                Storage::disk('public')->delete('images/'.$product->picture);
-                Storage::disk('public')->delete('images/resize/'.$product->picture);
-                }
+            $product->picture = $this->updateImage($request->picture,$product->picture);
+            $this->resizeImage($request->picture,$product->picture);
+        }
 
-                $newFileName = uniqid().'.'.$request->picture->extension();
-                //upload file
-                $request->picture->storeAs('images',$newFileName,'public'); //public เปลี่ยนเป็น amazon S3
-                $product->picture = $newFileName;
-                //resize
-                $path = Storage::disk('public')->path('images/resize/');
-                Image::make($request->picture->getRealPath(), $newFileName)->resize(270,270,function($constraint){
-                    $constraint->aspectRatio();
-                })->save($path.$newFileName); //width ,higth
-
-         }
 
         $product->update();
         return true;

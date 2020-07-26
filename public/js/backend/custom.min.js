@@ -145,12 +145,6 @@ var saveForm = function (id, url, table) {
     });
 }
 var saveFormProduct = function (id, url, table) {
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // });
-    // formData = $('#saveForm').serialize();
     var form = $('#saveForm')[0];
     var formData = new FormData(form);
 
@@ -159,11 +153,8 @@ var file_data = $('input[name="picture"]')[0].files;
 for (var i = 0; i < file_data.length; i++) {
     formData.append("picture", file_data[i]);
 }
-
-
-    // event.preventDefault();
    var methodType ='post';
-    var castUrl = (id) ? url + '/update/' + id : url;
+    var castUrl = (id) ? url + '/' + id : url+'/insert';
 
      $.ajax({
       url:castUrl,
