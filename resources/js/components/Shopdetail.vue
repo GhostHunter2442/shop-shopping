@@ -124,15 +124,15 @@
                                 <h3 class="heading">รีวิว</h3>
                                 <div class="review-rating">
                                    <div class="left-review">
-                                        <div class="review-title">tilte</div>
+                                        <div class="review-title">3.5</div>
                                         <div class="review-star">
                                             <span class="fa fa-star"></span>
                                             <span class="fa fa-star"></span>
                                             <span class="fa fa-star"></span>
                                         </div>
-                                        <div class="review-pepole"><i class="fa fa-user"></i>user</div>
+                                        <div class="review-people"><i class="fa fa-user"></i>user</div>
                                     </div>
-                                     <div class="right-review">
+                                     <div class="rigth-review">
                                          <div class="row-bar">
                                              <div class="left-bar">5</div>
                                              <div class="right-bar">
@@ -153,7 +153,7 @@
                                              <div class="left-bar">3</div>
                                              <div class="right-bar">
                                                  <div class="bar-container">
-                                                     <div class="bar-3" style="width:20%;"></div>
+                                                     <div class="bar-3" style="width:10%;"></div>
                                                  </div>
                                              </div>
                                          </div>
@@ -161,7 +161,7 @@
                                              <div class="left-bar">2</div>
                                              <div class="right-bar">
                                                  <div class="bar-container">
-                                                     <div class="bar-2" style="width:10%;"></div>
+                                                     <div class="bar-2" style="width:4%;"></div>
                                                  </div>
                                              </div>
                                          </div>
@@ -234,9 +234,9 @@
     </div>
 </template>
 <style>
-{
-    box-sizing:border-box;
-}
+/* {
+    box-sizing:border-box
+} */
 .fa{
     font-size:25px;
 }
@@ -272,7 +272,7 @@
     margin-top: 10px;
 }
 .review-title{
-    font-size: 56tp;
+    font-size: 56pt;
 }
 .review-star{
     margin: 0 0 10px 0;
@@ -282,9 +282,9 @@
 }
 .bar-container{
     width: 100%;
-    background-color:rgb(143, 139, 139);
+    background-color:rgb(235, 230, 230);
     text-align: center;
-    color: rgb(190, 38, 38);
+    color: white;
 }
 .bar-5{height:18px; background-color: #57bb8a;}
 .bar-4{height:18px; background-color: #9ace6a;}

@@ -14432,7 +14432,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n{\n    box-sizing:border-box;\n}\n.fa{\n    font-size:25px;\n}\n.left-bar{\n    float: left;\n    width:5%;\n    margin-top: 10px;\n}\n.right-bar{\n    margin-top: 10px;\n    float: left;\n    width: 95%;\n}\n.row-bar:after{\n    content:\"\";\n    display: table;\n    clear: both;\n}\n.review-rating:after{\n    content: \"\";\n    display: table;\n    clear: both;\n}\n.left-review{\n    float: left;\n    width: 30%;\n    margin-top: 10px;\n    text-align: center;\n}\n.rigth-review{\n    float: left;\n    width: 70%;\n    margin-top: 10px;\n}\n.review-title{\n    font-size: 56tp;\n}\n.review-star{\n    margin: 0 0 10px 0;\n}\n.review-people .fa{\n    font-size: 11pt;\n}\n.bar-container{\n    width: 100%;\n    background-color:#fff;\n    text-align: center;\n    color: white;\n}\n.bar-5{height:18px; background-color: #57bb8a;}\n.bar-4{height:18px; background-color: #9ace6a;}\n.bar-3{height:18px; background-color: #ffcf02;}\n.bar-2{height:18px; background-color: #ff9f02;}\n.bar-1{height:18px; background-color: #ff6f31;}\n.star-rating{\n    text-align: center;\n}\n.star-rating .fa:hover{\n    color:orange;\n}\n.heading{\n    font-size: 25px;\n    color: #999;\n    border-bottom: 2px solid #eee;\n}\n@media (max-width: 400px){\n.left-bar, .right-bar, .left-review, .left-review{\n        width: 100%;\n}\n}\n.custom-text{\n    font-weight: bold;\n    font-size: 1.9em;\n    border: 1px solid #cfcfcf;\n    padding-left: 10px;\n    padding-right: 10px;\n    border-radius: 5px;\n    color: #999;\n    background: #fff;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* {\n    box-sizing:border-box\n} */\n.fa{\n    font-size:25px;\n}\n.left-bar{\n    float: left;\n    width:5%;\n    margin-top: 10px;\n}\n.right-bar{\n    margin-top: 10px;\n    float: left;\n    width: 95%;\n}\n.row-bar:after{\n    content:\"\";\n    display: table;\n    clear: both;\n}\n.review-rating:after{\n    content: \"\";\n    display: table;\n    clear: both;\n}\n.left-review{\n    float: left;\n    width: 30%;\n    margin-top: 10px;\n    text-align: center;\n}\n.rigth-review{\n    float: left;\n    width: 70%;\n    margin-top: 10px;\n}\n.review-title{\n    font-size: 56pt;\n}\n.review-star{\n    margin: 0 0 10px 0;\n}\n.review-people .fa{\n    font-size: 11pt;\n}\n.bar-container{\n    width: 100%;\n    background-color:rgb(235, 230, 230);\n    text-align: center;\n    color: white;\n}\n.bar-5{height:18px; background-color: #57bb8a;}\n.bar-4{height:18px; background-color: #9ace6a;}\n.bar-3{height:18px; background-color: #ffcf02;}\n.bar-2{height:18px; background-color: #ff9f02;}\n.bar-1{height:18px; background-color: #ff6f31;}\n.star-rating{\n    text-align: center;\n}\n.star-rating .fa:hover{\n    color:orange;\n}\n.heading{\n    font-size: 25px;\n    color: #999;\n    border-bottom: 2px solid #eee;\n}\n@media (max-width: 400px){\n.left-bar, .right-bar, .left-review, .left-review{\n        width: 100%;\n}\n}\n.custom-text{\n    font-weight: bold;\n    font-size: 1.9em;\n    border: 1px solid #cfcfcf;\n    padding-left: 10px;\n    padding-right: 10px;\n    border-radius: 5px;\n    color: #999;\n    background: #fff;\n}\n", ""]);
 
 // exports
 
@@ -93019,7 +93019,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "review-rating" }, [
       _c("div", { staticClass: "left-review" }, [
-        _c("div", { staticClass: "review-title" }, [_vm._v("tilte")]),
+        _c("div", { staticClass: "review-title" }, [_vm._v("3.5")]),
         _vm._v(" "),
         _c("div", { staticClass: "review-star" }, [
           _c("span", { staticClass: "fa fa-star" }),
@@ -93029,13 +93029,13 @@ var staticRenderFns = [
           _c("span", { staticClass: "fa fa-star" })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "review-pepole" }, [
+        _c("div", { staticClass: "review-people" }, [
           _c("i", { staticClass: "fa fa-user" }),
           _vm._v("user")
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "right-review" }, [
+      _c("div", { staticClass: "rigth-review" }, [
         _c("div", { staticClass: "row-bar" }, [
           _c("div", { staticClass: "left-bar" }, [_vm._v("5")]),
           _vm._v(" "),
@@ -93061,7 +93061,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "right-bar" }, [
             _c("div", { staticClass: "bar-container" }, [
-              _c("div", { staticClass: "bar-3", staticStyle: { width: "20%" } })
+              _c("div", { staticClass: "bar-3", staticStyle: { width: "10%" } })
             ])
           ])
         ]),
@@ -93071,7 +93071,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "right-bar" }, [
             _c("div", { staticClass: "bar-container" }, [
-              _c("div", { staticClass: "bar-2", staticStyle: { width: "10%" } })
+              _c("div", { staticClass: "bar-2", staticStyle: { width: "4%" } })
             ])
           ])
         ]),
