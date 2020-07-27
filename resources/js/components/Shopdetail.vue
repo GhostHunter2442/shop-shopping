@@ -49,13 +49,11 @@
                 <div class="col-lg-6 col-md-6" >
                     <div class="product__details__text"  >
                         <h3>{{shopdata.name}}</h3>
-                        <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(18 รีวิว)</span>
+                        <div class="product__details__rating" >
+                             
+                             <star-rating :inline="true" :read-only="true" :show-rating="false" :star-size="20" v-model="totalrate" :increment="0.1" ></star-rating>
+
+                            <span class="user-revice">({{showuser}} รีวิว)</span>
                         </div>
                         <div class="product__details__price" >{{shopdata.price | currency("฿")}}  <br> <span class="review">{{ shopdata.price | currency("฿")}}  </span> <h4> -50%</h4></div>
 
@@ -106,7 +104,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">รีวิว <span>(1)</span></a>
+                                    aria-selected="false">รีวิว <span>({{showuser}})</span></a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -118,26 +116,24 @@
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <star-rating v-model="rating" :increment="0.5" text-class="custom-text"></star-rating>
+                                    <star-rating v-model="rating" :increment="0.5" :star-size="40" text-class="custom-text"></star-rating>
                                 </div>
-                                <button @click="setRating" class="btn btn-success my-3">ให้คะเเนน</button>
+                                <button @click="setRating" class="primary-btn my-3">ให้คะเเนน</button>
                                 <h3 class="heading">รีวิว</h3>
                                 <div class="review-rating">
                                    <div class="left-review">
-                                        <div class="review-title">3.5</div>
+                                        <div class="review-title">{{totalrate}}</div>
                                         <div class="review-star">
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
+                                            <star-rating :inline="true" :read-only="true" :show-rating="false" :star-size="20" v-model="totalrate" :increment="0.1" active-color="#000000"></star-rating>
                                         </div>
-                                        <div class="review-people"><i class="fa fa-user"></i>user</div>
+                                        <div class="review-people"><i class="fa fa-user"></i> {{totaluser}} total</div>
                                     </div>
                                      <div class="rigth-review">
                                          <div class="row-bar">
                                              <div class="left-bar">5</div>
                                              <div class="right-bar">
                                                  <div class="bar-container">
-                                                     <div class="bar-5" style="width:60%;"></div>
+                                                     <div class="bar-5" style="width:0%;"></div>
                                                  </div>
                                              </div>
                                          </div>
@@ -145,7 +141,7 @@
                                              <div class="left-bar">4</div>
                                              <div class="right-bar">
                                                  <div class="bar-container">
-                                                     <div class="bar-4" style="width:30%;"></div>
+                                                     <div class="bar-4" style="width:0%;"></div>
                                                  </div>
                                              </div>
                                          </div>
@@ -153,7 +149,7 @@
                                              <div class="left-bar">3</div>
                                              <div class="right-bar">
                                                  <div class="bar-container">
-                                                     <div class="bar-3" style="width:10%;"></div>
+                                                     <div class="bar-3" style="width:0%;"></div>
                                                  </div>
                                              </div>
                                          </div>
@@ -161,7 +157,7 @@
                                              <div class="left-bar">2</div>
                                              <div class="right-bar">
                                                  <div class="bar-container">
-                                                     <div class="bar-2" style="width:4%;"></div>
+                                                     <div class="bar-2" style="width:0%;"></div>
                                                  </div>
                                              </div>
                                          </div>
@@ -169,7 +165,7 @@
                                              <div class="left-bar">1</div>
                                              <div class="right-bar">
                                                  <div class="bar-container">
-                                                     <div class="bar-1" style="width:5%;"></div>
+                                                     <div class="bar-1" style="width:0%;"></div>
                                                  </div>
                                              </div>
                                          </div>
@@ -234,89 +230,7 @@
     </div>
 </template>
 <style>
-/* {
-    box-sizing:border-box
-} */
-.fa{
-    font-size:25px;
-}
-.left-bar{
-    float: left;
-    width:5%;
-    margin-top: 10px;
-}
-.right-bar{
-    margin-top: 10px;
-    float: left;
-    width: 95%;
-}
-.row-bar:after{
-    content:"";
-    display: table;
-    clear: both;
-}
-.review-rating:after{
-    content: "";
-    display: table;
-    clear: both;
-}
-.left-review{
-    float: left;
-    width: 30%;
-    margin-top: 10px;
-    text-align: center;
-}
-.rigth-review{
-    float: left;
-    width: 70%;
-    margin-top: 10px;
-}
-.review-title{
-    font-size: 56pt;
-}
-.review-star{
-    margin: 0 0 10px 0;
-}
-.review-people .fa{
-    font-size: 11pt;
-}
-.bar-container{
-    width: 100%;
-    background-color:rgb(235, 230, 230);
-    text-align: center;
-    color: white;
-}
-.bar-5{height:18px; background-color: #57bb8a;}
-.bar-4{height:18px; background-color: #9ace6a;}
-.bar-3{height:18px; background-color: #ffcf02;}
-.bar-2{height:18px; background-color: #ff9f02;}
-.bar-1{height:18px; background-color: #ff6f31;}
-.star-rating{
-    text-align: center;
-}
-.star-rating .fa:hover{
-    color:orange;
-}
-.heading{
-    font-size: 25px;
-    color: #999;
-    border-bottom: 2px solid #eee;
-}
-@media (max-width: 400px){
-    .left-bar, .right-bar, .left-review, .left-review{
-        width: 100%;
-    }
-}
-.custom-text{
-    font-weight: bold;
-    font-size: 1.9em;
-    border: 1px solid #cfcfcf;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 5px;
-    color: #999;
-    background: #fff;
-}
+
 </style>
 <script>
 
@@ -330,6 +244,9 @@ export default {
              shopdata:{},
              concerned:[],
              rating:0,
+             totalrate:0,
+             totaluser:0,
+             showuser:0,
              getdata:'',
              itempicture:'',
              itempicture1:'',
@@ -349,23 +266,81 @@ export default {
           this.getshopdetil();
           this.gettofavorite();
           this.getProductConcerned();
+          this.getRating();
         },
 
      props:['id','cat_id'],
      methods: {
+        async  getRating(){
+              await  axios.get("/shopping/public/api/cartdetail/rating/"+this.id
+            //   {params:{product:'1',user:'1',rating:this.rating}}
+                   ).then(res => {
+                    //    console.log(res.data);
+                        var maydata =res.data.data;
+                        this.totaluser= maydata.length;
+                        this.showuser=maydata.length;
+                        var sum = 0;
+                        for(var i = 0; i < maydata.length; i++){
+                            sum += parseFloat(maydata[i]['rating']);
+                            }
+                         var avg= sum/maydata.length;
+                         this.totalrate = parseFloat(avg.toFixed(1));
+
+                         var bar1=0;
+                         var bar2=0;
+                         var bar3=0;
+                         var bar4=0;
+                         var bar5=0;
+
+                         for(var j = 0; j < maydata.length; j++){
+                          if(parseInt(maydata[j]['rating'])=='5'){
+                                 bar5 += 1;
+
+                             }
+                             if(parseInt(maydata[j]['rating'])=='4'){
+                                 bar4 += 1;
+
+                             }
+                              if(parseInt(maydata[j]['rating'])=='3'){
+                                 bar3 += 1;
+                             }
+                              if(parseInt(maydata[j]['rating'])=='2'){
+                                 bar2 += 1;
+                             }
+                              if(parseInt(maydata[j]['rating'])=='1'){
+                                 bar1 += 1;
+                             }
+
+                         }
+
+                         $('.bar-1').css('width',bar1+'%');
+                         $('.bar-2').css('width',bar2+'%');
+                         $('.bar-3').css('width',bar3+'%');
+                         $('.bar-4').css('width',bar4+'%');
+                         $('.bar-5').css('width',bar5+'%');
+                         }).catch(error => {
+                             console.log(error)
+
+                          });
+         },
        async  setRating(){
-
-
-              await  axios.get("/shopping/public/api/cartdetail/rating",
-              {params:{product:'1',user:'1',rating:this.rating}}
-                   ).then(response => {
+                if(this.checkper == true){
+                    await  axios.get("/shopping/public/api/cartdetail/rating",
+                      {params:{product:this.id,rating:this.rating}}
+                       ).then(response => {
                         let showicon='success';
-                    let showtitle ='ให้คะเเนนเรียบร้อย';
-                    this.showalert(showicon,showtitle);
+                     let showtitle ='ให้คะเเนนเรียบร้อย';
+                       this.getRating();
+                     this.showalert(showicon,showtitle);
                          }).catch(error => {
                              console.log(error.response)
 
                           });
+                }
+                else{
+                    window.location.href = "/shopping/public/login";
+                    }
+
          },
         updateCart(updateType) {
             if (updateType === 'subtract') {

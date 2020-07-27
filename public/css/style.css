@@ -1849,8 +1849,9 @@ ol {
   color: #EDBB0E;
 }
 
-.product__details__text .product__details__rating span {
+.product__details__text .product__details__rating .user-revice {
   color: #dd2222;
+  font-size: 15px;
   margin-left: 4px;
 }
 
@@ -2201,6 +2202,125 @@ ol {
 
 .product__details__tab .product__details__tab__desc p {
   color: #666666;
+}
+
+.product__details__tab .fa {
+  /* font-size:25px; */
+}
+
+.product__details__tab .left-bar {
+  float: left;
+  width: 5%;
+  margin-top: 10px;
+}
+
+.product__details__tab .right-bar {
+  margin-top: 10px;
+  float: left;
+  width: 95%;
+}
+
+.product__details__tab .row-bar:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.product__details__tab .review-rating:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.product__details__tab .left-review {
+  float: left;
+  width: 30%;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.product__details__tab .rigth-review {
+  float: left;
+  width: 70%;
+  margin-top: 10px;
+}
+
+.product__details__tab .review-title {
+  font-size: 56pt;
+}
+
+.product__details__tab .review-star {
+  margin: 0 0 10px 0;
+}
+
+.product__details__tab .review-people .fa {
+  font-size: 11pt;
+}
+
+.product__details__tab .bar-container {
+  width: 100%;
+  background-color: #ebe6e6;
+  text-align: center;
+  color: white;
+}
+
+.product__details__tab .bar-5 {
+  height: 18px;
+  background-color: #57bb8a;
+}
+
+.product__details__tab .bar-4 {
+  height: 18px;
+  background-color: #9ace6a;
+}
+
+.product__details__tab .bar-3 {
+  height: 18px;
+  background-color: #ffcf02;
+}
+
+.product__details__tab .bar-2 {
+  height: 18px;
+  background-color: #ff9f02;
+}
+
+.product__details__tab .bar-1 {
+  height: 18px;
+  background-color: #ff6f31;
+}
+
+.product__details__tab .star-rating {
+  text-align: center;
+}
+
+.product__details__tab .star-rating .fa:hover {
+  color: orange;
+}
+
+.product__details__tab .heading {
+  font-size: 25px;
+  color: #999;
+  border-bottom: 2px solid #eee;
+}
+
+@media (max-width: 400px) {
+  .product__details__tab .left-bar,
+  .product__details__tab .right-bar,
+  .product__details__tab .left-review,
+  .product__details__tab .left-review {
+    width: 100%;
+  }
+}
+
+.product__details__tab .custom-text {
+  font-weight: bold;
+  font-size: 1.9em;
+  border: 1px solid #cfcfcf;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  color: #999;
+  background: #fff;
 }
 
 /*---------------------

@@ -54,12 +54,13 @@ class ShopdetailController extends Controller
     public function setrating(Request $request){
         return new RatingResource(Rating::create([
             'product_id' =>$request->get('product'),
-            'user_id'=>$request->get('user'),
+            'user_id'=> auth()->user()->id,
             'rating'=>$request->get('rating')
         ]));
    }
    public function getrating($id){
-       return RatingResource::collection(Raing::all()->where('product_id',$id));
+       return RatingResource::collection(Rating::all()->where('product_id',$id));
+    // return '555';
    }
 
 }

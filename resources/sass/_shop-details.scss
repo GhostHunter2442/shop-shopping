@@ -47,8 +47,12 @@
             color: #EDBB0E;
         }
 
-        span {
+        .user-revice {
             color: #dd2222;
+            // position: relative;
+            // margin-top: 50px;
+            font-size: 15px;
+
             margin-left: 4px;
         }
     }
@@ -383,6 +387,87 @@
             color: #666666;
         }
     }
+    .fa{
+        /* font-size:25px; */
+    }
+    .left-bar{
+        float: left;
+        width:5%;
+        margin-top: 10px;
+    }
+    .right-bar{
+        margin-top: 10px;
+        float: left;
+        width: 95%;
+    }
+    .row-bar:after{
+        content:"";
+        display: table;
+        clear: both;
+    }
+    .review-rating:after{
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .left-review{
+        float: left;
+        width: 30%;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .rigth-review{
+        float: left;
+        width: 70%;
+        margin-top: 10px;
+    }
+    .review-title{
+        font-size: 56pt;
+    }
+    .review-star{
+        margin: 0 0 10px 0;
+    }
+    .review-people .fa{
+        font-size: 11pt;
+    }
+    .bar-container{
+        width: 100%;
+        background-color:rgb(235, 230, 230);
+        text-align: center;
+        color: white;
+    }
+    .bar-5{height:18px; background-color: #57bb8a;}
+    .bar-4{height:18px; background-color: #9ace6a;}
+    .bar-3{height:18px; background-color: #ffcf02;}
+    .bar-2{height:18px; background-color: #ff9f02;}
+    .bar-1{height:18px; background-color: #ff6f31;}
+    .star-rating{
+        text-align: center;
+    }
+    .star-rating .fa:hover{
+        color:orange;
+    }
+    .heading{
+        font-size: 25px;
+        color: #999;
+        border-bottom: 2px solid #eee;
+    }
+    @media (max-width: 400px){
+        .left-bar, .right-bar, .left-review, .left-review{
+            width: 100%;
+        }
+    }
+    .custom-text{
+        font-weight: bold;
+        font-size: 1.9em;
+        border: 1px solid #cfcfcf;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 5px;
+        color: #999;
+        background: #fff;
+    }
+
 }
 
 /*---------------------
