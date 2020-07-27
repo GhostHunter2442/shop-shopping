@@ -1,6 +1,7 @@
 
 
 require('./bootstrap');
+
 import VueRouter from "vue-router";
 import router from "./routes";
 import Vuex from 'vuex';
@@ -11,14 +12,15 @@ import Vue2Filters from 'vue2-filters';
 import VueThaiAddressInput from 'vue-thai-address-input';
 
 import 'vue-thai-address-input/dist/vue-thai-address-input.css';
-
+import StarRating from 'vue-star-rating';
 
 
 
 window.Vue = require('vue');
+// window.$ = require('jquery');
 window.bus = new Vue();
 
- 
+
 Vue.use(Vue2Filters);
 Vue.use(VueLazyload);
 Vue.use(VueRouter);
@@ -38,9 +40,8 @@ Vue.component('check-payment', require('./components/Checkpayment.vue').default)
 Vue.component('check-paymentomise', require('./components/Paymentomise.vue').default);
 Vue.component('checkout-payment', require('./components/Checkoutpayment.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
-
 Vue.component('shop-detail', require('./components/Shopdetail.vue').default);
-
+Vue.component('star-rating',StarRating);
 const store_item = new Vuex.Store(storeDefinition);
 
 

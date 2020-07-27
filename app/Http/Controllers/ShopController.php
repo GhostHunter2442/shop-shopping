@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+
 use DB;
 
 class ShopController extends Controller
@@ -32,4 +33,5 @@ class ShopController extends Controller
             $product
         );
     }
+
 }

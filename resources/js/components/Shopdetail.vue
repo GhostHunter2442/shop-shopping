@@ -118,23 +118,62 @@
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>รีวิว</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                        Proin eget tortor risus.</p>
-                                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.</p>
+                                    <star-rating v-model="rating" :increment="0.5" text-class="custom-text"></star-rating>
+                                </div>
+                                <button @click="setRating" class="btn btn-success my-3">ให้คะเเนน</button>
+                                <h3 class="heading">รีวิว</h3>
+                                <div class="review-rating">
+                                   <div class="left-review">
+                                        <div class="review-title">tilte</div>
+                                        <div class="review-star">
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                        <div class="review-pepole"><i class="fa fa-user"></i>user</div>
+                                    </div>
+                                     <div class="right-review">
+                                         <div class="row-bar">
+                                             <div class="left-bar">5</div>
+                                             <div class="right-bar">
+                                                 <div class="bar-container">
+                                                     <div class="bar-5" style="width:60%;"></div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="row-bar">
+                                             <div class="left-bar">4</div>
+                                             <div class="right-bar">
+                                                 <div class="bar-container">
+                                                     <div class="bar-4" style="width:30%;"></div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="row-bar">
+                                             <div class="left-bar">3</div>
+                                             <div class="right-bar">
+                                                 <div class="bar-container">
+                                                     <div class="bar-3" style="width:20%;"></div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="row-bar">
+                                             <div class="left-bar">2</div>
+                                             <div class="right-bar">
+                                                 <div class="bar-container">
+                                                     <div class="bar-2" style="width:10%;"></div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="row-bar">
+                                             <div class="left-bar">1</div>
+                                             <div class="right-bar">
+                                                 <div class="bar-container">
+                                                     <div class="bar-1" style="width:5%;"></div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -194,7 +233,91 @@
     <!-- Related Product Section End -->
     </div>
 </template>
-
+<style>
+{
+    box-sizing:border-box;
+}
+.fa{
+    font-size:25px;
+}
+.left-bar{
+    float: left;
+    width:5%;
+    margin-top: 10px;
+}
+.right-bar{
+    margin-top: 10px;
+    float: left;
+    width: 95%;
+}
+.row-bar:after{
+    content:"";
+    display: table;
+    clear: both;
+}
+.review-rating:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.left-review{
+    float: left;
+    width: 30%;
+    margin-top: 10px;
+    text-align: center;
+}
+.rigth-review{
+    float: left;
+    width: 70%;
+    margin-top: 10px;
+}
+.review-title{
+    font-size: 56tp;
+}
+.review-star{
+    margin: 0 0 10px 0;
+}
+.review-people .fa{
+    font-size: 11pt;
+}
+.bar-container{
+    width: 100%;
+    background-color:rgb(143, 139, 139);
+    text-align: center;
+    color: rgb(190, 38, 38);
+}
+.bar-5{height:18px; background-color: #57bb8a;}
+.bar-4{height:18px; background-color: #9ace6a;}
+.bar-3{height:18px; background-color: #ffcf02;}
+.bar-2{height:18px; background-color: #ff9f02;}
+.bar-1{height:18px; background-color: #ff6f31;}
+.star-rating{
+    text-align: center;
+}
+.star-rating .fa:hover{
+    color:orange;
+}
+.heading{
+    font-size: 25px;
+    color: #999;
+    border-bottom: 2px solid #eee;
+}
+@media (max-width: 400px){
+    .left-bar, .right-bar, .left-review, .left-review{
+        width: 100%;
+    }
+}
+.custom-text{
+    font-weight: bold;
+    font-size: 1.9em;
+    border: 1px solid #cfcfcf;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: #999;
+    background: #fff;
+}
+</style>
 <script>
 
 export default {
@@ -206,6 +329,7 @@ export default {
              shopURL:'/shopping/public/shop/',
              shopdata:{},
              concerned:[],
+             rating:0,
              getdata:'',
              itempicture:'',
              itempicture1:'',
@@ -229,6 +353,20 @@ export default {
 
      props:['id','cat_id'],
      methods: {
+       async  setRating(){
+
+
+              await  axios.get("/shopping/public/api/cartdetail/rating",
+              {params:{product:'1',user:'1',rating:this.rating}}
+                   ).then(response => {
+                        let showicon='success';
+                    let showtitle ='ให้คะเเนนเรียบร้อย';
+                    this.showalert(showicon,showtitle);
+                         }).catch(error => {
+                             console.log(error.response)
+
+                          });
+         },
         updateCart(updateType) {
             if (updateType === 'subtract') {
                     if (this.quantity !== 1) {

@@ -6,6 +6,9 @@ use App\User;
 use App\Product;
  use DB;
  use App\Cart;
+ use App\Rating;
+use App\Http\Resources\Rating as RatingResource;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -48,5 +51,15 @@ class ShopdetailController extends Controller
 
             return response()->json($listCart);
         }
+    public function setrating(Request $request){
+        return new RatingResource(Rating::create([
+            'product_id' =>$request->get('product'),
+            'user_id'=>$request->get('user'),
+            'rating'=>$request->get('rating')
+        ]));
+   }
+   public function getrating($id){
+       return RatingResource::collection(Raing::all()->where('product_id',$id));
+   }
 
 }
