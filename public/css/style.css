@@ -173,6 +173,18 @@ ol {
   letter-spacing: 2px;
 }
 
+.primary-btn-cart {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 10px 28px 10px;
+  background: #62cfc1;
+  border: none;
+  letter-spacing: 2px;
+}
+
 .site-btn {
   font-size: 14px;
   color: #ffffff;
@@ -1839,6 +1851,10 @@ ol {
   margin-bottom: 12px;
 }
 
+.product__details__text .stock-out {
+  color: #dd2222;
+}
+
 .product__details__text .product__details__rating {
   font-size: 14px;
   margin-bottom: 12px;
@@ -1849,10 +1865,8 @@ ol {
   color: #EDBB0E;
 }
 
-.product__details__text .product__details__rating .user-revice {
+.product__details__text .product__details__rating span {
   color: #dd2222;
-  font-size: 15px;
-  margin-left: 4px;
 }
 
 .product__details__text .product__details__price {
@@ -1876,14 +1890,27 @@ ol {
   font-weight: 400;
   font-size: 14px;
   text-decoration: line-through;
-  margin-left: 10px;
+  margin-left: 3px;
 }
 
 .product__details__text p {
   margin-bottom: 45px;
 }
 
-.product__details__text .primary-btn {
+.product__details__text .isDisabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.product__details__text .isDisabled > a {
+  color: currentColor;
+  display: inline-block;
+  /* For IE11/ MS Edge bug */
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.product__details__text .primary-btn-cart {
   padding: 16px 28px 14px;
   margin-right: 6px;
   margin-bottom: 5px;
@@ -2188,6 +2215,10 @@ ol {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   padding: 0;
+}
+
+.product__details__tab .select_invoice {
+  padding-top: 8px;
 }
 
 .product__details__tab .product__details__tab__desc {

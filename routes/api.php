@@ -28,4 +28,5 @@ Route::get('/cartdetail/getallfavorite', 'Api\ShopdetailController@getallfavorit
  Route::get('/cartdetail/getfavorite/{product_id}', 'Api\ShopdetailController@getfavorite')->name('cartdetail.getfavorite');
  Route::get('/cartdetail/rating', 'Api\ShopdetailController@setrating')->name('setrating');
  Route::get('/cartdetail/rating/{id}', 'Api\ShopdetailController@getrating')->name('getrating');
+ Route::get('/cartdetail/getinvoice/', 'Api\ShopdetailController@getinvoice')->name('getinvoice');
 

@@ -50,12 +50,14 @@
                     <div class="product__details__text"  >
                         <h3>{{shopdata.name}}</h3>
                         <div class="product__details__rating" >
-                             
-                             <star-rating :inline="true" :read-only="true" :show-rating="false" :star-size="20" v-model="totalrate" :increment="0.1" ></star-rating>
 
-                            <span class="user-revice">({{showuser}} รีวิว)</span>
+                                <star-rating :inline="true" :read-only="true" :show-rating="false" :star-size="20" v-model="totalrate" :increment="0.1" ></star-rating>
+
+                                  <span >({{showuser}} รีวิว)</span>
+
+
                         </div>
-                        <div class="product__details__price" >{{shopdata.price | currency("฿")}}  <br> <span class="review">{{ shopdata.price | currency("฿")}}  </span> <h4> -50%</h4></div>
+                        <div class="product__details__price" >{{shopdata.price | currency("฿")}}  <br> <span class="review">{{ discount(shopdata.price,shopdata.discount) | currency("฿")}}  </span> <h4> -{{shopdata.discount}}%</h4></div>
 
                         <p>รับประกันของแท้และสินค้าทุกชิ้นมีใบประกัน</p>
                         <div class="product__details__quantity">
@@ -67,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:;"  class="primary-btn" v-on:click="addtocart()"><i class="fa fa-shopping-cart"></i>เพิ่มสินค้า</a>
+                       <span :class="btnDisabled"> <a href="javascript:;"  class="primary-btn-cart" @click.prevent="addtocart" ><i class="fa fa-shopping-cart"></i>เพิ่มสินค้า</a></span>
                         <a href="javascript:;" class="heartload" v-on:click="addtofavorite()">
                             <span  > <div v-if="heart" class="heart"></div>
                                       <div v-if="heartset" class="heartset"></div>
@@ -75,14 +77,12 @@
                         <div class="lds-heart"><div></div></div>
                         </div>
                             </span>
-
-
                         </a>
                         <ul>
 
-                            <li><b>สินค้าคงหลือ</b> <span>{{shopdata.stock}} inc.</span></li>
+                            <li><b>สินค้าคงหลือ</b> <span >{{shopdata.stock}} inc.</span></li>
                             <li><b>การจัดสั่ง</b> <span>1-2 วันจัดส่ง <samp>Free pickup today</samp></span></li>
-                            <li><b>น้ำหนัก</b> <span>0.5 kg</span></li>
+                            <li><b>น้ำหนัก</b> <span>{{shopdata.weight}} kg</span></li>
                             <li><b>เเชร์</b>
                                 <div class="share">
                                     <a href="#"><i class="fa fa-facebook"></i></a>
@@ -115,8 +115,16 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
+
                                 <div class="product__details__tab__desc">
-                                    <star-rating v-model="rating" :increment="0.5" :star-size="40" text-class="custom-text"></star-rating>
+                                    <div class="row">
+                                         <div class="col-md-4 col-sm-8 ">
+                                               <star-rating v-model="rating" :increment="0.5" :star-size="40" text-class="custom-text"></star-rating>
+                                             </div>
+                                        <div class="select_invoice col-md-3 col-sm-6 my-2" v-if="this.checkper==true">
+                                             <v-select :options="invoice_order" v-model="selected"></v-select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <button @click="setRating" class="primary-btn my-3">ให้คะเเนน</button>
                                 <h3 class="heading">รีวิว</h3>
@@ -198,11 +206,6 @@
                             <a :href="shopURL+list.slug">
                             <img v-lazy="imageproURL+list.picture" lazy="loading">
                             </a>
-
-                               <!-- <div class="product__new__wrawper" v-if=" getcreateDate(list.created_at) == timestamp" >
-                                  <div class="item_wrawper">ใหม่</div>
-                                </div> -->
-
                         <ul class="product__item__pic__hover">
                               <li><a href="javascript:;"  v-on:click="adddetail(list.id)"><button  class="site-btn"><i class="fa fa-shopping-cart"></i> เพิ่มไปยังรถเข็น</button></a></li>
                         </ul>
@@ -230,19 +233,21 @@
     </div>
 </template>
 <style>
-
+/* .add-product{
+      display: block;
+} */
 </style>
 <script>
-
+import "vue-select/dist/vue-select.css";
 export default {
     data() {
          return {
-             csrfToken: null ,
-            imageproURL:'/shopping/public/storage/images/',
-
+             imageproURL:'/shopping/public/storage/images/',
              shopURL:'/shopping/public/shop/',
              shopdata:{},
              concerned:[],
+             invoice_order:[],
+             selected:'เลือกคำสั่งซื้อ',
              rating:0,
              totalrate:0,
              totaluser:0,
@@ -259,29 +264,36 @@ export default {
              heartset:false,
              heart:true,
              checkper: true,
+             stock:'',
+             btnDisabled:'isEnabled' //isDisabled
 
           }
-     },
-       mounted(){
+     },  mounted(){
           this.getshopdetil();
           this.gettofavorite();
           this.getProductConcerned();
           this.getRating();
+          this.getInvoice();
         },
 
      props:['id','cat_id'],
      methods: {
+         discount(price,discount){
+            var percen=(100 - parseInt(discount))/100;
+            var dis= (parseInt(price)/(percen));
+            return  parseInt(dis);
+         },
         async  getRating(){
               await  axios.get("/shopping/public/api/cartdetail/rating/"+this.id
-            //   {params:{product:'1',user:'1',rating:this.rating}}
                    ).then(res => {
-                    //    console.log(res.data);
                         var maydata =res.data.data;
                         this.totaluser= maydata.length;
                         this.showuser=maydata.length;
+
                         var sum = 0;
                         for(var i = 0; i < maydata.length; i++){
                             sum += parseFloat(maydata[i]['rating']);
+
                             }
                          var avg= sum/maydata.length;
                          this.totalrate = parseFloat(avg.toFixed(1));
@@ -324,23 +336,45 @@ export default {
                           });
          },
        async  setRating(){
-                if(this.checkper == true){
-                    await  axios.get("/shopping/public/api/cartdetail/rating",
-                      {params:{product:this.id,rating:this.rating}}
-                       ).then(response => {
-                        let showicon='success';
-                     let showtitle ='ให้คะเเนนเรียบร้อย';
-                       this.getRating();
-                     this.showalert(showicon,showtitle);
-                         }).catch(error => {
-                             console.log(error.response)
 
-                          });
+                if(this.checkper == true){
+                      if(this.selected!='เลือกคำสั่งซื้อ' && this.selected!=null){
+                       await  axios.get("/shopping/public/api/cartdetail/rating",
+                            {params:{product:this.id,rating:this.rating,invoice_id:this.selected}}
+                            ).then(res => {
+                                let showicon='success';
+                            let showtitle ='ให้คะเเนนเรียบร้อย';
+                            this.getRating();
+                            this.showalert(showicon,showtitle);
+                                }).catch(error => {
+                                    console.log(error)
+
+                                });
+                      }
+                      else{
+                           let showicon='warning';
+                            let showtitle ='เลือกคำสั่งซื้อ';
+                            this.showalert(showicon,showtitle);
+                      }
+
                 }
                 else{
                     window.location.href = "/shopping/public/login";
                     }
 
+         },
+      async  getInvoice(){
+                if(this.checkper == true){
+                    await  axios.get("/shopping/public/api/cartdetail/getinvoice",
+                      {params:{product_id:this.id}}
+                       ).then(res => {
+                           var myinvoice= res.data;
+                          this.invoice_order=myinvoice;
+                         }).catch(error => {
+                             console.log(error)
+
+                          });
+                }
          },
         updateCart(updateType) {
             if (updateType === 'subtract') {
@@ -352,16 +386,17 @@ export default {
             }
          },
 
-         async addtocart() {
+         async addtocart(event) {
                 if(this.checkper == true){
                     if(this.quantity >0){
+
                                 if(this.quantity > this.shopdata.stock){
                                         let showicon='error';
                                         let showtitle ='จำนวนสินค้าไม่เพียงพอ';
                                         this.showalert(showicon,showtitle);
                                 }
                                 else{
-
+                        this.btnDisabled = true;
                                     let showicon='success';
                                     let showtitle ='เพิ่มสินค้าเรียบร้อย';
                                             await  axios.get("/shopping/public/cartdetail/adddetail/"+this.id+"/"+this.quantity).then(response => {
@@ -399,6 +434,11 @@ export default {
                     this.itempicture1= this.imageproURL + res.data.picture_detail_one;
                     this.itempicture2= this.imageproURL + res.data.picture_detail_two;
                       this.itempicture3= this.imageproURL + res.data.picture_detail_three;
+                      this.stock=res.data.stock
+                       if( this.stock< 1){
+                          this.btnDisabled='isDisabled' ;//isDisabled
+                       }
+
                 }).catch(error => {
                      console.log(res.data.errors)
                     });

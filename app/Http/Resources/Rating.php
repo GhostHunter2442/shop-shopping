@@ -17,7 +17,8 @@ class Rating extends JsonResource
         return [
             'product_id'=>$this->product_id,
              'user_id'=>$this->user_id,
-             'rating'=>$this->rating
+             'rating'=>$this->rating,
+             'invoice_id'=>$this->invoice_id
         ];
     }
 }

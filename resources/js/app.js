@@ -13,6 +13,8 @@ import VueThaiAddressInput from 'vue-thai-address-input';
 
 import 'vue-thai-address-input/dist/vue-thai-address-input.css';
 import StarRating from 'vue-star-rating';
+import vSelect from "vue-select";
+
 
 
 
@@ -27,7 +29,7 @@ Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(require('vue-moment'));
 Vue.use(VueThaiAddressInput);
-
+Vue.component("v-select", vSelect);
 
 Vue.component('cart-detail', require('./components/Cartdetail.vue').default);
 Vue.component('cart-count', require('./components/Cartcount.vue').default);
