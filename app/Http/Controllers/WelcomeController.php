@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\Rating;
 use App\Cart;
 use Illuminate\Http\Request;
 use DB;
@@ -46,7 +47,19 @@ class WelcomeController extends Controller
             return Product::where('status','normal')->where('category_id',$catID)->latest()->paginate(12);
          }
 
-        $product = Product::where('status','normal')->latest()->paginate(12);
+
+         $product = Product::with(array('ratings'=>function($query){
+            $query->select('product_id',
+            DB::raw('sum(ratings.rating)/count(ratings.rating) as total'))
+               ->groupBy('product_id');
+         }))->latest()->paginate(12);
+
+
+        // $product = Product::with('ratings')->orderBy('id','desc')->paginate(20);
+        // $product = Product::where('products.status','normal')
+        //                  ->latest()->paginate(12);
+
+
         return response()->json($product);
     }
     public function showdiscount()

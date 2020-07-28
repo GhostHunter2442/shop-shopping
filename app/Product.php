@@ -39,6 +39,11 @@ class Product extends Model
         return  $this->belongsTo(Category::class);
     }
 
+    public function ratings()
+    {
+        return  $this->hasMany(Rating::class);
+    }
+
 
 
     //many ot many  ใครเป้นคนซื้อ ชืนค้านี้
