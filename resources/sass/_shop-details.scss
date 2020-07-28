@@ -31,7 +31,19 @@
 }
 
 .product__details__text {
+    .show-view{
+        color: #dd2222;
+        content: '';
+        position: relative;
+    // display: block;
+    // float: right;
+    width: 10px;
+    height: 27px;
+    margin: 0;
+    top: 4px;
 
+
+    }
     h3 {
         color: $heading-color-2;
         font-weight: 500;
@@ -49,10 +61,7 @@
             color: #EDBB0E;
         }
 
-            span{
-                color: #dd2222;
 
-            }
 
 
 

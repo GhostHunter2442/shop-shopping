@@ -1845,6 +1845,16 @@ ol {
   min-width: 100%;
 }
 
+.product__details__text .show-view {
+  color: #dd2222;
+  content: "";
+  position: relative;
+  width: 10px;
+  height: 27px;
+  margin: 0;
+  top: 4px;
+}
+
 .product__details__text h3 {
   color: #252525;
   font-weight: 500;
@@ -1863,10 +1873,6 @@ ol {
 .product__details__text .product__details__rating i {
   margin-right: -2px;
   color: #EDBB0E;
-}
-
-.product__details__text .product__details__rating span {
-  color: #dd2222;
 }
 
 .product__details__text .product__details__price {

@@ -52,10 +52,7 @@
                         <div class="product__details__rating" >
 
                                 <star-rating :inline="true" :read-only="true" :show-rating="false" :star-size="20" v-model="totalrate" :increment="0.1" ></star-rating>
-
-                                  <span >({{showuser}} รีวิว)</span>
-
-
+                                  <span class="show-view">({{showuser}} รีวิว)</span>
                         </div>
                         <div class="product__details__price" >{{shopdata.price | currency("฿")}}  <br> <span class="review">{{ discount(shopdata.price,shopdata.discount) | currency("฿")}}  </span> <h4> -{{shopdata.discount}}%</h4></div>
 
