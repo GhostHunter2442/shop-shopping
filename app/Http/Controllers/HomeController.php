@@ -29,7 +29,7 @@ class HomeController extends Controller
         $categoryCount = Category::count();
         $productCount = Product::count();
         $UserCount = User::count();
-        $OrderCount = Invoice::where('status_order',2)->count();
+        $OrderCount = Invoice::where('status_order',1)->count();
 
 
 

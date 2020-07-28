@@ -41,7 +41,7 @@ class WelcomeController extends Controller
     {
           $catID= $request->input('getcatagoryID');
          if(!empty($request->keywords)){
-         
+
             return  Product::where('status','normal')
                             ->where('name', 'like', '%' .$request->keywords . '%')
                             ->with(array('ratings'=>function($query){
@@ -60,7 +60,7 @@ class WelcomeController extends Controller
          }
 
 
-         $product = Product::with(array('ratings'=>function($query){
+         $product = Product::where('status','normal')->with(array('ratings'=>function($query){
             $query->select('product_id',
             DB::raw('sum(ratings.rating)/count(ratings.rating) as total,count(ratings.rating) as qty'))
                ->groupBy('product_id');
