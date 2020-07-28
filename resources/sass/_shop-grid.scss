@@ -534,9 +534,19 @@
         margin-left: 10px;
 
       }
+      .show-view-rate{
 
+        content: '';
+        position: relative;
+        width: 10px;
+        height: 27px;
+        margin: 0;
+        top: 1px;
+
+
+    }
     .product__details__rating{
-        margin-left: 10px;
+        margin-left: 5px;
         font-size: 13px;
         margin-bottom: 12px;
 

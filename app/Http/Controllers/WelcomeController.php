@@ -41,23 +41,30 @@ class WelcomeController extends Controller
     {
           $catID= $request->input('getcatagoryID');
          if(!empty($request->keywords)){
-            return Product::where('status','normal')->where('name', 'like', '%' .$request->keywords . '%')->latest()->paginate(12);
+         
+            return  Product::where('status','normal')
+                            ->where('name', 'like', '%' .$request->keywords . '%')
+                            ->with(array('ratings'=>function($query){
+                            $query->select('product_id',
+                            DB::raw('sum(ratings.rating)/count(ratings.rating) as total,count(ratings.rating) as qty'))
+                            ->groupBy('product_id');
+                      }))->latest()->paginate(12);
          }
          elseif(!empty($catID)){
-            return Product::where('status','normal')->where('category_id',$catID)->latest()->paginate(12);
+            return  Product::where('status','normal')->where('category_id',$catID)
+                            ->with(array('ratings'=>function($query){
+                            $query->select('product_id',
+                            DB::raw('sum(ratings.rating)/count(ratings.rating) as total,count(ratings.rating) as qty'))
+                            ->groupBy('product_id');
+                        }))->latest()->paginate(12);
          }
 
 
          $product = Product::with(array('ratings'=>function($query){
             $query->select('product_id',
-            DB::raw('sum(ratings.rating)/count(ratings.rating) as total'))
+            DB::raw('sum(ratings.rating)/count(ratings.rating) as total,count(ratings.rating) as qty'))
                ->groupBy('product_id');
          }))->latest()->paginate(12);
-
-
-        // $product = Product::with('ratings')->orderBy('id','desc')->paginate(20);
-        // $product = Product::where('products.status','normal')
-        //                  ->latest()->paginate(12);
 
 
         return response()->json($product);

@@ -25,10 +25,15 @@ class ShopController extends Controller
             $product
         );
     }
-    public function getConcerned(Request $request, $cat_id, $id)
+    public function getConcerned($cat_id, $id)
     {
-        $product = Product::where('id', '!=', $id)->where('category_id', $cat_id)->inRandomOrder()->limit(4)->get();
-        // limit(4)->get();
+        $product = Product::where('id', '!=', $id)->where('category_id', $cat_id)
+                ->with(array('ratings'=>function($query){
+                    $query->select('product_id',
+                    DB::raw('sum(ratings.rating)/count(ratings.rating) as total,count(ratings.rating) as qty'))
+                    ->groupBy('product_id');
+                }))
+                ->inRandomOrder()->limit(4)->get();
         return response()->json(
             $product
         );

@@ -131,13 +131,11 @@
                     <div v-if="list.discount!=null">
                     <span class="review">{{ discount(list.price,list.discount) | currency("฿")}}  </span> <h4> -{{list.discount}}%</h4>
                     </div>
-                     <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(18 รีวิว)</span>
+                     <div class="product__details__rating" v-for="rate in list.ratings"  :key="rate.product_id">
+
+                          <star-rating :inline="true" :read-only="true" :show-rating="false" :star-size="12" v-model="rate.total" :increment="0.1" ></star-rating>
+                             <span class="show-view-rate">({{rate.qty}} รีวิว)</span>
+
                         </div>
                     </div>
                 </div>

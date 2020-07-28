@@ -34,6 +34,7 @@
     .show-view{
         color: #dd2222;
         content: '';
+        font-size: 15px;
         position: relative;
         width: 10px;
         height: 27px;
@@ -42,6 +43,7 @@
 
 
     }
+
     h3 {
         color: $heading-color-2;
         font-weight: 500;
@@ -59,14 +61,6 @@
             color: #EDBB0E;
         }
 
-
-
-
-
-        // .user-revice {
-        //     color: #dd2222;
-
-        // }
     }
 
     .product__details__price {

@@ -7275,8 +7275,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -8743,8 +8741,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -9263,8 +9259,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
 //
 //
 //
@@ -14572,7 +14566,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .add-product{\n      display: block;\n} */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .add-product{\n      display: block;\n} */\n", ""]);
 
 // exports
 
@@ -91021,44 +91015,86 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "product__item__text" }, [
-                          _c("h6", [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _vm._v(
-                                " " + _vm._s(_vm._f("truncate")(list.name, 25))
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("h5", [
-                            _vm._v(
-                              " " +
-                                _vm._s(_vm._f("currency")(list.price, "฿")) +
-                                "  "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          list.discount != null
-                            ? _c("div", [
-                                _c("span", { staticClass: "review" }, [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm._f("currency")(
-                                        _vm.discount(list.price, list.discount),
-                                        "฿"
-                                      )
-                                    ) + "  "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h4", [
-                                  _vm._v(" -" + _vm._s(list.discount) + "%")
-                                ])
+                        _c(
+                          "div",
+                          { staticClass: "product__item__text" },
+                          [
+                            _c("h6", [
+                              _c("a", { attrs: { href: "#" } }, [
+                                _vm._v(
+                                  " " +
+                                    _vm._s(_vm._f("truncate")(list.name, 25))
+                                )
                               ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm._m(2, true)
-                        ])
+                            ]),
+                            _vm._v(" "),
+                            _c("h5", [
+                              _vm._v(
+                                " " +
+                                  _vm._s(_vm._f("currency")(list.price, "฿")) +
+                                  "  "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            list.discount != null
+                              ? _c("div", [
+                                  _c("span", { staticClass: "review" }, [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("currency")(
+                                          _vm.discount(
+                                            list.price,
+                                            list.discount
+                                          ),
+                                          "฿"
+                                        )
+                                      ) + "  "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h4", [
+                                    _vm._v(" -" + _vm._s(list.discount) + "%")
+                                  ])
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm._l(list.ratings, function(rate) {
+                              return _c(
+                                "div",
+                                {
+                                  key: rate.product_id,
+                                  staticClass: "product__details__rating"
+                                },
+                                [
+                                  _c("star-rating", {
+                                    attrs: {
+                                      inline: true,
+                                      "read-only": true,
+                                      "show-rating": false,
+                                      "star-size": 12,
+                                      increment: 0.1
+                                    },
+                                    model: {
+                                      value: rate.total,
+                                      callback: function($$v) {
+                                        _vm.$set(rate, "total", $$v)
+                                      },
+                                      expression: "rate.total"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    { staticClass: "show-view-rate" },
+                                    [_vm._v("(" + _vm._s(rate.qty) + " รีวิว)")]
+                                  )
+                                ],
+                                1
+                              )
+                            })
+                          ],
+                          2
+                        )
                       ])
                     ]
                   )
@@ -91135,24 +91171,6 @@ var staticRenderFns = [
           ])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "product__details__rating" }, [
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star-half-o" }),
-      _vm._v(" "),
-      _c("span", [_vm._v("(18 รีวิว)")])
     ])
   }
 ]
@@ -93135,38 +93153,80 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "product__item__text" }, [
-                    _c("h6", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v(" " + _vm._s(_vm._f("truncate")(list.name, 25)))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h5", [
-                      _vm._v(
-                        " " + _vm._s(_vm._f("currency")(list.price, "฿")) + "  "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    list.discount != null
-                      ? _c("div", [
-                          _c("span", { staticClass: "review" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm._f("currency")(
-                                  _vm.discount(list.price, list.discount),
-                                  "฿"
-                                )
-                              ) + "  "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("h4", [_vm._v(" -" + _vm._s(list.discount) + "%")])
+                  _c(
+                    "div",
+                    { staticClass: "product__item__text" },
+                    [
+                      _c("h6", [
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(
+                            " " + _vm._s(_vm._f("truncate")(list.name, 25))
+                          )
                         ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm._m(7, true)
-                  ])
+                      ]),
+                      _vm._v(" "),
+                      _c("h5", [
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm._f("currency")(list.price, "฿")) +
+                            "  "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      list.discount != null
+                        ? _c("div", [
+                            _c("span", { staticClass: "review" }, [
+                              _vm._v(
+                                _vm._s(
+                                  _vm._f("currency")(
+                                    _vm.discount(list.price, list.discount),
+                                    "฿"
+                                  )
+                                ) + "  "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("h4", [
+                              _vm._v(" -" + _vm._s(list.discount) + "%")
+                            ])
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm._l(list.ratings, function(rate) {
+                        return _c(
+                          "div",
+                          {
+                            key: rate.product_id,
+                            staticClass: "product__details__rating"
+                          },
+                          [
+                            _c("star-rating", {
+                              attrs: {
+                                inline: true,
+                                "read-only": true,
+                                "show-rating": false,
+                                "star-size": 12,
+                                increment: 0.1
+                              },
+                              model: {
+                                value: rate.total,
+                                callback: function($$v) {
+                                  _vm.$set(rate, "total", $$v)
+                                },
+                                expression: "rate.total"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "show-view-rate" }, [
+                              _vm._v("(" + _vm._s(rate.qty) + " รีวิว)")
+                            ])
+                          ],
+                          1
+                        )
+                      })
+                    ],
+                    2
+                  )
                 ])
               ]
             )
@@ -93338,24 +93398,6 @@ var staticRenderFns = [
           _c("h2", [_vm._v("รายการที่เกี่ยวข้อง")])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "product__details__rating" }, [
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star-half-o" }),
-      _vm._v(" "),
-      _c("span", [_vm._v("(18 รีวิว)")])
     ])
   }
 ]
@@ -93652,44 +93694,80 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "product__item__text" }, [
-                        _c("h6", [
-                          _c("a", { attrs: { href: "#" } }, [
-                            _vm._v(
-                              " " + _vm._s(_vm._f("truncate")(list.name, 25))
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("h5", [
-                          _vm._v(
-                            " " +
-                              _vm._s(_vm._f("currency")(list.price, "฿")) +
-                              "  "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        list.discount != null
-                          ? _c("div", [
-                              _c("span", { staticClass: "review" }, [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm._f("currency")(
-                                      _vm.discount(list.price, list.discount),
-                                      "฿"
-                                    )
-                                  ) + "  "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("h4", [
-                                _vm._v(" -" + _vm._s(list.discount) + "%")
-                              ])
+                      _c(
+                        "div",
+                        { staticClass: "product__item__text" },
+                        [
+                          _c("h6", [
+                            _c("a", { attrs: { href: "#" } }, [
+                              _vm._v(
+                                " " + _vm._s(_vm._f("truncate")(list.name, 25))
+                              )
                             ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm._m(4, true)
-                      ])
+                          ]),
+                          _vm._v(" "),
+                          _c("h5", [
+                            _vm._v(
+                              " " +
+                                _vm._s(_vm._f("currency")(list.price, "฿")) +
+                                "  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          list.discount != null
+                            ? _c("div", [
+                                _c("span", { staticClass: "review" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("currency")(
+                                        _vm.discount(list.price, list.discount),
+                                        "฿"
+                                      )
+                                    ) + "  "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _vm._v(" -" + _vm._s(list.discount) + "%")
+                                ])
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm._l(list.ratings, function(rate) {
+                            return _c(
+                              "div",
+                              {
+                                key: rate.product_id,
+                                staticClass: "product__details__rating"
+                              },
+                              [
+                                _c("star-rating", {
+                                  attrs: {
+                                    inline: true,
+                                    "read-only": true,
+                                    "show-rating": false,
+                                    "star-size": 12,
+                                    increment: 0.1
+                                  },
+                                  model: {
+                                    value: rate.total,
+                                    callback: function($$v) {
+                                      _vm.$set(rate, "total", $$v)
+                                    },
+                                    expression: "rate.total"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "show-view-rate" }, [
+                                  _vm._v("(" + _vm._s(rate.qty) + " รีวิว)")
+                                ])
+                              ],
+                              1
+                            )
+                          })
+                        ],
+                        2
+                      )
                     ])
                   ]
                 )
@@ -93772,24 +93850,6 @@ var staticRenderFns = [
       _c("a", { staticClass: "site-btn", attrs: { href: "#" } }, [
         _vm._v("ซื้อเลย")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "product__details__rating" }, [
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fa fa-star-half-o" }),
-      _vm._v(" "),
-      _c("span", [_vm._v("(18 รีวิว)")])
     ])
   }
 ]

@@ -1782,8 +1782,17 @@ ol {
   margin-left: 10px;
 }
 
+.product__item__text .show-view-rate {
+  content: "";
+  position: relative;
+  width: 10px;
+  height: 27px;
+  margin: 0;
+  top: 1px;
+}
+
 .product__item__text .product__details__rating {
-  margin-left: 10px;
+  margin-left: 5px;
   font-size: 13px;
   margin-bottom: 12px;
 }
@@ -1861,6 +1870,7 @@ ol {
 .product__details__text .show-view {
   color: #dd2222;
   content: "";
+  font-size: 15px;
   position: relative;
   width: 10px;
   height: 27px;
