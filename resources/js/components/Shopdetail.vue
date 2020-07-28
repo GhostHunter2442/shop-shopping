@@ -54,7 +54,11 @@
                                 <star-rating :inline="true" :read-only="true" :show-rating="false" :star-size="20" v-model="totalrate" :increment="0.1" ></star-rating>
                                   <span class="show-view">({{showuser}} รีวิว)</span>
                         </div>
-                        <div class="product__details__price" >{{shopdata.price | currency("฿")}}  <br> <span class="review">{{ discount(shopdata.price,shopdata.discount) | currency("฿")}}  </span> <h4> -{{shopdata.discount}}%</h4></div>
+                        <div class="product__details__price" >{{shopdata.price | currency("฿")}}  <br>
+                        <div v-if="shopdata.discount!=null">
+                        <span class="review">{{ discount(shopdata.price,shopdata.discount) | currency("฿")}}  </span> <h4> -{{shopdata.discount}}%</h4>
+                        </div>
+                        </div>
 
                         <p>รับประกันของแท้และสินค้าทุกชิ้นมีใบประกัน</p>
                         <div class="product__details__quantity">
@@ -127,7 +131,7 @@
                                 <h3 class="heading">รีวิว</h3>
                                 <div class="review-rating">
                                    <div class="left-review">
-                                        <div class="review-title">{{totalrate}}</div>
+                                        <div class="review-title" >{{totalrate}}</div>
                                         <div class="review-star">
                                             <star-rating :inline="true" :read-only="true" :show-rating="false" :star-size="20" v-model="totalrate" :increment="0.1" active-color="#000000"></star-rating>
                                         </div>
@@ -204,13 +208,20 @@
                             <img v-lazy="imageproURL+list.picture" lazy="loading">
                             </a>
                         <ul class="product__item__pic__hover">
-                              <li><a href="javascript:;"  v-on:click="adddetail(list.id)"><button  class="site-btn"><i class="fa fa-shopping-cart"></i> เพิ่มไปยังรถเข็น</button></a></li>
+                              <li>
+                                  <!-- <a href="javascript:;"  v-on:click="adddetail(list.id)"><button  class="site-btn"><i class="fa fa-shopping-cart"></i> เพิ่มไปยังรถเข็น</button></a> -->
+                                 <span  :class="addclass(list.stock)">
+                                 <a href="javascript:;"  v-on:click="adddetail(list.id)"  class="site-btn"><i class="fa fa-shopping-cart"></i> เพิ่มไปยังรถเข็น</a>
+                                 </span>
+                             </li>
                         </ul>
                     </div>
                     <div class="product__item__text">
                     <h6><a href="#"> {{ list.name | truncate(25)}}</a></h6>
                     <h5> {{ list.price | currency("฿")}}  </h5>
-                    <span class="review">{{ list.price | currency("฿")}}  </span> <h4> -50%</h4>
+                    <div v-if="list.discount!=null">
+                    <span class="review">{{ discount(list.price,list.discount) | currency("฿")}}  </span> <h4> -{{list.discount}}%</h4>
+                    </div>
                      <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -266,8 +277,8 @@ export default {
 
           }
      },  mounted(){
-          this.getshopdetil();
           this.gettofavorite();
+          this.getshopdetil();
           this.getProductConcerned();
           this.getRating();
           this.getInvoice();
@@ -275,6 +286,9 @@ export default {
 
      props:['id','cat_id'],
      methods: {
+         addclass(stock){
+                return  stock < 1 ? 'isDisabled' :'isEnabled';
+             },
          discount(price,discount){
             var percen=(100 - parseInt(discount))/100;
             var dis= (parseInt(price)/(percen));
@@ -293,7 +307,12 @@ export default {
 
                             }
                          var avg= sum/maydata.length;
-                         this.totalrate = parseFloat(avg.toFixed(1));
+                         if(Number.isNaN(avg)){
+                            this.totalrate = 0;
+                         }else{
+                            this.totalrate = parseFloat(avg.toFixed(1));
+                         }
+
 
                          var bar1=0;
                          var bar2=0;
@@ -360,18 +379,23 @@ export default {
                     }
 
          },
-      async  getInvoice(){
-                if(this.checkper == true){
+      async getInvoice(){
+
                     await  axios.get("/shopping/public/api/cartdetail/getinvoice",
                       {params:{product_id:this.id}}
                        ).then(res => {
-                           var myinvoice= res.data;
-                          this.invoice_order=myinvoice;
+                           if(res.data!=false){
+                            var myinvoice= res.data;
+                             this.invoice_order=myinvoice;
+                           }
+
                          }).catch(error => {
                              console.log(error)
 
                           });
-                }
+
+
+
          },
         updateCart(updateType) {
             if (updateType === 'subtract') {
@@ -441,10 +465,8 @@ export default {
                     });
            },
                async getProductConcerned(){
-// console.log(this.cat_id)
-                 await axios.post("/shopping/public/shop/concerned/"+this.cat_id).then(res => {
+                 await axios.post("/shopping/public/shop/concerned/"+this.cat_id+'/'+this.id).then(res => {
                         this.concerned=res.data;
-                        //  console.log( this.concerned)
                 }).catch(error => {
                      console.log(res.data.errors)
                     });

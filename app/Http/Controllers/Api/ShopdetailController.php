@@ -77,10 +77,14 @@ class ShopdetailController extends Controller
 
    }
    public function getinvoice(Request $request){
-    $invoice_id= Order::where('product_id',$request->product_id)->where('user_id',auth()->user()->id)
-                        ->orderby('created_at','DESC')
-                        ->pluck('invoice_id')->toArray();
-
+    if (Auth::check()) {
+        $invoice_id= Order::where('product_id',$request->product_id)->where('user_id',auth()->user()->id)
+        ->orderby('created_at','DESC')
+        ->pluck('invoice_id')->toArray();
+    }
+    else{
+        $invoice_id = false;
+    }
     return response()->json($invoice_id);
 }
 

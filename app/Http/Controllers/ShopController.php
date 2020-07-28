@@ -15,7 +15,7 @@ class ShopController extends Controller
         $id = $prduct_id->id;
         $cat_id = $prduct_id->category_id;
 
-        return view('shop', compact('id','cat_id'));
+        return view('shop', compact('id', 'cat_id'));
     }
 
     public function getshop(Request $request)
@@ -25,13 +25,12 @@ class ShopController extends Controller
             $product
         );
     }
-    public function getConcerned(Request $request,$cat_id)
+    public function getConcerned(Request $request, $cat_id, $id)
     {
-        $product = Product::where('category_id',$cat_id)->inRandomOrder()->limit(4)->get();
+        $product = Product::where('id', '!=', $id)->where('category_id', $cat_id)->inRandomOrder()->limit(4)->get();
         // limit(4)->get();
         return response()->json(
             $product
         );
     }
-
 }

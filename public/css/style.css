@@ -1444,6 +1444,19 @@ ol {
   border-color: #62cfc1;
 }
 
+.product__item__pic__hover li .isDisabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.product__item__pic__hover li .isDisabled > a {
+  color: currentColor;
+  display: inline-block;
+  /* For IE11/ MS Edge bug */
+  pointer-events: none;
+  text-decoration: none;
+}
+
 .product__item__pic__hover li a i {
   position: relative;
   transform: rotate(0);

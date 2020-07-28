@@ -49,7 +49,7 @@ Route::get('/show/category', 'WelcomeController@getcategory')->name('welcome.get
 
 Route::get('/shop/{id}', 'ShopController@index')->name('shop.index');
 Route::any('/shop/shopdetail/{id}', 'ShopController@getshop')->name('shop.shopdetail');
-Route::post('/shop/concerned/{category_id}', 'ShopController@getConcerned');
+Route::post('/shop/concerned/{category_id}/{id}', 'ShopController@getConcerned');
 
 
 

@@ -116,13 +116,21 @@
                                 </div>
                                    <!-- <div class="product__new__percent">-20%</div> -->
                         <ul class="product__item__pic__hover">
-                              <li><a href="javascript:;"  v-on:click="adddetail(list.id)"><button  class="site-btn"><i class="fa fa-shopping-cart"></i> เพิ่มไปยังรถเข็น</button></a></li>
+
+                             <li>
+                                   <span  :class="addclass(list.stock)">
+                                 <a href="javascript:;"  v-on:click="adddetail(list.id)"  class="site-btn"><i class="fa fa-shopping-cart"></i> เพิ่มไปยังรถเข็น</a>
+                                 </span>
+                            </li>
                         </ul>
                     </div>
                     <div class="product__item__text">
                     <h6><a href="#"> {{ list.name | truncate(25)}}</a></h6>
                     <h5> {{ list.price | currency("฿")}}  </h5>
-                    <span class="review">{{ list.price | currency("฿")}}  </span> <h4> -50%</h4>
+                    <!-- <span class="review">{{ list.price | currency("฿")}}  </span> <h4> -50%</h4> -->
+                    <div v-if="list.discount!=null">
+                    <span class="review">{{ discount(list.price,list.discount) | currency("฿")}}  </span> <h4> -{{list.discount}}%</h4>
+                    </div>
                      <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -187,7 +195,8 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
               isActive: false,
               timestamp: '',
               limit:3,
-              page: 1
+              page: 1,
+              btnDisabled:'isEnabled' //isDisabled
 
         }
 
@@ -209,6 +218,14 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
 
     },
      methods: {
+            addclass(stock){
+                return  stock < 1 ? 'isDisabled' :'isEnabled';
+            },
+             discount(price,discount){
+            var percen=(100 - parseInt(discount))/100;
+            var dis= (parseInt(price)/(percen));
+            return  parseInt(dis);
+         },
             getautocomplate(){
                 axios.get("show/autocomplate").then(res => {
                         const listOfObjects = res.data.map(({id,name}) => {
@@ -248,9 +265,6 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
                 {params:{keywords:this.keywords,getcatagoryID:this.getcatagoryID}}
                 ).then(res => {
                       this.showdata = res.data;
-
-
-
                 }).catch( error => {
                        console.log(error.response);
                 });

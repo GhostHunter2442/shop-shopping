@@ -7269,6 +7269,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -7277,7 +7285,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       shopURL: '/shopping/public/shop/',
       imageUrl: "/shopping/public/storage/images/",
       favoriteList: {},
-      timestamp: ''
+      timestamp: '',
+      btnDisabled: 'isEnabled' //isDisabled
+
     };
   },
   mounted: function mounted() {
@@ -7296,6 +7306,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    addclass: function addclass(stock) {
+      return stock < 1 ? 'isDisabled' : 'isEnabled';
+    },
+    discount: function discount(price, _discount) {
+      var percen = (100 - parseInt(_discount)) / 100;
+      var dis = parseInt(price) / percen;
+      return parseInt(dis);
+    },
     getcreateDate: function getcreateDate(datemont) {
       return moment__WEBPACK_IMPORTED_MODULE_1___default()(String(datemont)).format('MM');
     },
@@ -8716,6 +8734,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -8748,14 +8777,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
-    this.getshopdetil();
     this.gettofavorite();
+    this.getshopdetil();
     this.getProductConcerned();
     this.getRating();
     this.getInvoice();
   },
   props: ['id', 'cat_id'],
   methods: {
+    addclass: function addclass(stock) {
+      return stock < 1 ? 'isDisabled' : 'isEnabled';
+    },
     discount: function discount(price, _discount) {
       var percen = (100 - parseInt(_discount)) / 100;
       var dis = parseInt(price) / percen;
@@ -8781,7 +8813,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
 
                   var avg = sum / maydata.length;
-                  _this.totalrate = parseFloat(avg.toFixed(1));
+
+                  if (Number.isNaN(avg)) {
+                    _this.totalrate = 0;
+                  } else {
+                    _this.totalrate = parseFloat(avg.toFixed(1));
+                  }
+
                   var bar1 = 0;
                   var bar2 = 0;
                   var bar3 = 0;
@@ -8897,24 +8935,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                if (!(_this3.checkper == true)) {
-                  _context3.next = 3;
-                  break;
-                }
-
-                _context3.next = 3;
+                _context3.next = 2;
                 return axios.get("/shopping/public/api/cartdetail/getinvoice", {
                   params: {
                     product_id: _this3.id
                   }
                 }).then(function (res) {
-                  var myinvoice = res.data;
-                  _this3.invoice_order = myinvoice;
+                  if (res.data != false) {
+                    var myinvoice = res.data;
+                    _this3.invoice_order = myinvoice;
+                  }
                 })["catch"](function (error) {
                   console.log(error);
                 });
 
-              case 3:
+              case 2:
               case "end":
                 return _context3.stop();
             }
@@ -9050,8 +9085,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return axios.post("/shopping/public/shop/concerned/" + _this6.cat_id).then(function (res) {
-                  _this6.concerned = res.data; //  console.log( this.concerned)
+                return axios.post("/shopping/public/shop/concerned/" + _this6.cat_id + '/' + _this6.id).then(function (res) {
+                  _this6.concerned = res.data;
                 })["catch"](function (error) {
                   console.log(res.data.errors);
                 });
@@ -9376,6 +9411,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9410,7 +9453,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       isActive: false,
       timestamp: '',
       limit: 3,
-      page: 1
+      page: 1,
+      btnDisabled: 'isEnabled' //isDisabled
+
     };
   },
   watch: {
@@ -9426,6 +9471,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {},
   methods: {
+    addclass: function addclass(stock) {
+      return stock < 1 ? 'isDisabled' : 'isEnabled';
+    },
+    discount: function discount(price, _discount) {
+      var percen = (100 - parseInt(_discount)) / 100;
+      var dis = parseInt(price) / percen;
+      return parseInt(dis);
+    },
     getautocomplate: function getautocomplate() {
       var _this = this;
 
@@ -14519,7 +14572,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .add-product{\n      display: block;\n} */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .add-product{\n      display: block;\n} */\n", ""]);
 
 // exports
 
@@ -90939,16 +90992,28 @@ var render = function() {
                               [
                                 _c("li", [
                                   _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "javascript:;" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.adddetail(list.id)
-                                        }
-                                      }
-                                    },
-                                    [_vm._m(2, true)]
+                                    "span",
+                                    { class: _vm.addclass(list.stock) },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "site-btn",
+                                          attrs: { href: "javascript:;" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.adddetail(list.id)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fa fa-shopping-cart"
+                                          }),
+                                          _vm._v(" เพิ่มไปยังรถเข็น")
+                                        ]
+                                      )
+                                    ]
                                   )
                                 ])
                               ]
@@ -90973,15 +91038,26 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("span", { staticClass: "review" }, [
-                            _vm._v(
-                              _vm._s(_vm._f("currency")(list.price, "฿")) + "  "
-                            )
-                          ]),
+                          list.discount != null
+                            ? _c("div", [
+                                _c("span", { staticClass: "review" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("currency")(
+                                        _vm.discount(list.price, list.discount),
+                                        "฿"
+                                      )
+                                    ) + "  "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _vm._v(" -" + _vm._s(list.discount) + "%")
+                                ])
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c("h4", [_vm._v(" -50%")]),
-                          _vm._v(" "),
-                          _vm._m(3, true)
+                          _vm._m(2, true)
                         ])
                       ])
                     ]
@@ -91059,15 +91135,6 @@ var staticRenderFns = [
           ])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "site-btn" }, [
-      _c("i", { staticClass: "fa fa-shopping-cart" }),
-      _vm._v(" เพิ่มไปยังรถเข็น")
     ])
   },
   function() {
@@ -92694,18 +92761,27 @@ var render = function() {
                 ),
                 _c("br"),
                 _vm._v(" "),
-                _c("span", { staticClass: "review" }, [
-                  _vm._v(
-                    _vm._s(
-                      _vm._f("currency")(
-                        _vm.discount(_vm.shopdata.price, _vm.shopdata.discount),
-                        "฿"
-                      )
-                    ) + "  "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("h4", [_vm._v(" -" + _vm._s(_vm.shopdata.discount) + "%")])
+                _vm.shopdata.discount != null
+                  ? _c("div", [
+                      _c("span", { staticClass: "review" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm._f("currency")(
+                              _vm.discount(
+                                _vm.shopdata.price,
+                                _vm.shopdata.discount
+                              ),
+                              "฿"
+                            )
+                          ) + "  "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("h4", [
+                        _vm._v(" -" + _vm._s(_vm.shopdata.discount) + "%")
+                      ])
+                    ])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c("p", [_vm._v("รับประกันของแท้และสินค้าทุกชิ้นมีใบประกัน")]),
@@ -93037,18 +93113,24 @@ var render = function() {
                     _vm._v(" "),
                     _c("ul", { staticClass: "product__item__pic__hover" }, [
                       _c("li", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "javascript:;" },
-                            on: {
-                              click: function($event) {
-                                return _vm.adddetail(list.id)
+                        _c("span", { class: _vm.addclass(list.stock) }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "site-btn",
+                              attrs: { href: "javascript:;" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.adddetail(list.id)
+                                }
                               }
-                            }
-                          },
-                          [_vm._m(7, true)]
-                        )
+                            },
+                            [
+                              _c("i", { staticClass: "fa fa-shopping-cart" }),
+                              _vm._v(" เพิ่มไปยังรถเข็น")
+                            ]
+                          )
+                        ])
                       ])
                     ])
                   ]),
@@ -93066,13 +93148,24 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("span", { staticClass: "review" }, [
-                      _vm._v(_vm._s(_vm._f("currency")(list.price, "฿")) + "  ")
-                    ]),
+                    list.discount != null
+                      ? _c("div", [
+                          _c("span", { staticClass: "review" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("currency")(
+                                  _vm.discount(list.price, list.discount),
+                                  "฿"
+                                )
+                              ) + "  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v(" -" + _vm._s(list.discount) + "%")])
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
-                    _c("h4", [_vm._v(" -50%")]),
-                    _vm._v(" "),
-                    _vm._m(8, true)
+                    _vm._m(7, true)
                   ])
                 ])
               ]
@@ -93245,15 +93338,6 @@ var staticRenderFns = [
           _c("h2", [_vm._v("รายการที่เกี่ยวข้อง")])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "site-btn" }, [
-      _c("i", { staticClass: "fa fa-shopping-cart" }),
-      _vm._v(" เพิ่มไปยังรถเข็น")
     ])
   },
   function() {
@@ -93544,18 +93628,26 @@ var render = function() {
                         _vm._v(" "),
                         _c("ul", { staticClass: "product__item__pic__hover" }, [
                           _c("li", [
-                            _c(
-                              "a",
-                              {
-                                attrs: { href: "javascript:;" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.adddetail(list.id)
+                            _c("span", { class: _vm.addclass(list.stock) }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "site-btn",
+                                  attrs: { href: "javascript:;" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.adddetail(list.id)
+                                    }
                                   }
-                                }
-                              },
-                              [_vm._m(4, true)]
-                            )
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-shopping-cart"
+                                  }),
+                                  _vm._v(" เพิ่มไปยังรถเข็น")
+                                ]
+                              )
+                            ])
                           ])
                         ])
                       ]),
@@ -93577,15 +93669,26 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("span", { staticClass: "review" }, [
-                          _vm._v(
-                            _vm._s(_vm._f("currency")(list.price, "฿")) + "  "
-                          )
-                        ]),
+                        list.discount != null
+                          ? _c("div", [
+                              _c("span", { staticClass: "review" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("currency")(
+                                      _vm.discount(list.price, list.discount),
+                                      "฿"
+                                    )
+                                  ) + "  "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("h4", [
+                                _vm._v(" -" + _vm._s(list.discount) + "%")
+                              ])
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c("h4", [_vm._v(" -50%")]),
-                        _vm._v(" "),
-                        _vm._m(5, true)
+                        _vm._m(4, true)
                       ])
                     ])
                   ]
@@ -93669,15 +93772,6 @@ var staticRenderFns = [
       _c("a", { staticClass: "site-btn", attrs: { href: "#" } }, [
         _vm._v("ซื้อเลย")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "site-btn" }, [
-      _c("i", { staticClass: "fa fa-shopping-cart" }),
-      _vm._v(" เพิ่มไปยังรถเข็น")
     ])
   },
   function() {
