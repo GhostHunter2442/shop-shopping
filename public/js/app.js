@@ -9413,6 +9413,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -9423,6 +9424,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.showalldata();
     this.getautocomplate();
     this.getcatagory();
+    this.getlastprice();
     this.isActive = true;
   },
   beforeDestroy: function beforeDestroy() {
@@ -9435,11 +9437,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       itemsgetafory: '',
       getcatagoryID: '',
       showdata: {},
+      lastprice: [],
       categorylist: [],
       totalpro: [],
       productlast: [],
       imageUrl: "storage/images/",
-      imageUrlresize: "storage/images/resize/5eda3009062b2.jpeg",
+      imageUrlresize: "storage/images/resize/",
       imageUrlbanner: "img/hero/banner.jpg",
       keywords: '',
       productId: 0,
@@ -9536,6 +9539,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    getlastprice: function getlastprice() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this3.loading = true;
+                _context2.next = 3;
+                return axios.get("show/lastprice").then(function (res) {
+                  _this3.lastprice = res.data;
+                  console.log(_this3.lastprice);
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     getcreateDate: function getcreateDate(datemont) {
       return moment__WEBPACK_IMPORTED_MODULE_3___default()(String(datemont)).format('MM');
     },
@@ -9548,45 +9576,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.timestamp = mont;
     },
     getcatagory: function getcatagory() {
-      var _this3 = this;
+      var _this4 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context2.next = 2;
+                _context3.next = 2;
                 return axios.get("show/category").then(function (res) {
-                  _this3.categorylist = res.data.category;
-                  _this3.totalpro = res.data.total_product;
-                  _this3.productlast = res.data.last_price;
+                  _this4.categorylist = res.data.category;
+                  _this4.totalpro = res.data.total_product;
+                  _this4.productlast = res.data.last_price;
                 })["catch"](function (error) {
                   console.log(error.response);
                 });
 
               case 2:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     },
     adddetail: function adddetail(id) {
-      var _this4 = this;
+      var _this5 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var qrt;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 qrt = 1;
-                _context3.next = 3;
+                _context4.next = 3;
                 return axios.get("cartdetail/adddetail/" + id + "/" + qrt).then(function (response) {
                   //   bus.$emit('add-to-cart',response.data);
                   // bus.$emit('add-to-cart');
-                  _this4.$store.dispatch("addItem");
+                  _this5.$store.dispatch("addItem");
 
                   var Toast = Swal.mixin({
                     toast: true,
@@ -9627,10 +9655,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     }
   }
@@ -93508,62 +93536,80 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("div", { staticClass: "sidebar__item my-4" }, [
-            _c("div", { staticClass: "latest-product__text" }, [
-              _c("h4", [_vm._v("สินค้าขายล่าสุด")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "latest-product__slider owl-carousel" },
-                _vm._l(_vm.productlast, function(prolast) {
+            _c(
+              "div",
+              { staticClass: "latest-product__text" },
+              [
+                _c("h4", [_vm._v("สินค้าขายล่าสุด")]),
+                _vm._v(" "),
+                _vm._l(_vm.lastprice, function(last) {
                   return _c(
                     "div",
-                    {
-                      key: prolast.id,
-                      staticClass: "latest-prdouct__slider__item"
-                    },
+                    { key: last.id, staticClass: "latest-product__slider " },
                     [
                       _c(
-                        "a",
-                        {
-                          staticClass: "latest-product__item",
-                          attrs: { href: "#" }
-                        },
+                        "div",
+                        { staticClass: "latest-prdouct__slider__item" },
                         [
                           _c(
-                            "div",
-                            { staticClass: "latest-product__item__pic" },
+                            "a",
+                            {
+                              staticClass: "latest-product__item",
+                              attrs: { href: "#" }
+                            },
                             [
-                              _c("img", {
-                                attrs: { src: _vm.imageUrlresize, alt: "" }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "latest-product__item__text" },
-                            [
-                              _c("h6", [
-                                _vm._v(
-                                  _vm._s(_vm._f("truncate")(prolast.name, 10))
-                                )
-                              ]),
+                              _c(
+                                "div",
+                                { staticClass: "latest-product__item__pic" },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src:
+                                        _vm.imageUrlresize +
+                                        last.product.picture,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              ),
                               _vm._v(" "),
-                              _c("span", [
-                                _vm._v(
-                                  _vm._s(_vm._f("currency")(prolast.price, "฿"))
-                                )
-                              ])
+                              _c(
+                                "div",
+                                { staticClass: "latest-product__item__text" },
+                                [
+                                  _c("h6", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("truncate")(
+                                          last.product.name,
+                                          10
+                                        )
+                                      )
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("currency")(
+                                          last.product.price,
+                                          "฿"
+                                        )
+                                      )
+                                    )
+                                  ])
+                                ]
+                              )
                             ]
                           )
                         ]
                       )
                     ]
                   )
-                }),
-                0
-              )
-            ])
+                })
+              ],
+              2
+            )
           ])
         ])
       ]),

@@ -45,6 +45,7 @@ Route::any('/showall','WelcomeController@showall')->name('welcome.showall');
 Route::any('/show/discount','WelcomeController@showdiscount')->name('welcome.discount');
 Route::get('/show/autocomplate', 'WelcomeController@getautocomplate')->name('welcome.getautocomplate');
 Route::get('/show/category', 'WelcomeController@getcategory')->name('welcome.getcategory');
+Route::get('/show/lastprice', 'WelcomeController@getlastprice')->name('welcome.getlastprice');
 
 
 Route::get('/shop/{id}', 'ShopController@index')->name('shop.index');

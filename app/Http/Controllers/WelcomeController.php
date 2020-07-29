@@ -6,6 +6,7 @@ use App\Category;
 use App\Product;
 use App\Rating;
 use App\Cart;
+use App\Order;
 use Illuminate\Http\Request;
 use DB;
 
@@ -68,6 +69,16 @@ class WelcomeController extends Controller
 
 
         return response()->json($product);
+    }
+    public function getlastprice(){
+        $order = Order::select('id','invoice_id','product_id')
+                     ->with(array('product'=>function($query){
+                        $query->select('id','name','picture','price','slug');
+                    }))
+                    ->latest()
+                    ->limit(5)
+                    ->get();
+         return response()->json($order);
     }
     public function showdiscount()
     {

@@ -33,18 +33,19 @@
 
                         </div>
                           <div class="sidebar__item my-4" >
-                            <div class="latest-product__text">
+                            <div class="latest-product__text" >
                                 <h4>สินค้าขายล่าสุด</h4>
-                                <div class="latest-product__slider owl-carousel" >
+                                <div class="latest-product__slider " v-for="last in  lastprice"  :key="last.id">
+                                     <!-- owl-carousel -->
 
-                                    <div class="latest-prdouct__slider__item" v-for="prolast in  productlast"  :key="prolast.id">
+                                    <div class="latest-prdouct__slider__item">
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img  v-bind:src="imageUrlresize" alt="">
+                                                <img  v-bind:src="imageUrlresize+last.product.picture" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
-                                                <h6>{{prolast.name | truncate(10)}}</h6>
-                                                <span>{{prolast.price | currency("฿")}}</span>
+                                                <h6>{{last.product.name | truncate(10)}}</h6>
+                                                <span>{{last.product.price | currency("฿")}}</span>
                                             </div>
                                         </a>
                                     </div>
@@ -164,10 +165,8 @@ export default {
     this.showalldata();
     this.getautocomplate();
     this.getcatagory();
+    this.getlastprice();
     this.isActive = true;
-
-
-
 },
 
 beforeDestroy(){ //เคลียรข้อมูลหลังเลิกใช้
@@ -181,11 +180,12 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
               itemsgetafory:'',
               getcatagoryID:'',
               showdata:{},
+              lastprice:[],
               categorylist:[],
               totalpro:[],
               productlast:[],
               imageUrl: "storage/images/",
-              imageUrlresize: "storage/images/resize/5eda3009062b2.jpeg",
+              imageUrlresize: "storage/images/resize/",
               imageUrlbanner: "img/hero/banner.jpg",
               keywords:'',
               productId: 0,
@@ -265,6 +265,17 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
                       this.showdata = res.data;
                 }).catch( error => {
                        console.log(error.response);
+                });
+
+            },
+             async getlastprice(){
+                this.loading = true;
+                await  axios.get("show/lastprice"
+                ).then(res => {
+                      this.lastprice = res.data;
+                      console.log( this.lastprice)
+                }).catch( error => {
+                       console.log(error);
                 });
 
             },
