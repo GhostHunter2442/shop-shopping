@@ -192,6 +192,19 @@ ol {
   letter-spacing: 2px;
 
 }
+.copy-btn {
+    font-size: 13px;
+    color: $white-color;
+    // font-weight: 700;
+    width: 70px;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 0px 4px 0px;
+    background: $primary-color;
+    border: none;
+    letter-spacing: 1px;
+
+  }
 
 .success-btn {
     font-size: 14px;

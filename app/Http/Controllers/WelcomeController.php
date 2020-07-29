@@ -20,6 +20,9 @@ class WelcomeController extends Controller
     {
         return view('topprice',compact('cat_id'));
     }
+    public function show_discount(){
+        return view('showdiscount');
+    }
 
     public function getcategory()
     {
@@ -91,7 +94,7 @@ class WelcomeController extends Controller
     }
     public function gettopprice($id)
     {
-        // $id=3;
+
         $category=Category::select('id','name')
                           ->where('id',$id)
                           ->with(array('products'=>function($query){
@@ -111,6 +114,18 @@ class WelcomeController extends Controller
         return response()->json($category);
     }
 
+    public function get_show_discount()
+    {
+        $product_distcount =Product::where('status','normal')
+                                   ->where('discount','!=',0)
+                                   ->with(array('ratings'=>function($query){
+                                        $query->select('product_id',
+                                        DB::raw('sum(ratings.rating)/count(ratings.rating) as total,count(ratings.rating) as qty'))
+                                        ->groupBy('product_id');
+                                }))->orderBy('discount','desc')
+                                    ->latest()->paginate(12);
 
+        return response()->json($product_distcount);
+    }
 
 }

@@ -114,8 +114,12 @@
                     <li class=" {{ request()->routeIs('welcome') ? 'active' :''  }}">
                         <a href="{{ route('welcome')}}">หน้าเเรก</a></li>
                         {{-- <li ><a href="./shop-grid.html">ซื้อสินค้า</a></li> --}}
-                        <li><a href="#">สินค้าลดราคา</a></li>
-                        <li ><a href="#">ส่วนลด</a></li>
+                        <li class=" {{ request()->routeIs('welcome.showdiscount') ? 'active' :''  }}">
+                            <a href="{{ route('welcome.showdiscount')}}">สินค้าลดราคา</a>
+                        </li>
+                        <li class=" {{ request()->routeIs('coupon.index') ? 'active' :''  }}">
+                            <a  href="{{ route('coupon.index')}}">ส่วนลดโปรโมชั่น</a>
+                        </li>
                     <li class=" {{ request()->routeIs('contact.index') ? 'active' :''  }}">
                         <a href="{{ route('contact.index')}}">ติดต่อเรา</a></li>
                           {{-- <a href="{{ route('keyry.index')}}">kerry api</a></li> --}}
