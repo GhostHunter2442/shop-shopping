@@ -1360,6 +1360,14 @@ ol {
   margin-bottom: 0;
 }
 
+.sidebar__item__size label a {
+  color: #6f6f6f;
+}
+
+.sidebar__item__size label a:hover {
+  color: #62cfc1;
+}
+
 .sidebar__item__size label input {
   position: absolute;
   visibility: hidden;

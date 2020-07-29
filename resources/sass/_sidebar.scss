@@ -219,6 +219,13 @@
         background: $background;
         cursor: pointer;
         margin-bottom: 0;
+        a{
+
+            color: $para-color;
+            &:hover {
+                color: $primary-color;
+            }
+        }
 
         input {
             position: absolute;

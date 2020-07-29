@@ -5,9 +5,9 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <!-- <h2>Contact Us</h2> -->
+                      
                         <div class="breadcrumb__option">
-                            <!-- <a href="./index.html">รายการสินค้า</a> -->
+
                              <h5>G-SHOCK</h5>
                             <span>Its full form is Gravitaitional Shock.</span>
                         </div>
@@ -16,22 +16,6 @@
             </div>
         </div>
     </section>
-
-    <!-- <section v-if="toppriceList.data =='' " class="shoping-cart spad">
-
-            <div class="container justify-content-center">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="col-md-6 offset-md-5">
-                            <div class="shoping__cart__table">
-                            </div>
-                            <p>ไม่มีรายการ</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-    <!-- <section class="featured spad" v-else-if="toppriceList.data !== '' "> -->
  <section class="featured spad"  v-for="(top)  in  toppriceList"  :key="top.id">
            <div class="container justify-content-center"  v-if="top.products == '' ">
                 <div class="row">
