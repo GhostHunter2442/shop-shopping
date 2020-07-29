@@ -213,6 +213,8 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
              this.isActive = true;
             this.showbanner = false ;
             this.showalldata();
+              var simplebar = new Nanobar();
+               simplebar.go(100);
           }
   },
    computed: {
