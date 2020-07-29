@@ -2653,7 +2653,7 @@ ol {
   position: relative;
   width: 510px;
   height: 160px;
-  background-image: radial-gradient(circle at 1px 8px, transparent 6px, #eeebeb 6px, #eeebeb 0px), radial-gradient(circle at 199px 8px, transparent 6px, #eeebeb 6px, #eeebeb 0px);
+  background-image: radial-gradient(circle at 1px 8px, transparent 6px, #ebe7e7 6px, #ebe7e7 0px), radial-gradient(circle at 199px 8px, transparent 6px, #ebe7e7 6px, #ebe7e7 0px);
   background-size: 500px 18px;
   background-position: 0 0, 310px 0;
   background-repeat-x: no-repeat;
@@ -2697,19 +2697,17 @@ ol {
 }
 
 .coupon__cart__table .coupon span.code_small {
-  line-height: 80px;
-  font-size: 13px;
-}
-
-.coupon__cart__table .coupon span.code_small {
-  font-size: 8;
+  position: absolute;
+  top: 120px;
+  font-size: 14px;
   color: #2c2c2c;
+  right: 66%;
 }
 
 .coupon__cart__table .coupon span.scissors {
   position: absolute;
-  top: -21px;
-  right: 5%;
+  top: 60px;
+  right: 65%;
 }
 
 .coupon__cart__table .coupon .inner {
@@ -2732,14 +2730,14 @@ ol {
   position: absolute;
   content: attr(data-employeename);
   color: #fd4b4b;
-  font-size: 40px;
+  font-size: 50px;
   width: 70px;
-  font-weight: bold;
+  font-weight: 700px;
   top: 50%;
   right: 5%;
   transform: translate(-50%, -50%);
   line-height: 40px;
-  letter-spacing: 5px;
+  letter-spacing: 1px;
 }
 
 /*---------------------

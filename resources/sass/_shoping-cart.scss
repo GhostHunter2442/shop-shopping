@@ -230,11 +230,16 @@
         height: 160px;
         // margin: 50px auto;
         background-image:
-          radial-gradient(circle at 1px 8px, transparent 6px, #eeebeb 6px, #eeebeb 0px),
-          radial-gradient(circle at 199px 8px, transparent 6px, #eeebeb 6px, #eeebeb 0px);
+          radial-gradient(circle at 1px 8px, transparent 6px, #ebe7e7 6px, #ebe7e7 0px),
+          radial-gradient(circle at 199px 8px, transparent 6px, #ebe7e7 6px, #ebe7e7 0px);
+
+
+
         background-size: 500px 18px;
         background-position: 0 0, 310px 0;
         background-repeat-x: no-repeat;
+
+
 
         color: rgb(77, 76, 76);
         // font-weight: bold;
@@ -275,19 +280,22 @@
            top: -2px;
             right: 24%;
         }
+        // span.code_small{
+        //     line-height: 80px;
+        //     font-size: 13px;
+        // }
         span.code_small{
-            line-height: 80px;
-            font-size: 13px;
-        }
-        span.code_small{
-            font-size: 8;
+            position: absolute;
+            top: 120px;
+            font-size: 14px;
             color: rgb(44, 44, 44);
+            right: 66%;
         }
 
         span.scissors {
             position: absolute;
-            top: -21px;
-            right: 5%;
+            top: 60px;
+            right: 65%;
         }
         .inner {
             display: inline-block;
@@ -309,15 +317,15 @@
         position: absolute;
         content: attr(data-employeename);
         color: rgb(253, 75, 75);
-        font-size: 40px;
+        font-size: 50px;
         // padding-left: -5px;
         width: 70px;
-         font-weight: bold;
+         font-weight: 700px;
         top: 50%;
         right: 5%;
         transform: translate(-50%, -50%);
         line-height: 40px;
-        letter-spacing: 5px;
+        letter-spacing: 1px;
       }
 
 

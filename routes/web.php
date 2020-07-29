@@ -56,7 +56,7 @@ Route::any('/shop/shopdetail/{id}', 'ShopController@getshop')->name('shop.shopde
 Route::post('/shop/concerned/{category_id}/{id}', 'ShopController@getConcerned');
 
 
-Route::get('/coupon', 'CouponController@index')->name('coupon.index');
+Route::get('/promotions', 'CouponController@index')->name('coupon.index');
 
 Route::prefix('login')->group(function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
