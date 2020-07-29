@@ -16,6 +16,10 @@ class WelcomeController extends Controller
     {
         return view('welcome');
     }
+    public function topprice($cat_id)
+    {
+        return view('topprice',compact('cat_id'));
+    }
 
     public function getcategory()
     {
@@ -85,6 +89,27 @@ class WelcomeController extends Controller
         $product_distcount = Product::latest()->limit(6)->get();
         return response()->json($product_distcount);
     }
+    public function gettopprice()
+    {
+        $id=3;
+        $category=Category::select('id','name')
+                          ->where('id',$id)
+                          ->with(array('products'=>function($query){
+                              $query ->select('id','name','picture','price','slug','category_id')
+                                      ->withCount('orders')
+                                      ->orderBy('orders_count','desc')->take(2);
+
+                              $query->with(array('ratings'=>function($query){
+                                    $query->select('product_id',
+                                    DB::raw('sum(ratings.rating)/count(ratings.rating) as total,count(ratings.rating) as qty'))
+                                    ->groupBy('product_id');
+                                }));
+                            }))->get();
+
+
+        return response()->json($category);
+    }
+
 
 
 }

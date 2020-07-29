@@ -26,7 +26,9 @@
                             <h4>รายการสินค้าขายดี</h4>
                             <div class="sidebar__item__size" v-for="catlist in  categorylist"  :key="catlist.id">
                                 <label for="large">
-                                     {{catlist.name}}
+                                      <a :href="topPriceURL+catlist.id">{{catlist.name}}</a>
+                                    <!-- topPriceURL -->
+
                                     <input type="radio" id="large">
                                 </label>
                             </div>
@@ -39,7 +41,7 @@
                                      <!-- owl-carousel -->
 
                                     <div class="latest-prdouct__slider__item">
-                                        <a href="#" class="latest-product__item">
+                                        <a :href="shopURL+last.product.slug" class="latest-product__item">
                                             <div class="latest-product__item__pic">
                                                 <img  v-bind:src="imageUrlresize+last.product.picture" alt="">
                                             </div>
@@ -177,6 +179,7 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
         return {
 
               shopURL:'/shopping/public/shop/',
+              topPriceURL:'/shopping/public/show/topprice/',
               itemsgetafory:'',
               getcatagoryID:'',
               showdata:{},
@@ -273,7 +276,7 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
                 await  axios.get("show/lastprice"
                 ).then(res => {
                       this.lastprice = res.data;
-                      console.log( this.lastprice)
+
                 }).catch( error => {
                        console.log(error);
                 });

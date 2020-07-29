@@ -43,6 +43,8 @@ Vue.component('check-paymentomise', require('./components/Paymentomise.vue').def
 Vue.component('checkout-payment', require('./components/Checkoutpayment.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('shop-detail', require('./components/Shopdetail.vue').default);
+Vue.component('top-price', require('./components/Topprice.vue').default);
+
 Vue.component('star-rating',StarRating);
 const store_item = new Vuex.Store(storeDefinition);
 

@@ -1228,6 +1228,11 @@ ol {
   right: 0;
 }
 
+.sidebar__item .latest-product__item__text span {
+  font-size: 15px;
+  font-weight: 300;
+}
+
 .price-range-wrap .range-slider {
   margin-top: 20px;
 }
