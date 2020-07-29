@@ -5,10 +5,8 @@ var app = new Vue({
     }
 });
 $(document).ready(function () {
-    loadingCustom();
-
-
-
+    var simplebar = new Nanobar();
+    simplebar.go(60);
     /* handle tables */
     var table =  $('#order-table').DataTable({
         language: {
@@ -65,8 +63,7 @@ $(document).ready(function () {
 
     ]
     });
-    $.LoadingOverlay('hide');
-
+    simplebar.go(100);
 
     $('#order-table').on('draw.dt', function(){
         $.ajaxSetup({
@@ -86,7 +83,7 @@ $(document).ready(function () {
          },
           buttons: {
         edit: {
-            class: 'btn btn-outline-info btn-sm btn-edit',
+            class: 'btn btn-outline-info btn-sm ',
             html: '<i class="fa fa-exchange"></i> &nbsp เลขพัสดุ',
             action: 'edit'
         },

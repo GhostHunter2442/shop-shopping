@@ -5,7 +5,8 @@ var app = new Vue({
     }
 });
 $(document).ready(function () {
-    loadingCustom();
+    var simplebar = new Nanobar();
+    simplebar.go(60);
     var table = $('#user-table').DataTable({
         language: {
             url: APP_LANG
@@ -57,7 +58,7 @@ $(document).ready(function () {
             },
         }]
     });
-    $.LoadingOverlay('hide');
+    simplebar.go(100);
 
        /* handle validate */
        $('#ajaxModal').on('shown.bs.modal', function (e) {

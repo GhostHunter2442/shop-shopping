@@ -9,7 +9,8 @@ function numberWithCommas(x) {
 }
 
 $(document).ready(function () {
-    loadingCustom();
+    var simplebar = new Nanobar();
+    simplebar.go(60);
 
     /* handle tables */
     var table =  $('#invoice-table').DataTable({
@@ -118,7 +119,7 @@ $(document).ready(function () {
         }
     ]
     });
-    $.LoadingOverlay('hide');
+    simplebar.go(100);
     /* handle validate */
        $('#ajaxModal').on('shown.bs.modal', function (e) {
         $('#show-image').on("click", function(){

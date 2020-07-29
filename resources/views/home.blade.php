@@ -98,3 +98,9 @@
 <!-- /.content -->
 
 @endsection
+@section('footerscript')
+<script>
+ var simplebar = new Nanobar();
+    simplebar.go(100);
+</script>
+@endsection

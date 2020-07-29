@@ -10,10 +10,8 @@ function numberWithCommas(x) {
 
 $(document).ready(function () {
 
-
-
-    loadingCustom();
-
+    var simplebar = new Nanobar();
+    simplebar.go(60);
     /* handle tables */
     var table =  $('#preorder-table').DataTable({
         language: {
@@ -110,10 +108,7 @@ $(document).ready(function () {
         }
     ]
     });
-    $.LoadingOverlay('hide');
-
-
-
+    simplebar.go(100);
      $('body').on('click', '.btn-exportall', async function (e) {
         var url = $(this).data('href');
 

@@ -170,8 +170,8 @@
 
 @section('footerscript')
 <script>
-loadingCustom();
-$.LoadingOverlay('hide');
+ var simplebar = new Nanobar();
+    simplebar.go(100);
 </script>
 @if (session('message'))
 <script>

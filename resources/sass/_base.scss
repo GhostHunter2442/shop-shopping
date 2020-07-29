@@ -34,6 +34,20 @@ body {
   font-family: 'Kanit', sans-serif;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
+
+  .nanobar {
+    width: 100%;
+    height: 4px;
+    z-index: 9999;
+    top:-1px;
+  }
+  .bar {
+    width: 0;
+    height: 100%;
+    transition: height .3s;
+    background:#0eb19b;
+  }
+
 }
 
 h1,

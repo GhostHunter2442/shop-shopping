@@ -126,7 +126,8 @@ mix.copy('node_modules/admin-lte/plugins/summernote/summernote-bs4.min.js', 'pub
 mix.copy('node_modules/admin-lte/plugins/inputmask/min/jquery.inputmask.bundle.min.js', 'public/js/backend/jquery.inputmask.bundle.min.js');
 mix.copy('node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js', 'public/js/backend/daterangepicker.js');
 mix.copy('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js', 'public/js/backend/tempusdominus-bootstrap-4.min.js');
-
+mix.copy('node_modules/nanobar/nanobar.min.js', 'public/js/backend/nanobar.min.js');
+ 
 
 mix.copy('node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css', 'public/css/backend/daterangepicker.css');
 mix.copy('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css', 'public/css/backend/tempusdominus-bootstrap-4.min.css');
@@ -144,4 +145,4 @@ mix.copy('resources/css/switchery.min.css', 'public/css/backend/switchery.min.cs
 mix.copy('resources/css/custom.css', 'public/css/backend/custom.css');
 mix.copy('resources/css/style.css', 'public/css/backend/style.css');
 
- 
+

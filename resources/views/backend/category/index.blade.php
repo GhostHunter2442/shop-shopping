@@ -11,7 +11,8 @@
 
          <div class="card card-info card-outline">
         <div class="card-header">
-            {{-- <h3 class="card-title">หมวดหมู่สินค้า </h3> --}}
+
+
             <div class="pull-right">
                 <a href="#" data-href="{{ url('backend/category/form/0') }}" data-modal-name="ajaxModal" role="button" class="btn btn-dark btn-create">
                     เพิ่มข้อมูล
@@ -37,9 +38,6 @@
 </div>
 </div>
 </div>
-<!-- /.container-fluid -->
-{{-- </section> --}}
-
 
 {{-- ajax model --}}
 @include('layouts.modal')

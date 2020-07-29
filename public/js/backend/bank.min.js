@@ -5,8 +5,8 @@ var app = new Vue({
     }
 });
 $(document).ready(function () {
-    loadingCustom();
-
+    var simplebar = new Nanobar();
+    simplebar.go(60);
     /* handle tables */
     var table =  $('#bank-table').DataTable({
         language: {
@@ -60,7 +60,7 @@ $(document).ready(function () {
         }
     ]
     });
-    $.LoadingOverlay('hide');
+    simplebar.go(100);
 
 
     $('#ajaxModal').on('shown.bs.modal', function (e) {

@@ -39,6 +39,22 @@ body {
   font-smoothing: antialiased;
 }
 
+html .nanobar,
+body .nanobar {
+  width: 100%;
+  height: 4px;
+  z-index: 9999;
+  top: -1px;
+}
+
+html .bar,
+body .bar {
+  width: 0;
+  height: 100%;
+  transition: height 0.3s;
+  background: #0eb19b;
+}
+
 h1,
 h2,
 h3,

@@ -1,5 +1,6 @@
 ( function ( $ ) {
-
+    var simplebar = new Nanobar();
+    simplebar.go(100);
     var d = new Date();
     var month = new Array();
     month[0] = "มกราคม";
@@ -134,7 +135,7 @@
 
     var chart_talbel={
         tablePrice: function (status) {
-       
+
             var d = new Date();
             var n = d.getFullYear();
             if(status==1){
@@ -758,6 +759,7 @@
 
 
 		init: function () {
+
 			// -- Set new default font family and font color to mimic Bootstrap's default styling
 			Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 			Chart.defaults.global.defaultFontColor = '#292b2c';

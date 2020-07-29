@@ -62,6 +62,7 @@
     "/js/backend/jquery.inputmask.bundle.min.js": "/js/backend/jquery.inputmask.bundle.min.js",
     "/js/backend/daterangepicker.js": "/js/backend/daterangepicker.js",
     "/js/backend/tempusdominus-bootstrap-4.min.js": "/js/backend/tempusdominus-bootstrap-4.min.js",
+    "/js/backend/nanobar.min.js": "/js/backend/nanobar.min.js",
     "/css/backend/daterangepicker.css": "/css/backend/daterangepicker.css",
     "/css/backend/tempusdominus-bootstrap-4.min.css": "/css/backend/tempusdominus-bootstrap-4.min.css",
     "/css/backend/adminlte.min.css": "/css/backend/adminlte.min.css",

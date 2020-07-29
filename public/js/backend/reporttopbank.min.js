@@ -6,7 +6,8 @@ var app = new Vue({
 });
 
 ( function ( $ ) {
-
+    var simplebar = new Nanobar();
+    simplebar.go(100);
 
     var month = new Array();
     month['ม.ค.'] = "01";
@@ -73,9 +74,9 @@ var app = new Vue({
             });
         },
     };
-    loadingCustom();
+
     $('.select2').select2();
     dataTable.tableTopbank(0,0);
-    $.LoadingOverlay('hide');
+   
 
 } )( jQuery );

@@ -36,6 +36,7 @@
     "jquery.nicescroll": "^3.7.6",
     "laravel-vue-pagination": "^2.1.0",
     "moment": "^2.27.0",
+    "nanobar": "^0.4.2",
     "nicescroll": "^3.7.4",
     "select2": "^4.0.13",
     "select2-bootstrap4-theme": "^1.0.0",

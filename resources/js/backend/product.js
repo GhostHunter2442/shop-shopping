@@ -8,7 +8,8 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 $(document).ready(function () {
-    loadingCustom();
+    var simplebar = new Nanobar();
+    simplebar.go(60);
 
     /* handle tables */
     var table =  $('#product-table').DataTable({
@@ -101,7 +102,7 @@ $(document).ready(function () {
         }
     ]
     });
-    $.LoadingOverlay('hide');
+    simplebar.go(100);
 
 
     $('#ajaxModal').on('shown.bs.modal', function (e) {

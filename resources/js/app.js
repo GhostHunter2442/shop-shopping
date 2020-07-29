@@ -1,7 +1,7 @@
 
 
 require('./bootstrap');
-
+ 
 import VueRouter from "vue-router";
 import router from "./routes";
 import Vuex from 'vuex';

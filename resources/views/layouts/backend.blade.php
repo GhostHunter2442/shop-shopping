@@ -45,6 +45,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/toastr.css')}}">
 
+
     <script type="text/javascript">
         var APP_URL = {!! json_encode(url('http://localhost/shopping/public/backend')) !!}
         var APP_LINK = {!! json_encode(Storage::url('images')) !!}
@@ -57,9 +58,10 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini">
-    <div id="app" class="wrapper">
+<body class="hold-transition sidebar-mini" id="nanobar">
+    {{-- id="nanobar" --}}
 
+    <div id="app" class="wrapper">
       <!-- Navbar -->
       <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
         {{-- <nav class="main-header navbar navbar-expand navbar-blue navbar-dark"> --}}
@@ -384,6 +386,7 @@
 
 
     <script src="{{ asset('js/backend/loadingoverlay.min.js') }}"></script>
+    <script src="{{ asset('js/backend/nanobar.min.js') }}"></script>
     <script src="{{ asset('js/backend/adminlte.min.js') }}"></script>
 
 

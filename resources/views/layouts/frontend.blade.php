@@ -34,9 +34,13 @@
 
    <div id="app">
  <!-- Page Preloder -->
- <div id="preloder">
+ {{-- <div id="preloder">
     <div class="loader"></div>
+</div> --}}
+ <div id="nanobar">
+    {{-- <div class="loader"></div> --}}
 </div>
+
 
 <!-- Humberger Begin -->
 @include('partials.mobile')
@@ -193,10 +197,13 @@
     <script src="{{ asset('js/themejs/mixitup.min.js')}}"></script>
     <script src="{{ asset('js/themejs/owl.carousel.min.js')}}"></script>
     <script src="{{ asset('js/themejs//main.js')}}"></script>
-
+    <script src="{{ asset('js/backend/nanobar.min.js') }}"></script>
 
     {{-- @yield('sweetaler2script') --}}
-
+    <script>
+        var simplebar = new Nanobar();
+           simplebar.go(100);
+       </script>
 
 </body>
 
