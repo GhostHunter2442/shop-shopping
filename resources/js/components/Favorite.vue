@@ -39,32 +39,6 @@
 
         <div class="container">
         <h5>รายการที่ท่านชื่นชอบทั้งหมด {{$store.getters.getfavorite}} รายการ</h5>
-
-            <!-- <div class="row featured__filter my-4">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" v-for="(list,index)  in  favoriteList.data"  :key="list.id">
-                    <div class="featured__item" >
-                        <div class="featured__item__pic set-bg" >
-                              <a :href="shopURL+list.slug">
-                                 <img v-lazy="imageUrl+list.picture" lazy="loading">
-                             </a>
-                              <div class="featured__close__pic">
-
-                                        <div class="close-container"  v-on:click="delfavorite(list.id,index)">
-                                        <div class="leftright"></div>
-                                        <div class="rightleft"></div>
-                                        </div>
-                              </div>
-                            <ul class="featured__item__pic__hover">
-                                 <li><a href="javascript:;"  v-on:click="adddetail(list.id)"><button  class="site-btn"><i class="fa fa-shopping-cart"></i> เพิ่มไปยังรถเข็น</button></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">{{ list.name | truncate(20)}}</a></h6>
-                            <h5>{{ list.price | currency("฿")}}</h5>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
              <div class="row  my-4">
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" v-for="(list,index)  in  favoriteList.data"  :key="list.id">
 
