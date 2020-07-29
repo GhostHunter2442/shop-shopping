@@ -48,7 +48,7 @@ Route::get('/show/category', 'WelcomeController@getcategory')->name('welcome.get
 Route::get('/show/lastprice', 'WelcomeController@getlastprice')->name('welcome.getlastprice');
 
 Route::get('/show/topprice/{cat_id}', 'WelcomeController@topprice')->name('welcome.topprice');
-Route::get('/show/gettopprice', 'WelcomeController@gettopprice')->name('welcome.topprigettoppricece');
+Route::get('/show/gettopprice/{id}', 'WelcomeController@gettopprice')->name('welcome.topprigettoppricece');
 Route::get('/shop/{id}', 'ShopController@index')->name('shop.index');
 Route::any('/shop/shopdetail/{id}', 'ShopController@getshop')->name('shop.shopdetail');
 Route::post('/shop/concerned/{category_id}/{id}', 'ShopController@getConcerned');

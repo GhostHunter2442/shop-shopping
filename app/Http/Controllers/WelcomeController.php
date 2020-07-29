@@ -89,15 +89,16 @@ class WelcomeController extends Controller
         $product_distcount = Product::latest()->limit(6)->get();
         return response()->json($product_distcount);
     }
-    public function gettopprice()
+    public function gettopprice($id)
     {
-        $id=3;
+        // $id=3;
         $category=Category::select('id','name')
                           ->where('id',$id)
                           ->with(array('products'=>function($query){
-                              $query ->select('id','name','picture','price','slug','category_id')
+                              $query ->select('id','name','picture','price','slug','category_id','stock','discount','created_at')
                                       ->withCount('orders')
-                                      ->orderBy('orders_count','desc')->take(2);
+                                      ->having('orders_count', '>', 0)
+                                      ->orderBy('orders_count','desc')->take(8);
 
                               $query->with(array('ratings'=>function($query){
                                     $query->select('product_id',
