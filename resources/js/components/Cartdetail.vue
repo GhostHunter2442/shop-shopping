@@ -19,26 +19,23 @@
             </div>
         </div>
     </section>
-        <!-- Shoping Cart Section Begin -->
-          <section v-if="listCart =='' " class="shoping-cart spad">
 
-            <div class="container justify-content-center">
+        <section  class="shoping-cart spad">
+               <div class="container justify-content-center"  v-if="listCart == '' ">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="col-md-6 offset-md-5">
                             <div class="shoping__cart__table">
-                                <!-- <img src="{{asset('img/cart.png')}}" alt="" width="250"> -->
+
                                    <!-- <img  src="img/cart.png"  width="200"> -->
                             </div>
                             <p>ไม่มีรายการสินค้าในตะกร้า</p>
-                            <!-- <p>คลิกปุ่มด้านนล่างเพื่อเลือกซื้อสินค้าต่อ</p> -->
+
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section  v-else-if="listCart !== '' " class="shoping-cart spad">
-            <div class="container">
+            <div class="container" v-else>
                    <h5>จำนวนสินค้าในตระกร้า {{$store.getters.getcount}} รายการ</h5>
 
                 <div class="row">
