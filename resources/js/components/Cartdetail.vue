@@ -182,8 +182,8 @@ methods: {
                 await  axios.get("/shopping/public/promotions/checkcoupon/"+this.code).then(res => {
                        var mydata= res.data;
                        var myorder=this.listCart;
-                       console.log(myorder)
-                        console.log(myorder.length);
+                    //    console.log(myorder)
+                    //     console.log(myorder.length);
                             if(res.data!=''){
                                 for(var i = 0; i < mydata.length; i++){
                                          var product_length=mydata[i]['product_id_map'].length;
@@ -194,10 +194,10 @@ methods: {
                                                 //   console.log(myorder[j]['id'])
                                                         for(var k = 0; k < product_length; k++){ //loop product id
                                                              if(myorder[j]['id']==mydata[i]['product_id_map'][k]){
-                                                                 console.log('ใช้สมบูรณ์')
-                                                                 console.log(myorder[j]['id'])
+                                                                //  console.log('ใช้สมบูรณ์')
+                                                                //  console.log(myorder[j]['id'])
                                                                  product_check_code.push(myorder[j]['id']);
-                                                                  console.log('++++++++')
+                                                                //   console.log('++++++++')
 
                                                               }
                                                             //  else{
@@ -216,13 +216,27 @@ methods: {
 
                                 }
 
-                                this.listCart.forEach(item => {
-                                    data_order.push(item);
-                                });
-                        console.log(product_check_code);
-                        console.log (data_order);
+                                  for(var x = 0; x < myorder.length; x++){
+                                        data_order.push(myorder[x]['id']);
 
+                                }
+                        // console.log(product_check_code);
+                        // console.log (data_order);
 
+var array1 = data_order;
+var array2 =  product_check_code;
+
+var tempArr = array2.filter(function(item) {
+  return !array1.includes(item);
+});
+array1 = array1.filter(function(item) {
+  return !array2.includes(item);
+});
+array2 = tempArr;
+console.log('******')
+console.log(array1);
+console.log('*******') // [ 'a', 'c', 'e' ]
+console.log(array2); // [ 'f' ]
 
 
 
