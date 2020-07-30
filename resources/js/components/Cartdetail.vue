@@ -220,23 +220,22 @@ methods: {
                                         data_order.push(myorder[x]['id']);
 
                                 }
-                        // console.log(product_check_code);
-                        // console.log (data_order);
 
-var array1 = data_order;
-var array2 =  product_check_code;
 
-var tempArr = array2.filter(function(item) {
-  return !array1.includes(item);
-});
-array1 = array1.filter(function(item) {
-  return !array2.includes(item);
-});
-array2 = tempArr;
-console.log('******')
-console.log(array1);
-console.log('*******') // [ 'a', 'c', 'e' ]
-console.log(array2); // [ 'f' ]
+                                    var array1 = data_order;
+                                    var array2 =  product_check_code;
+
+                                    var tempArr = array2.filter(function(item) {
+                                    return !array1.includes(item);
+                                    });
+                                    array1 = array1.filter(function(item) {
+                                    return !array2.includes(item);
+                                    });
+                                    array2 = tempArr;
+
+                                    console.log(array1);
+
+
 
 
 
