@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
    {{-- <link rel="stylesheet" href="{{ asset('css/backend/select2.min.css') }}">--}}
    {{-- <link rel="stylesheet" href="{{ asset('css/backend/select2-bootstrap4.min.css') }}"> --}}
-   {{-- <link rel="stylesheet" href="{{ asset('css/backend/daterangepicker.css') }}"> --}}
+   <link rel="stylesheet" href="{{ asset('css/backend/daterangepicker.css') }}">
 
 
    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -202,6 +202,15 @@
             </a>
           </li>
           @endcan
+          <li class="nav-item">
+            <a href="{{ route('coupon.index') }}" class="nav-link {{ request()->routeIs('coupon.index') ? 'active' :''  }}">
+              <i class="nav-icon fa fa-gift"></i>
+              <p>
+                คูปองส่วนลด
+
+              </p>
+            </a>
+          </li>
 
           @if(Gate::check('viewPreOrder') || Gate::check('viewPreOrder') || Gate::check('viewSentOrder'))
             <li class="nav-header">ข้อมูลการขาย</li>

@@ -15,6 +15,7 @@
     "/js/backend/reporttopbank.min.js": "/js/backend/reporttopbank.min.js",
     "/js/backend/datatables-th.lang": "/js/backend/datatables-th.lang",
     "/js/backend/create-charts.min.js": "/js/backend/create-charts.min.js",
+    "/js/backend/coupon.min.js": "/js/backend/coupon.min.js",
     "/js/sweetalert.min.js": "/js/sweetalert.min.js",
     "/js/sweetalert2.all.min.js": "/js/sweetalert2.all.min.js",
     "/js/toastr.min.js": "/js/toastr.min.js",

@@ -141,6 +141,17 @@ Route::group(['middleware' => ['auth']],function(){
 
     });
 
+     //coupon
+    Route::prefix('backend/coupon')->group(function () {
+        Route::get('', 'CouponbackendController@index')->name('coupon.index');
+        Route::post('', 'CouponbackendController@store');
+        Route::patch('{id}', 'CouponbackendController@update');
+        Route::delete('{id}', 'CouponbackendController@delete');
+        Route::get('datatables', 'CouponbackendController@getDatatables');
+        Route::get('form/{id}', 'CouponbackendController@renderForm');
+    });
+
+
     Route::prefix('backend/reportdetail')->group(function () {
         Route::get('', 'ReportdetailController@index')->name('reportdetail.index');
         Route::get('datatables/{year}/{month}', 'ReportdetailController@gettopdata');

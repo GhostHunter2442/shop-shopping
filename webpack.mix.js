@@ -64,6 +64,11 @@ mix.scripts([
     'resources/js/backend/create-charts.js'
 ], 'public/js/backend/create-charts.min.js');
 
+
+mix.scripts([
+    'resources/js/backend/coupon.js'
+], 'public/js/backend/coupon.min.js');
+
 mix.copy('node_modules/sweetalert/dist/sweetalert.min.js','public/js'); //copy sewwaler.min.js ไปไว้ ที่ public js
 mix.copy('node_modules/sweetalert2/dist/sweetalert2.all.min.js','public/js'); //copy sewwaler.min.js ไปไว้ ที่ public js
 mix.copy('node_modules/toastr/build/toastr.min.js','public/js');
@@ -127,7 +132,7 @@ mix.copy('node_modules/admin-lte/plugins/inputmask/min/jquery.inputmask.bundle.m
 mix.copy('node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js', 'public/js/backend/daterangepicker.js');
 mix.copy('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js', 'public/js/backend/tempusdominus-bootstrap-4.min.js');
 mix.copy('node_modules/nanobar/nanobar.min.js', 'public/js/backend/nanobar.min.js');
- 
+
 
 mix.copy('node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css', 'public/css/backend/daterangepicker.css');
 mix.copy('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css', 'public/css/backend/tempusdominus-bootstrap-4.min.css');

@@ -11,13 +11,7 @@ class CategoryController extends Controller
 {
     public function index(){
 
-         // $category = Category::all();
-        //  $category =Category::find(3);
-        //  $category =Category::findOrFail(203);
-        //  $category =Category::select('id','name')->where('id','=', 2)->get();
-        //   $category=  Category::orderBy('id','desc')->get();
-        //   $countRow = Category::count();
-        //   return $category;
+
        return view('backend.category.index');
     }
     public function getDatatables(CategoryRepository $category)
@@ -32,10 +26,6 @@ class CategoryController extends Controller
 
     }
     public function renderForm(CategoryRepository $category, $id){
-
-        // if(strtolower(auth()->user()->userrole) !== 'admin'){
-        //     return redirect('/');
-        // }
 
         $cate = $category->getById($id);
         $data['title'] = !empty($cate) ? $cate['name'] : 'สร้างหมวดหมู่สินค้า';
