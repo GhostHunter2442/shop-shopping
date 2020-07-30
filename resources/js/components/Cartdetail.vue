@@ -97,8 +97,8 @@
                             <h5>สรุปรายการสั่งซื้อ</h5>
                             <ul>
                                 <li>ราคารวม <span  >{{ totalPrice | currency("฿") }}</span  > </li>
-                                <li>ส่วนลด <span>$0.00</span></li>
-                                <li>ยอดสั่งซื้อรวม <span class="totolprice">{{ totalPrice | currency("฿") }}</span></li>
+                                <li>ส่วนลด <span>{{total_discount | currency("฿")}}</span></li>
+                                <li>ยอดสั่งซื้อรวม <span class="totolprice">{{ totalPrice-total_discount | currency("฿") }}</span></li>
                                  <li><p>มูลค่าสินค้ารวม (ยังไม่คิดค่าจัดส่ง)</p> </li>
                             </ul>
 
@@ -159,6 +159,7 @@ data() {
              loading:false,
              code:'',
              date_length:0,
+             total_discount:0,
 
 
         };
@@ -178,75 +179,81 @@ methods: {
                 const today =moment(date).format('YYYY-MM-DD');
                 const product_check_code = [];
                  const data_order = [];
+                 var check_expire='';
+            if(this.code !=''){
 
                 await  axios.get("/shopping/public/promotions/checkcoupon/"+this.code).then(res => {
                        var mydata= res.data;
                        var myorder=this.listCart;
-                    //    console.log(myorder)
-                    //     console.log(myorder.length);
+
                             if(res.data!=''){
                                 for(var i = 0; i < mydata.length; i++){
                                          var product_length=mydata[i]['product_id_map'].length;
-                                        //  console.log(product_length);
                                     if(today <= mydata[i]['end_datetime']){
-                                        //  console.log('coupon ใช้งานได้')
-                                          for(var j = 0; j < myorder.length; j++){ //loop card order
-                                                //   console.log(myorder[j]['id'])
-                                                        for(var k = 0; k < product_length; k++){ //loop product id
+                                          for(var j = 0; j < myorder.length; j++){
+                                                        for(var k = 0; k < product_length; k++){
                                                              if(myorder[j]['id']==mydata[i]['product_id_map'][k]){
-                                                                //  console.log('ใช้สมบูรณ์')
-                                                                //  console.log(myorder[j]['id'])
                                                                  product_check_code.push(myorder[j]['id']);
-                                                                //   console.log('++++++++')
-
                                                               }
-                                                            //  else{
-                                                            //        console.log('ใช้ไม่สมบูรณ์')
-                                                            //         console.log(mydata[i]['product_id_map'][k])
-                                                            //           console.log('-------------')
-                                                            //  }
+
                                                         }
-
-
                                           }
                                     }
                                     else{
-                                      console.log('coupon หมดอายุ')
+                                          check_expire=1;
+                                          let showicon='warning';
+                                          let showtitle ='CODE หมดอายุ';
+                                          this.showalert(showicon,showtitle);
                                     }
 
                                 }
+                                    if(check_expire!=1){
+                                             for(var x = 0; x < myorder.length; x++){
+                                                data_order.push(myorder[x]['id']);
+                                            }
+                                            var array_order = data_order;
+                                            var array_code =  product_check_code;
+                                            var tempArr = array_code.filter(function(item) {
+                                                        return !array_order.includes(item);
+                                                    });
+                                            array_order = array_order.filter(function(item) {
+                                                            return !array_code.includes(item);
+                                                        });
+                                            array_code = tempArr;
+                                     if(array_order!=''){
+                                              for(var y = 0; y < array_order.length; y++){
 
-                                  for(var x = 0; x < myorder.length; x++){
-                                        data_order.push(myorder[x]['id']);
+                                                        for(var n = 0; n < 3; n++){
+                                                                if(array_order[y]==myorder[n]['id']){
+                                                                        let showicon='info';
+                                                                        let showtitle = myorder[n]['name']+' ไม่ร่วมรายการ';
+                                                                        this.showalert(showicon,showtitle);
+                                                                }
 
-                                }
-
-
-                                    var array1 = data_order;
-                                    var array2 =  product_check_code;
-
-                                    var tempArr = array2.filter(function(item) {
-                                    return !array1.includes(item);
-                                    });
-                                    array1 = array1.filter(function(item) {
-                                    return !array2.includes(item);
-                                    });
-                                    array2 = tempArr;
-
-                                    console.log(array1);
+                                                        }
 
 
+                                                }
 
+                                     }else{
 
+                                           for(var z = 0; z < mydata.length; z++){
+                                                this.total_discount= mydata[z]['discount'];
+                                           }
+
+                                     }
+                                    }
 
                             }else{
-                                console.log('ไม่พบรหัส')
+
+                                  let showicon='info';
+                                  let showtitle ='ไม่พบ CODE โปรดระบุอีกครั้ง';
+                                  this.showalert(showicon,showtitle);
                             }
-
-
                     }).catch(function (error) {
                             console.log(error);
                         });
+         }
 
       },
 
@@ -331,12 +338,26 @@ methods: {
                     }
                     })
 
-    }
+    },
+        showalert(showicon,showtitle) {
+                toastr[showicon](showtitle,'', {
+                progressBar: true,
+                //   iconClass: 'toast-pink',
+                timeOut: 1500,
+                extendedTimeOut: 1500,
+                 hideDuration: 1500,
+                 progressBar: false,
+                });
+
+        },
     }
 };
 </script>
 
 <style>
 
-
+/* .toast-pink {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=") !important;
+    background-color: #4bc078;
+} */
 </style>
