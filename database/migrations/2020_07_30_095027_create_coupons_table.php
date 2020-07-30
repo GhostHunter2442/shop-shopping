@@ -20,7 +20,7 @@ class CreateCouponsTable extends Migration
             $table->decimal('discount',10,2);
             $table->string('code',15);
             $table->timestamp('end_datetime');
-            $table->string('product_id')->nullable();
+            $table->mediumText('product_id')->nullable();
             $table->text('detail')->nullable();
             $table->enum('status', ['normal', 'canceled'])->default('normal');
             $table->timestamps();

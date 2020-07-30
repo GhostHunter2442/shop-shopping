@@ -64,6 +64,7 @@
     "/js/backend/daterangepicker.js": "/js/backend/daterangepicker.js",
     "/js/backend/tempusdominus-bootstrap-4.min.js": "/js/backend/tempusdominus-bootstrap-4.min.js",
     "/js/backend/nanobar.min.js": "/js/backend/nanobar.min.js",
+    "/js/backend/jquery.bootstrap-duallistbox.min.js": "/js/backend/jquery.bootstrap-duallistbox.min.js",
     "/css/backend/daterangepicker.css": "/css/backend/daterangepicker.css",
     "/css/backend/tempusdominus-bootstrap-4.min.css": "/css/backend/tempusdominus-bootstrap-4.min.css",
     "/css/backend/adminlte.min.css": "/css/backend/adminlte.min.css",
@@ -74,6 +75,7 @@
     "/css/backend/select2-bootstrap4.min.css": "/css/backend/select2-bootstrap4.min.css",
     "/css/backend/dataTables.bootstrap4.css": "/css/backend/dataTables.bootstrap4.css",
     "/css/backend/bootstrap-datepicker3.min.css": "/css/backend/bootstrap-datepicker3.min.css",
+    "/css/backend/bootstrap-duallistbox.min.css": "/css/backend/bootstrap-duallistbox.min.css",
     "/css/backend/switchery.min.css": "/css/backend/switchery.min.css",
     "/css/backend/custom.css": "/css/backend/custom.css",
     "/css/backend/style.css": "/css/backend/style.css"

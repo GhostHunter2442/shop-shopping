@@ -65,6 +65,36 @@
 
         </div>
         <div class="form-row">
+            <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="end_datetime">เลือกสินค้า ร่วมรายการ
+                          {{-- {{var_dump($dataproduct)}} --}}
+            {{-- {{var_dump(in_array(3,$dataproduct))}} --}}
+                    </label>
+                    <select class="duallistbox" name="product_id[]" multiple="multiple" style="display:none;"  >
+                        @if(empty($data->id))
+                        @foreach($products as $product)
+                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                        @endforeach
+                        @else
+                        @foreach($products as $product)
+                        @if(empty($dataproduct))
+                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                        @else
+
+                      <option value="{{ $product->id }}" {{ $product->id == in_array($product->id,$dataproduct)? "selected": " "}}>{{ $product->name }}</option>
+                      @endif
+                   @endforeach
+                       @endif
+                    </select>
+                  </div>
+
+                </div>
+              
+              </div>
+        </div>
+        <div class="form-row">
             <div class="form-group col-md-4 col-sm-12">
                 <label for="status">สถานะ</label>
                 <select name="status" class="form-control select2">
@@ -75,16 +105,12 @@
             </div>
         </div>
 
+
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
         <button type="submit" class="btn btn-primary">บันทึก</button>
     </div>
 </form>
-{{-- @section('footerscript')
-
-<script>
-
-</script>
-@endsection --}}
 

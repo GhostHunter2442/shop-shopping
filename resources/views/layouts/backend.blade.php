@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
    {{-- <link rel="stylesheet" href="{{ asset('css/backend/select2.min.css') }}">--}}
    {{-- <link rel="stylesheet" href="{{ asset('css/backend/select2-bootstrap4.min.css') }}"> --}}
+   <link rel="stylesheet" href="{{ asset('css/backend/bootstrap-duallistbox.min.css') }}">
    <link rel="stylesheet" href="{{ asset('css/backend/daterangepicker.css') }}">
 
 
@@ -360,6 +361,7 @@
     <script src="{{ asset('js/backend/moment.min.js') }}"></script>
     <script src="{{ asset('js/backend/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('js/backend/Chart.min.js') }}"></script>
+    <script src="{{ asset('js/backend/jquery.bootstrap-duallistbox.min.js') }}"></script>
     <script src="{{ asset('js/backend/daterangepicker.js') }}"></script>
     <script src="{{ asset('js/backend/tempusdominus-bootstrap-4.min.js') }}"></script>
 

@@ -32,8 +32,15 @@ class CouponRepository
     }
     public function getById($id)
     {
-        $coupon = Coupon::find($id);
+        $coupon =  Coupon::find($id);
         return $coupon;
+    }
+    public function getByPorductID($id)
+    {    $coupon = $this->getById($id);
+        if(empty($coupon)) return false;
+
+        $product_id = unserialize(Coupon::find($id)->product_id);
+        return $product_id;
     }
 
     public function getDatatables()
@@ -56,6 +63,8 @@ class CouponRepository
     }
     public function update($request, $id)
     {
+
+        // dd($request->product_id);
         $coupon = $this->getById($id);
         if(empty($coupon)) return false;
 
@@ -64,6 +73,7 @@ class CouponRepository
         $coupon->discount = $request->discount;
         $coupon->code = $request->code;
         $coupon->status = $request->status;
+        $coupon->product_id = serialize($request->product_id);
         $coupon->end_datetime = Carbon::createFromFormat('m/d/Y', $request->end_datetime)->toDateString();
         $coupon->save();
         return true;

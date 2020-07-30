@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\CouponRepository;
+use App\Repositories\ProductRepository;
 use Yajra\Datatables\Datatables;
 class CouponbackendController extends Controller
 {
@@ -21,11 +22,14 @@ class CouponbackendController extends Controller
              ->make(true);
 
      }
-     public function renderForm(CouponRepository $coupon, $id){
+     public function renderForm(CouponRepository $coupon,ProductRepository $product, $id){
 
         $cate = $coupon->getById($id);
+        $product_id =  $coupon->getByPorductID($id);
         $data['title'] = !empty($cate) ? $cate['name'] : 'สร้างคูปองส่วนลด';
         $data['data'] = !empty($cate) ? $cate : $coupon->castData();
+        $data['products'] = $product->getAll();
+        $data['dataproduct'] = !empty($product_id) ? $product_id : null;
         return view('backend.coupon.partials.form', $data);
     }
 

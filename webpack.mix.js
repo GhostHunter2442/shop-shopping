@@ -133,10 +133,10 @@ mix.copy('node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js', 'p
 mix.copy('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js', 'public/js/backend/tempusdominus-bootstrap-4.min.js');
 mix.copy('node_modules/nanobar/nanobar.min.js', 'public/js/backend/nanobar.min.js');
 
+mix.copy('node_modules/admin-lte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js', 'public/js/backend/jquery.bootstrap-duallistbox.min.js');
 
 mix.copy('node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css', 'public/css/backend/daterangepicker.css');
 mix.copy('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css', 'public/css/backend/tempusdominus-bootstrap-4.min.css');
-
 mix.copy('node_modules/admin-lte/dist/css/adminlte.min.css', 'public/css/backend/adminlte.min.css');
 mix.copy('node_modules/admin-lte/plugins/summernote/summernote-bs4.css', 'public/css/backend/summernote-bs4.css');
 mix.copy('node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css', 'public/css/backend/all.min.css');
@@ -146,6 +146,9 @@ mix.copy('node_modules/select2/dist/css/select2.min.css', 'public/css/backend/se
 mix.copy('node_modules/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css', 'public/css/backend/select2-bootstrap4.min.css');
 mix.copy('node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css', 'public/css/backend/dataTables.bootstrap4.css');
 mix.copy('node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css', 'public/css/backend/bootstrap-datepicker3.min.css');
+
+mix.copy('node_modules/admin-lte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css', 'public/css/backend/bootstrap-duallistbox.min.css');
+
 mix.copy('resources/css/switchery.min.css', 'public/css/backend/switchery.min.css');
 mix.copy('resources/css/custom.css', 'public/css/backend/custom.css');
 mix.copy('resources/css/style.css', 'public/css/backend/style.css');

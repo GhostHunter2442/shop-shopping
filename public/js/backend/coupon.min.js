@@ -98,7 +98,7 @@ $(document).ready(function () {
     /* handle validate */
     $('#ajaxModal').on('shown.bs.modal', function (e) {
 
-        // $('input[name="end_datetime"]').daterangepicker();
+        $('.duallistbox').bootstrapDualListbox();
         $('#end_datetime').daterangepicker({
             singleDatePicker: true,
             locale: {
