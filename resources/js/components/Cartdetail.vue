@@ -119,12 +119,13 @@
                         <div class="shoping__continue">
                             <div class="shoping__discount">
                                 <h5>โค๊ดส่วนลด</h5>
-                                <form action="#">
+                                <form  >
                                     <input
                                         type="text"
                                         placeholder="ใส่โค๊ดส่วนลด"
+                                        v-model="code"
                                     />
-                                    <a href="#" class="site-btn">ใช้งาน</a>
+                                    <a href="javascript:;" class="site-btn" v-on:click="checkcoupon(code)">ใช้งาน</a>
                                 </form>
                             </div>
                         </div>
@@ -141,7 +142,7 @@
 </template>
 
 <script>
-
+import moment from 'moment'
 export default {
 
 mounted() {
@@ -156,6 +157,8 @@ data() {
              imageUrl_: "storage/images/",
              countitem:[],
              loading:false,
+             code:'',
+             date_length:0,
 
 
         };
@@ -170,6 +173,69 @@ computed: {
                 },
          },
 methods: {
+     async checkcoupon(){
+                const date = new Date();
+                const today =moment(date).format('YYYY-MM-DD');
+                const product_check_code = [];
+                 const data_order = [];
+
+                await  axios.get("/shopping/public/promotions/checkcoupon/"+this.code).then(res => {
+                       var mydata= res.data;
+                       var myorder=this.listCart;
+                       console.log(myorder)
+                        console.log(myorder.length);
+                            if(res.data!=''){
+                                for(var i = 0; i < mydata.length; i++){
+                                         var product_length=mydata[i]['product_id_map'].length;
+                                        //  console.log(product_length);
+                                    if(today <= mydata[i]['end_datetime']){
+                                        //  console.log('coupon ใช้งานได้')
+                                          for(var j = 0; j < myorder.length; j++){ //loop card order
+                                                //   console.log(myorder[j]['id'])
+                                                        for(var k = 0; k < product_length; k++){ //loop product id
+                                                             if(myorder[j]['id']==mydata[i]['product_id_map'][k]){
+                                                                 console.log('ใช้สมบูรณ์')
+                                                                 console.log(myorder[j]['id'])
+                                                                 product_check_code.push(myorder[j]['id']);
+                                                                  console.log('++++++++')
+
+                                                              }
+                                                            //  else{
+                                                            //        console.log('ใช้ไม่สมบูรณ์')
+                                                            //         console.log(mydata[i]['product_id_map'][k])
+                                                            //           console.log('-------------')
+                                                            //  }
+                                                        }
+
+
+                                          }
+                                    }
+                                    else{
+                                      console.log('coupon หมดอายุ')
+                                    }
+
+                                }
+
+                                this.listCart.forEach(item => {
+                                    data_order.push(item);
+                                });
+                        console.log(product_check_code);
+                        console.log (data_order);
+
+
+
+
+
+                            }else{
+                                console.log('ไม่พบรหัส')
+                            }
+
+
+                    }).catch(function (error) {
+                            console.log(error);
+                        });
+
+      },
 
       async  getUserData() {
 

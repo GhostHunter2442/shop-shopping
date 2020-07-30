@@ -57,6 +57,9 @@ Route::post('/shop/concerned/{category_id}/{id}', 'ShopController@getConcerned')
 
 
 Route::get('/promotions', 'CouponController@index')->name('coupon.index');
+Route::get('/promotions/getcoupon', 'CouponController@getcoupon')->name('getcoupon.index');
+Route::get('/promotions/checkcoupon/{code}', 'CouponController@checkcoupon')->name('checkcoupon.index');
+
 
 Route::prefix('login')->group(function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('login.provider');

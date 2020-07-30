@@ -115,6 +115,18 @@ $(document).ready(function () {
             rules: {
                 name: {
                     required: true
+                },
+                percen: {
+                    required: true
+                },
+                discount: {
+                    required: true
+                },
+                code: {
+                    required: true
+                },
+                end_datetime: {
+                    required: true
                 }
             },
             messages: {},

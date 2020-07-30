@@ -293,6 +293,7 @@ export default {
             return  parseInt(dis);
          },
         async  getRating(){
+           
               await  axios.get("/shopping/public/api/cartdetail/rating/"+this.id
                    ).then(res => {
                         var maydata =res.data.data;

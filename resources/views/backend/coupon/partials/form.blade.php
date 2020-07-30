@@ -69,8 +69,7 @@
                 <div class="col-12">
                   <div class="form-group">
                     <label for="end_datetime">เลือกสินค้า ร่วมรายการ
-                          {{-- {{var_dump($dataproduct)}} --}}
-            {{-- {{var_dump(in_array(3,$dataproduct))}} --}}
+               
                     </label>
                     <select class="duallistbox" name="product_id[]" multiple="multiple" style="display:none;"  >
                         @if(empty($data->id))
@@ -91,7 +90,7 @@
                   </div>
 
                 </div>
-              
+
               </div>
         </div>
         <div class="form-row">
