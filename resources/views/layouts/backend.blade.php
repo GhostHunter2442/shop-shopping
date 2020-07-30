@@ -203,7 +203,7 @@
           </li>
           @endcan
           <li class="nav-item">
-            <a href="{{ route('coupon.index') }}" class="nav-link {{ request()->routeIs('coupon.index') ? 'active' :''  }}">
+            <a href="{{ route('backend.coupon.index') }}" class="nav-link {{ request()->routeIs('backend.coupon.index') ? 'active' :''  }}">
               <i class="nav-icon fa fa-gift"></i>
               <p>
                 คูปองส่วนลด

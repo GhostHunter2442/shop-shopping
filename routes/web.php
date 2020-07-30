@@ -143,7 +143,7 @@ Route::group(['middleware' => ['auth']],function(){
 
      //coupon
     Route::prefix('backend/coupon')->group(function () {
-        Route::get('', 'CouponbackendController@index')->name('coupon.index');
+        Route::get('', 'CouponbackendController@index')->name('backend.coupon.index');
         Route::post('', 'CouponbackendController@store');
         Route::patch('{id}', 'CouponbackendController@update');
         Route::delete('{id}', 'CouponbackendController@delete');
