@@ -69,9 +69,9 @@
                 <div class="col-12">
                   <div class="form-group">
                     <label for="end_datetime">เลือกสินค้า ร่วมรายการ
-               
+
                     </label>
-                    <select class="duallistbox" name="product_id[]" multiple="multiple" style="display:none;"  >
+                    <select class="duallistbox" name="product_id[]" multiple="multiple" style="display:none;"  required>
                         @if(empty($data->id))
                         @foreach($products as $product)
                         <option value="{{ $product->id }}">{{ $product->name }}</option>

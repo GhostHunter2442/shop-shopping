@@ -19,6 +19,9 @@ class CouponController extends Controller
     }
     public function checkcoupon($code){
         $coupon =Coupon::where('code',$code)->get();
+        if(!empty($coupon)){
+
+        }
         $coupon = $coupon->map(function($i) {
             $i->product_id_map = unserialize($i->product_id);
             return $i;

@@ -188,23 +188,25 @@ methods: {
 
                             if(res.data!=''){
                                 for(var i = 0; i < mydata.length; i++){
-                                         var product_length=mydata[i]['product_id_map'].length;
-                                    if(today <= mydata[i]['end_datetime']){
-                                          for(var j = 0; j < myorder.length; j++){
-                                                        for(var k = 0; k < product_length; k++){
-                                                             if(myorder[j]['id']==mydata[i]['product_id_map'][k]){
-                                                                 product_check_code.push(myorder[j]['id']);
-                                                              }
+                                         var product_length=mydata[i]['product_id_map'].length ;
+                                         console.log(product_length)
+                                                if(today <= mydata[i]['end_datetime']){
+                                                    for(var j = 0; j < myorder.length; j++){
+                                                                    for(var k = 0; k < product_length; k++){
+                                                                        if(myorder[j]['id']==mydata[i]['product_id_map'][k]){
+                                                                            product_check_code.push(myorder[j]['id']);
+                                                                        }
 
-                                                        }
-                                          }
-                                    }
-                                    else{
-                                          check_expire=1;
-                                          let showicon='warning';
-                                          let showtitle ='CODE หมดอายุ';
-                                          this.showalert(showicon,showtitle);
-                                    }
+                                                                    }
+                                                    }
+                                                }
+                                                else{
+                                                    check_expire=1;
+                                                    this.total_discount=0
+                                                    let showicon='warning';
+                                                    let showtitle ='CODE หมดอายุ';
+                                                    this.showalert(showicon,showtitle);
+                                                }
 
                                 }
                                     if(check_expire!=1){
@@ -220,11 +222,13 @@ methods: {
                                                             return !array_code.includes(item);
                                                         });
                                             array_code = tempArr;
+                                            console.log(array_order)
                                      if(array_order!=''){
                                               for(var y = 0; y < array_order.length; y++){
 
                                                         for(var n = 0; n < 3; n++){
                                                                 if(array_order[y]==myorder[n]['id']){
+                                                                        this.total_discount=0;
                                                                         let showicon='info';
                                                                         let showtitle = myorder[n]['name']+' ไม่ร่วมรายการ';
                                                                         this.showalert(showicon,showtitle);
@@ -238,14 +242,21 @@ methods: {
                                      }else{
 
                                            for(var z = 0; z < mydata.length; z++){
-                                                this.total_discount= mydata[z]['discount'];
+                                                 var per= (this.totalPrice*mydata[z]['percen'])/100;
+                                                 if(per > mydata[z]['discount']){
+                                                        this.total_discount= mydata[z]['discount'];
+                                                 }
+                                                 else{
+                                                      this.total_discount= per;
+                                                 }
+
                                            }
 
                                      }
                                     }
 
                             }else{
-
+                                 this.total_discount=0
                                   let showicon='info';
                                   let showtitle ='ไม่พบ CODE โปรดระบุอีกครั้ง';
                                   this.showalert(showicon,showtitle);

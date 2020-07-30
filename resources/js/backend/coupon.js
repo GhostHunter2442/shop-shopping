@@ -127,6 +127,9 @@ $(document).ready(function () {
                 },
                 end_datetime: {
                     required: true
+                },
+                product_id:{
+                    required: true
                 }
             },
             messages: {},
