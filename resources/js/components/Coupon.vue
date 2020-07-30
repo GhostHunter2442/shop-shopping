@@ -74,24 +74,15 @@ import moment from 'moment'
             },
             async copy(s) {
             await navigator.clipboard.writeText(s);
-            // alert('Copied!');
-                    this.$store.dispatch("addItem")
-                        const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 1500,
-                        timerProgressBar: true,
-                        onOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
+                         toastr['success']('คัดลอกเรียบร้อย !','', {
+                                    progressBar: true,
+                                    timeOut: 1500,
+                                    extendedTimeOut: 1500,
+                                    hideDuration: 1500,
+                                    progressBar: false,
+                                    });
 
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'คัดลอกเรียบร้อย!'
-                    })
+
             },
                async getcoupong(){
 

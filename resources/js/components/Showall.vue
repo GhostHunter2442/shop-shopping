@@ -312,47 +312,36 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
                                 //   bus.$emit('add-to-cart',response.data);
                                     // bus.$emit('add-to-cart');
                                       this.$store.dispatch("addItem")
-                                        const Toast = Swal.mixin({
-                                        toast: true,
-                                        position: 'top-end',
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                        timerProgressBar: true,
-                                        onOpen: (toast) => {
-                                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                        }
-                                    })
 
-                                    Toast.fire({
-                                        icon: 'success',
-                                        title: 'เพิ่มสินค้าเรียบร้อย'
-                                    })
+                                  let showicon='success';
+                                  let showtitle ='เพิ่มสินค้าเรียบร้อย';
+                                  this.showalert(showicon,showtitle);
+                                   
                         }).catch(function(error) {
                             if (error.response && error.response.status === 401) {
                             window.location.href = "login";
                             }
                              else if (error.response && error.response.status ===403) {
 
-                                        const Toast = Swal.mixin({
-                                        toast: true,
-                                        position: 'top-end',
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                        timerProgressBar: true,
-                                        onOpen: (toast) => {
-                                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                        }
-                                    })
+                                   let showicon='warring';
+                                  let showtitle ='ไม่มีสิทธิการสั่งซื้อสินค้า';
+                                  this.showalert(showicon,showtitle);
 
-                                    Toast.fire({
-                                        icon: 'warning',
-                                        title: 'ไม่มีสิทธิการสั่งซื้อสินค้า'
-                                    })
+
                             }
                         });
             },
+              showalert(showicon,showtitle) {
+                toastr[showicon](showtitle,'', {
+                progressBar: true,
+                //   iconClass: 'toast-pink',
+                timeOut: 1500,
+                extendedTimeOut: 1500,
+                 hideDuration: 1500,
+                 progressBar: false,
+                });
+
+        },
     },
 
 

@@ -158,22 +158,14 @@ computed: {
 
                                     // bus.$emit('add-to-cart');
                                      this.$store.dispatch("addItem")
-                                        const Toast = Swal.mixin({
-                                        toast: true,
-                                        position: 'top-end',
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                        timerProgressBar: true,
-                                        onOpen: (toast) => {
-                                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                        }
-                                    })
+                                          toastr['success']('เพิ่มสินค้าเรียบร้อย','', {
+                                        progressBar: true,
+                                        timeOut: 1500,
+                                        extendedTimeOut: 1500,
+                                        hideDuration: 1500,
+                                        progressBar: false,
+                                        });
 
-                                    Toast.fire({
-                                        icon: 'success',
-                                        title: 'เพิ่มสินค้าเรียบร้อย'
-                                    })
                         }).catch(function(error) {
                             if (error.response && error.response.status === 401) {
                             window.location.href = "login";

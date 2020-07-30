@@ -168,22 +168,13 @@ export default {
                 await  axios.post("http://localhost/shopping/public/order/orderdetail/profile/update" ,formData,
                    {params:{userid: this.userid,proid: this.proid}}
                  ).then(response=> {
-                             const Toast = Swal.mixin({
-                                        toast: true,
-                                        position: 'top-end',
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                        timerProgressBar: true,
-                                        onOpen: (toast) => {
-                                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                        }
-                                    })
-
-                                    Toast.fire({
-                                        icon: 'success',
-                                        title: 'เเก้ไข้เรียบร้อย'
-                                    })
+                               toastr['success']('เเก้ไข้เรียบร้อย','', {
+                                        progressBar: true,
+                                        timeOut: 1500,
+                                        extendedTimeOut: 1500,
+                                        hideDuration: 1500,
+                                        progressBar: false,
+                                        });
 
                }).catch(error => this.errors.record(error.response.data));
             },

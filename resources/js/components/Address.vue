@@ -230,22 +230,13 @@ class Errors{
                          });
              },
             showalert(showicon,showtitle) {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 1500,
-                        timerProgressBar: true,
-                        onOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-
-                    Toast.fire({
-                        icon: showicon,
-                        title: showtitle
-                    })
+                      toastr[showicon](showtitle,'', {
+                progressBar: true,
+                timeOut: 1500,
+                extendedTimeOut: 1500,
+                 hideDuration: 1500,
+                 progressBar: false,
+                });
         },
 
         },
