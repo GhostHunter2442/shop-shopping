@@ -57,6 +57,7 @@ class CouponRepository
         $coupon->discount = $request->discount;
         $coupon->code = $request->code;
         $coupon->status = $request->status;
+        $coupon->product_id = serialize($request->product_id);
         $coupon->end_datetime =  Carbon::createFromFormat('m/d/Y', $request->end_datetime)->toDateString();
         $coupon->save();
         return true;
