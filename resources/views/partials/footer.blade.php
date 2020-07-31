@@ -8,9 +8,9 @@
                         <a href="./index.html"><img src="{{asset('img/logo.png')}}" alt=""></a>
                     </div>
                     <ul>
-                        <li>Address: 60-49 Road 11378 New York</li>
-                        <li>Phone: +65 11.188.888</li>
-                        <li>Email: hello@colorlib.com</li>
+                        <li>Address: {{  App\General::where('id',1)->first()->adress }}</li>
+                        <li>Phone: {{  App\General::where('id',1)->first()->phonenumber }}</li>
+                        <li>Email: {{  App\General::where('id',1)->first()->email }}</li>
                     </ul>
                 </div>
             </div>
@@ -18,27 +18,23 @@
                 <div class="footer__widget">
                     <h6>Useful Links</h6>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">About Our Shop</a></li>
-                        <li><a href="#">Secure Shopping</a></li>
-                        <li><a href="#">Delivery infomation</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Our Sitemap</a></li>
+                        <li><a href="{{ route('contact.index')}}">ติดต่อเรา</a></li>
+                        <li><a href="{{ route('coupon.index')}}">ส่วนลดโปรโมชั่น</a></li>
+                        <li><a href="{{ route('welcome.showdiscount')}}">สินค้าลดราคา</a></li>
+
                     </ul>
                     <ul>
                         <li><a href="#">Who We Are</a></li>
                         <li><a href="#">Our Services</a></li>
                         <li><a href="#">Projects</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Innovation</a></li>
-                        <li><a href="#">Testimonials</a></li>
+
                     </ul>
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="footer__widget">
-                    <h6>Join Our Newsletter Now</h6>
-                    <p>Get E-mail updates about our latest shop and special offers.</p>
+                    <h6>รับสมัครข่าวสารของเรา</h6>
+                    <p>Get E-mail updates </p>
                     <form action="#">
                         <input type="text" placeholder="Enter your mail">
                         <button type="submit" class="site-btn">Subscribe</button>
@@ -56,9 +52,9 @@
             <div class="col-lg-12">
                 <div class="footer__copyright">
                     <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> Data GhostHunter<i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://dataghosthunter.com" target="_blank">GhostHunt</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> {{  App\General::where('id',1)->first()->name }} <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://dataghosthunter.com" target="_blank"> Data GhostHunter</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                    <div class="footer__copyright__payment"><img src="{{asset('img/payment-item.png')}}" alt=""></div>
+                    <div class="footer__copyright__payment"><img src="{{asset('img/payment-item-pay.png')}}" alt=""></div>
                 </div>
             </div>
         </div>

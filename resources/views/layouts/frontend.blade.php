@@ -55,7 +55,7 @@
                 <div class="col-lg-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> data@colorlib.com</li>
+                            <li><i class="fa fa-envelope"></i> {{  App\General::where('id',1)->first()->email }} </li>
                             <li> <span>บริการจัดส่งฟรีเมื่อซื้อสินค้าครบตามเงื่อนไข</span></li>
 
                         </ul>
