@@ -214,9 +214,7 @@ class Errors{
                         0
                     );
                 },
-                sumtotalPrice(){
-                    return  totalPrice();
-                }
+
          },
         methods:{
             checkdiscount(discount){

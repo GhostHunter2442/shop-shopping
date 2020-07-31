@@ -190,9 +190,7 @@ export default {
               this.bankform.picturepay = event.target.files[0];
             },
             async getcartdetail() {
-                //   console.log(this.getpaymentid)
-                //   console.log(this.addressid)
-                //   console.log(this.bankid)
+
 
                 await  axios.get("/shopping/public/cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
@@ -203,11 +201,12 @@ export default {
             },
              gotocomfirm(){
 
-                this.pricetotal = this.totalPrice;
+                this.pricetotal = (this.totalPrice-this.$aes.decrypt(this.discount))+this.checkdelivery(this.totalPrice)+this.checkassery(this.totalPrice);
+
+
                         let formData = new FormData();
                         const { pricepay,accoutnpay} = this.bankform;
                         formData.append("picturepay",  this.bankform.picturepay);
-                        //  formData.append("pricepaydeliver", pricepay);
                         formData.append("pricepay", pricepay);
                         formData.append("accoutnpay", accoutnpay);
                         formData.append("paymentid", this.paymentid);

@@ -201,12 +201,13 @@ export default {
                 });
             },
              submit(){
-                    let pricetotal = (this.totalPrice+this.otherprice)*100;
-                    let addressid = this.addressid;
+                    let pricetotal = ((this.totalPrice+this.otherprice+this.checkdelivery(this.totalPrice))-this.$aes.decrypt(this.discount))*100;
+
+                   if(this.totalPrice>600){
+                     let addressid = this.addressid;
                     let bankid = this.bankid;
                     let paymentid =  this.paymentid;
                     Omise.setPublicKey("pkey_test_5kbvkp0spzbihnxs9tc");
-
                         Omise.createToken("card", this.card, function (statusCode, response) {
 
                                 if (response.object == "error") {
@@ -246,6 +247,17 @@ export default {
                                     });
                                  }
                           });
+
+
+                   }else{
+                       toastr['info']('ยอดการสั่งซื้อไม่ถึงเกณฑ์','', {
+                        progressBar: true,
+                        timeOut: 1500,
+                        extendedTimeOut: 1500,
+                        hideDuration: 1500,
+                        progressBar: false,
+                        });
+                   }
 
 
             },
