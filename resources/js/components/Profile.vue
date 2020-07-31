@@ -94,7 +94,9 @@
 
 
 
+
 <script>
+
   import DatePicker from 'vue2-datepicker';
   import 'vue2-datepicker/index.css';
   class Errors{
@@ -137,6 +139,8 @@ export default {
     },
     methods:{
        async getprofile(){
+            var simplebar = new Nanobar();
+             
             await  axios.get("http://localhost/shopping/public/order/orderdetail/profile"
                  ).then(res=> {
 

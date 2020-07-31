@@ -132,7 +132,22 @@
                                        <h3> <i class="fa fa-cogs stroke-transparent"></i> จัดการคำสั่งซื้อ</h3>
                                        </ul>
                                   </div>
-                                <p class="card-text">KeryExpress Thailand</p>
+                                   <div class="col-sm-5 " >
+                                       <div class="calcel_order">
+                                             <div class="card">
+                                        <div class="card-body">
+
+                                            <a href="javascript:;" class="close"></a><br><br>
+
+                                          <span>ยกเลิกคำสั่งซื้อ</span>
+                                          <p>  ไม่สามารถยกเลิกได้เมื่ออยู่ระหว่างการจัดส่ง</p>
+
+                                        </div>
+                                        </div>
+
+                                       </div>
+
+                                        </div>
 
                             </div>
                     </div>

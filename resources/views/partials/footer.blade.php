@@ -16,17 +16,16 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
                 <div class="footer__widget">
-                    <h6>Useful Links</h6>
+                    <h6>ข้อมูลเพิ่มเติม</h6>
                     <ul>
-                        <li><a href="{{ route('contact.index')}}">ติดต่อเรา</a></li>
+
                         <li><a href="{{ route('coupon.index')}}">ส่วนลดโปรโมชั่น</a></li>
                         <li><a href="{{ route('welcome.showdiscount')}}">สินค้าลดราคา</a></li>
 
                     </ul>
                     <ul>
-                        <li><a href="#">Who We Are</a></li>
-                        <li><a href="#">Our Services</a></li>
-                        <li><a href="#">Projects</a></li>
+                        <li><a href="{{ route('welcome')}}">หน้าเเรก</a></li>
+                        <li><a href="{{ route('contact.index')}}">ติดต่อเรา</a></li>
 
                     </ul>
                 </div>
@@ -37,7 +36,7 @@
                     <p>Get E-mail updates </p>
                     <form action="#">
                         <input type="text" placeholder="Enter your mail">
-                        <button type="submit" class="site-btn">Subscribe</button>
+                        <button type="submit" class="site-btn">รับข่าวสาร</button>
                     </form>
                     <div class="footer__widget__social">
                         <a href="#"><i class="fa fa-facebook"></i></a>

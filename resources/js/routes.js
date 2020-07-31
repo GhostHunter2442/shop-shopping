@@ -61,9 +61,26 @@ const routes =[
             props: true
          }
  ];
+
 var router = new VueRouter({
     routes,
     mode:"history"
   });
 
+  router.beforeResolve((to, from, next) => {
+    // If this isn't an initial page load.
+    if (to.name) {
+        // Start the route progress bar.
+
+        // console.log('start')
+
+    }
+    next()
+  })
+
+  router.afterEach((to, from) => {
+    // Complete the animation of the route progress bar.
+    // console.log('stop')
+    // NProgress.done()
+  })
   export default router;

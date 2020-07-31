@@ -21,6 +21,7 @@ import vueCrypt from 'vue-crypt'
 
 
 window.Vue = require('vue');
+
 // window.$ = require('jquery');
 window.bus = new Vue();
 Vue.use(vueCrypt)
@@ -62,6 +63,7 @@ const app = new Vue({
     components:{
         "index":Index,
     },
+
     data() {
         return {
             // discout_item:20

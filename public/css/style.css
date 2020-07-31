@@ -3188,6 +3188,52 @@ ol {
   -webkit-text-fill-color: transparent;
 }
 
+.calcel_order {
+  text-align: center;
+}
+
+.calcel_order span {
+  padding-top: 20px;
+  color: black;
+  line-height: 30px;
+}
+
+.calcel_order p {
+  font-size: 12px;
+}
+
+.calcel_order .card {
+  width: 16rem;
+}
+
+.calcel_order .close {
+  position: absolute;
+  opacity: 0.3;
+  border-radius: 5px;
+  background-color: #dad6d6;
+}
+
+.calcel_order .close:hover {
+  opacity: 1;
+}
+
+.calcel_order .close:before,
+.calcel_order .close:after {
+  position: absolute;
+  content: " ";
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+
+.calcel_order .close:before {
+  transform: rotate(45deg);
+}
+
+.calcel_order .close:after {
+  transform: rotate(-45deg);
+}
+
 .check_track_payment {
   background: #f5f5f5;
   padding: 30px;
