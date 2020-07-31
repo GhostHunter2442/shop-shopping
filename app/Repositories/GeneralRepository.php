@@ -16,8 +16,7 @@ class GeneralRepository
             'phonenumber'=> null,
             'open_time'=> null,
             'close_time'=> null,
-            'latitude'=> null,
-            'longitude'=> null,
+            'map_fram'=> null,
             'created_at'=> null,
             'updated_at'=> null,
         ];
@@ -36,8 +35,11 @@ class GeneralRepository
 
     public function update($request, $id)
     {
+         
         $general = $this->getById($id);
         if(empty($general)) return false;
+
+
 
         $general->name = $request->name;
         $general->email = $request->email;
@@ -45,8 +47,7 @@ class GeneralRepository
         $general->phonenumber = $request->phonenumber;
         $general->open_time = $request->open_time;
         $general->close_time = $request->close_time;
-        $general->latitude = $request->latitude;
-        $general->longitude = $request->longitude;
+        $general->map_fram = $request->map_fram;
         $general->save();
         return true;
     }

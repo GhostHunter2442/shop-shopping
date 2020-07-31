@@ -24,8 +24,6 @@ class GeneralRequest extends FormRequest
             'phonenumber' => 'required',
             'open_time' => 'required',
             'close_time' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
         ];
     }
 
@@ -39,8 +37,6 @@ class GeneralRequest extends FormRequest
             'phonenumber.required' => 'กรุณากรอกเบอร์โทร',
             'open_time.required' => 'กรุณากรอกเวลาเปิด',
             'close_time.required' => 'กรุณากรอกเวลาปิด',
-            'latitude.required' => 'กรุณากรอก ละติจูด',
-            'longitude.required' => 'กรุณากรอก ลองจิจูด',
         ];
     }
 }

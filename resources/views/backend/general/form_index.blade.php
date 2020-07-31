@@ -126,25 +126,14 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label for="latitude">พิกัด ละติจูด
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="map_fram">Map fram
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" name="latitude" value="{{ $data->latitude }}" class="form-control" required>
-                                    @if ($errors->has('latitude'))
+                                    <input type="text" name="map_fram" value="{{ $data->map_fram }}" class="form-control" >
+                                    @if ($errors->has('map_fram'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('latitude') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label for="longitude">พิกัด ละจิจูด
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" name="longitude" value="{{ $data->longitude }}" class="form-control" required>
-                                    @if ($errors->has('longitude'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('longitude') }}</strong>
+                                        <strong>{{ $errors->first('map_fram') }}</strong>
                                     </span>
                                     @endif
                                 </div>

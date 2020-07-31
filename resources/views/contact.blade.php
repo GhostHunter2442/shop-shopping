@@ -60,19 +60,21 @@
 
 <div class="map">
 
-
-  @php  echo nl2br($fram)   @endphp
-    <div class="map-inside">
-        <i class="icon_pin"></i>
-        <div class="inside-widget">
-            <h4>ประเทศไทย</h4>
-            <ul>
-                <li>Phone: {{ $item->phonenumber }}</li>
-                <li>Add: {{ $item->adress }}</li>
-            </ul>
-        </div>
+@if (!empty($item->map_fram))
+@php  echo nl2br($item->map_fram)   @endphp
+<div class="map-inside">
+    <i class="icon_pin"></i>
+    <div class="inside-widget">
+        <h4>ประเทศไทย</h4>
+        <ul>
+            <li>Phone: {{ $item->phonenumber }}</li>
+            <li>Add: {{ $item->adress }}</li>
+        </ul>
     </div>
 </div>
+</div>
+@endif
+
 @endforeach
 
 @endsection

@@ -21,8 +21,7 @@ class CreateGeneralsTable extends Migration
             $table->string('phonenumber',12);
             $table->string('open_time',12);
             $table->string('close_time',12);
-            $table->string('latitude',100);
-            $table->string('longitude',100);
+            $table->mediumText('map_fram')->nullable();
             $table->timestamps();
         });
     }

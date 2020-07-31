@@ -17,13 +17,13 @@ class GeneralController extends Controller
 
       public function update(GeneralRepository $gneral,GeneralRequest $request)
       {
-//   dd($request->open_time);
+
           $result = $gneral->update($request,1);
           $message = $result ? 'บันทึกข้อมูลสำเร็จ' : 'เกิดข้อผิดพลาดนะ!';
           $status = $result ? 'success' : 'error';
           return redirect()->route('renderForm.index')->with([
-            'message' => 'บันทึกข้อมูลสำเร็จ',
-            'status' => 'success',
+            'message' => $message,
+            'status' =>  $status,
         ], 200);
 
       }
