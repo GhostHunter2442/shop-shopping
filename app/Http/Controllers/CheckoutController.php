@@ -89,7 +89,24 @@ class CheckoutController extends Controller
     }
     public function confirm(Request $request)
     {
+        if($request->get('paymentid')==1){
+            $this->validate($request,[
+                'picturepay' => 'required|image|mimes:jpeg,jpg,png',
+                'pricepay' => 'required|numeric',
+                'accoutnpay' => 'required|digits:4|numeric',
 
+            ],[
+                'picturepay.required' => 'กรุณาเลือกรูปภาพ',
+                'picturepay.image' => 'กรุณาเลือกไฟล์ที่เป็นรูปภภาพเท่านั้น',
+                'picturepay.mimes' => 'กรุณาเลือกไฟล์นามสุกุล jpeg,jpg,png',
+                'pricepay.required' => 'กรุณาณากรอกยอดเงินที่โอน',
+                'pricepay.numeric' => 'กรุณากรอกตัวเลขเท่านั้น',
+                'accoutnpay.required' => 'กรุณาณากรอกรหัสบัตร 4 ตัวสุท้าย',
+                'accoutnpay.digits' => 'กรุณาณากรอกรหัสบัตร 4 ตัว',
+                'accoutnpay.numeric' => 'กรุณากรอกตัวเลขเท่านั้น',
+            ]);
+
+        }
         $listCart = auth()->user()->products()->latest()->get();
         $latest = Invoice::latest()->first();
         if ($latest==null) {
@@ -98,7 +115,6 @@ class CheckoutController extends Controller
         }
         else{
             $string = preg_replace("/[^0-9\.]/",'', $latest->id);
-
             $string_date =  preg_replace("/^[0-9]{4}/",'',$string);
             $expNum = 'SPV'.date('Y').sprintf('%05d', $string_date+1);
         }

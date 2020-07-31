@@ -52,8 +52,10 @@
                                                                   <div class="fileUpload">
                                                                 <input type="file"  name="picturepay" @change="onFileSelected" placeholder="อัพโหลดรูปภาพ" class="upload">
                                                                    <span>เลือกไฟล์</span>
+
                                                                </div>
-                                                         <img v-if="imagepayURL" :src="imagepayURL" height="300"   class="mt-3" />
+                                                                 <div class="invalide-feedback" id="picturepay"> {{errors.get('picturepay')}}</div>
+                                                             <img v-if="imagepayURL" :src="imagepayURL" height="300"   class="mt-3" />
 
                                                             </div>
                                                           </div>
@@ -65,12 +67,14 @@
                                                             <div class="checkout__input">
                                                                 <p>จำนวน<span>*</span></p>
                                                                 <input type="text"  name="pricepay"  v-model="bankform.pricepay" placeholder="จำนวน"  >
+                                                                 <div class="invalide-feedback" id="pricepay"> {{errors.get('pricepay')}}</div>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="checkout__input">
                                                                 <p>เลขที่บัญชี (4 ตัวท้าย)<span>*</span></p>
                                                                 <input type="text"  name="accoutnpay" v-model="bankform.accoutnpay" placeholder="4 ตัวท้าย">
+                                                                  <div class="invalide-feedback" id="accoutnpay"> {{errors.get('accoutnpay')}}</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -133,7 +137,19 @@
 </template>
 
 <script>
-
+  class Errors{
+    constructor(){
+        this.errors = {};
+    }
+    get(field){
+        if(this.errors[field]){
+            return this.errors[field][0];
+        }
+    }
+    record(errors){
+        this.errors = errors.errors;
+    }
+}
 export default {
       props:['paymentid','addressid','bankid','discount'],
         mounted() {
@@ -152,6 +168,7 @@ export default {
                 accoutnpay:"",
               },
                imagepayURL: null,
+                  errors: new Errors(),
              }
 
         },
@@ -217,12 +234,10 @@ export default {
                         // console.log(formData)
                          axios.post("http://localhost/shopping/public/cart/checkout/confirm",formData,
                                     ).then(response=> {
-                                //  console.log(response.data)
+
                                     window.location.href = "http://localhost/shopping/public/order/orderdetail/myorder";
-                                    //  window.location.href = response.data;
-                                }).catch(function (error) {
-                                    console.log(error);
-                                });
+
+                                }).catch(error => this.errors.record(error.response.data));
 
             },
         },
