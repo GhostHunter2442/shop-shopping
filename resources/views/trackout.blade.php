@@ -2,7 +2,7 @@
 
 @section('content')
 
-        <track-out id={!!$addressid!!}></track-out>
+        <track-out id={!!$addressid!!} discount={!!$discount!!}></track-out>
 
 @endsection
 

@@ -2,6 +2,6 @@
 
 @section('content')
 
-        <checkout-payment paymentid={!!$paymentid!!} addressid={!!$addressid!!} bankid={!!$bankid!!}></checkout-payment>
+        <checkout-payment paymentid={!!$paymentid!!} addressid={!!$addressid!!} bankid={!!$bankid!!}  discount={!!$discount!!}></checkout-payment>
 
 @endsection

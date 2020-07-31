@@ -18,8 +18,8 @@ use ox01code\Omise\process\OmiseSource;
 
 class CheckoutController extends Controller
 {
-    public function index(){
-        return view('checkout');
+    public function index($discount){
+        return view('checkout',compact('discount'));
     }
     public function getaddress(){
         $listaddress =  auth()->user()->addresses()->orderBy('stdefalse','desc')->get();
@@ -33,18 +33,18 @@ class CheckoutController extends Controller
           $listaddressid =  Address::find($id);
          return response()->json($listaddressid);
     }
-    public function trackout($addressid){
-        return view('trackout',compact('addressid'));
+    public function trackout($addressid,$discount){
+        return view('trackout',compact('addressid','discount'));
     }
-    public function checkpayment($addressid,$paymentid){
-        return view('checkpayment',compact('addressid','paymentid'));
+    public function checkpayment($addressid,$paymentid,$discount){
+        return view('checkpayment',compact('addressid','paymentid','discount'));
     }
 
-    public function checkoutpament($paymentid=0,$addressid=0,$bankid=0){
-        return view('checkoutpament',compact('paymentid','addressid','bankid'));
+    public function checkoutpament($paymentid=0,$addressid=0,$bankid=0,$discount){
+        return view('checkoutpament',compact('paymentid','addressid','bankid','discount'));
     }
-    public function checkpaymentomise($paymentid=0,$addressid=0,$bankid=0){
-        return view('paymentomise',compact('paymentid','addressid','bankid'));
+    public function checkpaymentomise($paymentid=0,$addressid=0,$bankid=0,$discount){
+        return view('paymentomise',compact('paymentid','addressid','bankid','discount'));
     }
     public function addaddress(Request $request){
 

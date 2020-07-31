@@ -3,6 +3,6 @@
 
 @section('content')
 
-        <check-paymentomise paymentid={!!$paymentid!!} addressid={!!$addressid!!} bankid={!!$bankid!!}></check-paymentomise>
+        <check-paymentomise paymentid={!!$paymentid!!} addressid={!!$addressid!!} bankid={!!$bankid!!} discount={!!$discount!!}></check-paymentomise>
 
 @endsection

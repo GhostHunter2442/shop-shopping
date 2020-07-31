@@ -102,8 +102,8 @@
                                  <li><p>มูลค่าสินค้ารวม (ยังไม่คิดค่าจัดส่ง)</p> </li>
                             </ul>
 
-                            <!-- <a href="javascript:;" v-on:click="confirm()"  class="primary-btn">ดำเนินการต่อ</a> -->
-                             <a href="/shopping/public/cart/checkout/cartcheckout"   class="primary-btn">ดำเนินการต่อ</a>
+                            <a :href="NextUrl+this.$aes.encrypt(''+parseInt(total_discount)+'')"  class="primary-btn">ดำเนินการต่อ</a>
+                             <!-- <a href="javascript:;"   v-on:click="gotocheckout()"  class="primary-btn">ดำเนินการต่อ</a> -->
                         </div>
                     </div>
                 </div>
@@ -143,15 +143,19 @@
 
 <script>
 import moment from 'moment'
+
 export default {
 
 mounted() {
         this.getUserData();
+
+this.$aes.setKey('base64:GoQmYiFHbf+sgZ0bUNykIasFDHHSvzbNNQ8b397iXQw=')
     },
 data() {
         return {
              listCart: [],
              baseUrl:'http://localhost/shopping/public/',
+             NextUrl:'/shopping/public/cart/checkout/cartcheckout/',
              message: '',
              imageUrl: "storage/images/resize/",
              imageUrl_: "storage/images/",
@@ -189,7 +193,7 @@ methods: {
                             if(res.data!=''){
                                 for(var i = 0; i < mydata.length; i++){
                                          var product_length=mydata[i]['product_id_map'].length ;
-                                         console.log(product_length)
+
                                                 if(today <= mydata[i]['end_datetime']){
                                                     for(var j = 0; j < myorder.length; j++){
                                                                     for(var k = 0; k < product_length; k++){
@@ -222,11 +226,11 @@ methods: {
                                                             return !array_code.includes(item);
                                                         });
                                             array_code = tempArr;
-                                            console.log(array_order)
+
                                      if(array_order!=''){
                                               for(var y = 0; y < array_order.length; y++){
 
-                                                        for(var n = 0; n < 3; n++){
+                                                        for(var n = 0; n < myorder.length; n++){
                                                                 if(array_order[y]==myorder[n]['id']){
                                                                         this.total_discount=0;
                                                                         let showicon='info';
@@ -245,6 +249,10 @@ methods: {
                                                  var per= (this.totalPrice*mydata[z]['percen'])/100;
                                                  if(per > mydata[z]['discount']){
                                                         this.total_discount= mydata[z]['discount'];
+                                            // let encrypted = this.$aes.encrypt(''+parseInt(this.total_discount)+'')
+                                            // let decrypted = this.$aes.decrypt(encrypted)
+                                            // console.log(encrypted)
+                                            // console.log(decrypted)
                                                  }
                                                  else{
                                                       this.total_discount= per;
@@ -256,7 +264,7 @@ methods: {
                                     }
 
                             }else{
-                                 this.total_discount=0
+                                  this.total_discount=0
                                   let showicon='info';
                                   let showtitle ='ไม่พบ CODE โปรดระบุอีกครั้ง';
                                   this.showalert(showicon,showtitle);
@@ -269,6 +277,8 @@ methods: {
       },
 
       async  getUserData() {
+
+
 
           await  axios.get("cartdetail/detail").then(response => {
                  this.listCart = response.data.listcarts;
@@ -350,6 +360,11 @@ methods: {
                     })
 
     },
+    // gotocheckout(){
+    //     console.log(this.NextUrl)
+
+    //       window.location.href = this.NextUrl;
+    // },
         showalert(showicon,showtitle) {
                 toastr[showicon](showtitle,'', {
                 progressBar: true,
@@ -365,10 +380,3 @@ methods: {
 };
 </script>
 
-<style>
-
-/* .toast-pink {
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=") !important;
-    background-color: #4bc078;
-} */
-</style>

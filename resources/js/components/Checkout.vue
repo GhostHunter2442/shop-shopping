@@ -138,8 +138,13 @@
                                     <li>{{ list.name | truncate(15)}}<span>{{ list.price*list.pivot.qty | currency("฿")  }}</span></li>
 
                                 </ul>
-                                <div class="checkout__order__subtotal">ราคารวม <span>{{ totalPrice | currency("฿") }}</span></div>
-                                <div class="checkout__order__total">ยอดสั่งซื้อรวม <span>{{ totalPrice | currency("฿") }}</span></div>
+                                 <div class="checkout__order__subtotal_other">
+                                     <ul>
+                                    <li>ราคารวม<span>{{ totalPrice | currency("฿") }}</span></li>
+                                      <li>ส่วนลด<span>{{ checkdiscount(discount) | currency("฿") }}</span></li>
+                                   </ul>
+                                </div>
+                                <div class="checkout__order__total">ยอดสั่งซื้อรวม <span>{{ totalPrice-checkdiscount(discount) | currency("฿") }}</span></div>
 
 
 
@@ -171,10 +176,13 @@ class Errors{
     }
 }
     export default {
+        props:['discount'],
         mounted() {
+        this.$aes.setKey('base64:GoQmYiFHbf+sgZ0bUNykIasFDHHSvzbNNQ8b397iXQw=')
         this.getcartdetail();
         this.getaddress();
        },
+
         data(){
             return {
               listCart: [],
@@ -188,13 +196,14 @@ class Errors{
                 adress2:"",
                 adress3:"",
                 other:"",
-                // search: '',
+
               },
                 errors: new Errors(),
                 showaddress_one:false,
                 showaddress_two:false,
                 showaddress_defalse:true,
                 addressID:0,
+                 total_discount:0
 
             }
         },
@@ -205,12 +214,21 @@ class Errors{
                         0
                     );
                 },
+                sumtotalPrice(){
+                    return  totalPrice();
+                }
          },
         methods:{
+            checkdiscount(discount){
+
+                return this.$aes.decrypt(discount)
+            },
             onSearched(address) {
                   this.addresses.adress1 = address.subdistrict+', '+address.district+', '+address.province+', '+address.postalCode;
             },
             async getcartdetail() {
+               console.log(this.sumtotalPrice);
+
                 await  axios.get("/shopping/public/cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
 
@@ -219,13 +237,14 @@ class Errors{
                 });
             },
              async getaddress() {
+                //   console.log(this.total_discount)
                 await  axios.get("/shopping/public/cart/checkout/address").then(res => {
                       this.addressList = res.data
 
                        res.data.forEach(item => {
                               if(item.stdefalse == 1){
                                   this.addressID=item.id;
-                                  console.log(item.firstname);
+                                //   console.log(item.firstname);
                               }
                          });
                      if(this.addressList != ''){
@@ -259,8 +278,8 @@ class Errors{
                 await  axios.post("http://localhost/shopping/public/cart/checkout/address/adddata" ,formData,
                 {params:{addressID:this.addressID}}
                  ).then(response=> {
-                      console.log(response.data.addressid.id);
-                      window.location.href = "http://localhost/shopping/public/cart/checkout/track/"+response.data.addressid.id;
+                    //   console.log(response.data.addressid.id);
+                      window.location.href = "http://localhost/shopping/public/cart/checkout/track/"+response.data.addressid.id+'/'+this.discount;
                })
                .catch(error => this.errors.record(error.response.data),
                 //  console.log('errrrrr')

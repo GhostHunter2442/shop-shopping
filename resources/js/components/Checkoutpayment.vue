@@ -111,8 +111,16 @@
                                 <ul  v-for=" list in listCart"  :key="list.id">
                                     <li>{{ list.name | truncate(15)}}<span>{{ list.price*list.pivot.qty | currency("฿")  }}</span></li>
                                 </ul>
-                                <div class="checkout__order__subtotal">ราคารวม <span>{{ totalPrice | currency("฿") }}</span></div>
-                                <div class="checkout__order__total">ยอดสั่งซื้อรวม <span>{{ totalPrice | currency("฿") }}</span></div>
+                                   <div class="checkout__order__subtotal_other">
+                                     <ul>
+                                    <li>ราคารวม<span>{{ totalPrice | currency("฿") }}</span></li>
+                                      <li>ส่วนลด<span>{{ checkdiscount(discount) | currency("฿") }}</span></li>
+                                       <li v-if="paymentid==2">ค่าบริการเพิ่มเติม<span>{{ checkassery(totalPrice) | currency("฿") }}</span></li>
+                                        <li>ค่าจัดส่ง<span>{{ checkdelivery(totalPrice) | currency("฿") }}</span></li>
+                                   </ul>
+                                </div>
+                                <div class="checkout__order__total">ยอดสั่งซื้อรวม <span>{{ (totalPrice-checkdiscount(discount))+checkdelivery(totalPrice)+checkassery(totalPrice) | currency("฿") }}</span></div>
+
                              <a href="javascript:;"   v-on:click="gotocomfirm()" class="primary-btn"> ยืนยันสั่งซื้อสินค้า </a>
                             </div>
                         </div>
@@ -127,8 +135,9 @@
 <script>
 
 export default {
-      props:['paymentid','addressid','bankid'],
+      props:['paymentid','addressid','bankid','discount'],
         mounted() {
+              this.$aes.setKey('base64:GoQmYiFHbf+sgZ0bUNykIasFDHHSvzbNNQ8b397iXQw=')
             this.getcartdetail();
        },
 
@@ -156,9 +165,22 @@ export default {
                 },
          },
         methods:{
-            createtoken(){
-                   console.log('createttt')
-           },
+              checkdiscount(discount){
+
+                return this.$aes.decrypt(discount)
+               },
+                 checkdelivery(totalprice){
+                return totalprice<3000 ? 50 :0;
+               },
+               checkassery(totalprice){
+                    if(this.paymentid==2){
+                        var percen = ((totalprice*3)/100)+10;
+                    }
+                    else{
+                         var percen=0;
+                    }
+                 return percen;
+               },
             onFileSelected(event) {
                const reader = new FileReader();
                reader.onload = event => {
@@ -168,9 +190,9 @@ export default {
               this.bankform.picturepay = event.target.files[0];
             },
             async getcartdetail() {
-                  console.log(this.getpaymentid)
-                  console.log(this.addressid)
-                  console.log(this.bankid)
+                //   console.log(this.getpaymentid)
+                //   console.log(this.addressid)
+                //   console.log(this.bankid)
 
                 await  axios.get("/shopping/public/cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
@@ -193,7 +215,7 @@ export default {
                          formData.append("bankid", this.bankid);
                         formData.append("totalPrice", this.pricetotal);
 
-                        console.log(formData)
+                        // console.log(formData)
                          axios.post("http://localhost/shopping/public/cart/checkout/confirm",formData,
                                     ).then(response=> {
                                 //  console.log(response.data)

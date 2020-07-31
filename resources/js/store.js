@@ -1,7 +1,8 @@
 export default{
       state:{
            countItem:0,
-           favorite:0
+           favorite:0,
+           discount:0
       },
        mutations: {
           setcount(state,value){

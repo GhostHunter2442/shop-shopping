@@ -188,15 +188,15 @@ Route::group(['middleware' => ['auth']],function(){
 
     //checkout
     Route::prefix('cart/checkout')->group(function () {
-        Route::get('cartcheckout', 'CheckoutController@index')->name('cart.cartcheckout');
+        Route::get('cartcheckout/{discount}', 'CheckoutController@index')->name('cart.cartcheckout');
         Route::get('address', 'CheckoutController@getaddress')->name('cart.getaddress');
         Route::get('banks', 'CheckoutController@getbank')->name('cart.getbank');
         Route::get('addressid/{address_id}', 'CheckoutController@getaddressid')->name('cart.getaddressid');
         Route::post('address/adddata', 'CheckoutController@addaddress')->name('cart.addaddress');
-        Route::get('track/{address_id}', 'CheckoutController@trackout')->name('cart.trackout');
-        Route::get('payment/{address_id}/{payment_id}', 'CheckoutController@checkpayment')->name('cart.checkpayment');
-        Route::get('paymentomise/{address_id?}/{payment_id?}/{bank_id?}', 'CheckoutController@checkpaymentomise')->name('cart.omise');
-        Route::get('checkoutpament/{address_id?}/{payment_id?}/{bank_id?}', 'CheckoutController@checkoutpament')->name('cart.checkoutpament');
+        Route::get('track/{address_id}/{discount}', 'CheckoutController@trackout')->name('cart.trackout');
+        Route::get('payment/{address_id}/{payment_id}/{discount}', 'CheckoutController@checkpayment')->name('cart.checkpayment');
+        Route::get('paymentomise/{address_id?}/{payment_id?}/{bank_id?}/{discount}', 'CheckoutController@checkpaymentomise')->name('cart.omise');
+        Route::get('checkoutpament/{address_id?}/{payment_id?}/{bank_id?}/{discount}', 'CheckoutController@checkoutpament')->name('cart.checkoutpament');
         Route::post('confirm', 'CheckoutController@confirm')->name('cart.confirm');
         Route::post('confirmcard', 'CheckoutController@confirmomise')->name('cart.confirmomise');
     });

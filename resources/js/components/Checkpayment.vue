@@ -196,8 +196,15 @@
                                     <li>{{ list.name | truncate(15)}}<span>{{ list.price*list.pivot.qty | currency("฿")  }}</span></li>
 
                                 </ul>
-                                <div class="checkout__order__subtotal">ราคารวม <span>{{ totalPrice | currency("฿") }}</span></div>
-                                <div class="checkout__order__total">ยอดสั่งซื้อรวม <span>{{ totalPrice | currency("฿") }}</span></div>
+                                  <div class="checkout__order__subtotal_other">
+                                     <ul>
+                                    <li>ราคารวม<span>{{ totalPrice | currency("฿") }}</span></li>
+                                      <li>ส่วนลด<span>{{ checkdiscount(discount) | currency("฿") }}</span></li>
+                                        <li>ค่าจัดส่ง<span>{{ checkdelivery(totalPrice) | currency("฿") }}</span></li>
+                                   </ul>
+                                </div>
+                                <div class="checkout__order__total">ยอดสั่งซื้อรวม <span>{{ (totalPrice-checkdiscount(discount))+checkdelivery(totalPrice) | currency("฿") }}</span></div>
+
 
 
                              <a href="javascript:;"   v-on:click="gotocheckout()" class="primary-btn"> ดำเนินการต่อ </a>
@@ -212,8 +219,9 @@
 </template>
 <script>
 export default {
-      props:['paymentid','addressid'],
+      props:['paymentid','addressid','discount'],
         mounted() {
+             this.$aes.setKey('base64:GoQmYiFHbf+sgZ0bUNykIasFDHHSvzbNNQ8b397iXQw=')
             this.getcartdetail();
             this.getbanks();
        },
@@ -237,6 +245,13 @@ export default {
                 },
          },
         methods:{
+                checkdiscount(discount){
+
+                return this.$aes.decrypt(discount)
+               },
+                 checkdelivery(totalprice){
+                return totalprice<3000 ? 50 :0;
+               },
                async getbanks() {
 
                 await  axios.get("/shopping/public/cart/checkout/banks").then(res => {
@@ -259,31 +274,27 @@ export default {
            async  gotocheckout(){
                   if(this.paymentid ==1){
                      if(this.bankID !=''){
-                        window.location.href = "http://localhost/shopping/public/cart/checkout/checkoutpament/"+this.paymentid+'/'+this.addressid+'/'+this.bankID;
+                        window.location.href = "http://localhost/shopping/public/cart/checkout/checkoutpament/"
+                         +this.paymentid+'/'+this.addressid+'/'+this.bankID+'/'+this.discount;
                      }
                      else{
-                             const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 1500,
-                        timerProgressBar: true,
-                        onOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-                    Toast.fire({
-                        icon: 'error',
-                        title: 'เลือกวิธีการชำระเงิน'
-                    })
+                           toastr['info']('เลือกวิธีการชำระเงิน','', {
+                        progressBar: true,
+                        timeOut: 1500,
+                        extendedTimeOut: 1500,
+                        hideDuration: 1500,
+                        progressBar: false,
+                        });
+                 
                      }
                   }
                   else if(this.paymentid ==2){
-                        window.location.href = "http://localhost/shopping/public/cart/checkout/checkoutpament/"+this.paymentid+'/'+this.addressid;
+                        window.location.href = "http://localhost/shopping/public/cart/checkout/checkoutpament/"
+                           +this.paymentid+'/'+this.addressid+'/0/'+this.discount;
                   }
                    else if(this.paymentid ==3){
-                        window.location.href = "http://localhost/shopping/public/cart/checkout/paymentomise/"+this.paymentid+'/'+this.addressid+'/'+this.bankID;
+                        window.location.href = "http://localhost/shopping/public/cart/checkout/paymentomise/"
+                        +this.paymentid+'/'+this.addressid+'/0/'+this.discount;
                   }
             },
         },

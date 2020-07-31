@@ -139,8 +139,13 @@
                                     <li>{{ list.name | truncate(15)}}<span>{{ list.price*list.pivot.qty | currency("฿")  }}</span></li>
 
                                 </ul>
-                                <div class="checkout__order__subtotal">ราคารวม <span>{{ totalPrice | currency("฿") }}</span></div>
-                                <div class="checkout__order__total">ยอดสั่งซื้อรวม <span>{{ totalPrice | currency("฿") }}</span></div>
+                                <div class="checkout__order__subtotal_other">
+                                     <ul>
+                                    <li>ราคารวม<span>{{ totalPrice | currency("฿") }}</span></li>
+                                      <li>ส่วนลด<span>{{ checkdiscount(discount) | currency("฿") }}</span></li>
+                                   </ul>
+                                </div>
+                                <div class="checkout__order__total">ยอดสั่งซื้อรวม <span>{{ totalPrice-checkdiscount(discount) | currency("฿") }}</span></div>
 
 
 
@@ -157,8 +162,9 @@
 </template>
 <script>
 export default {
-        props:['id'],
+        props:['id','discount'],
         mounted() {
+            this.$aes.setKey('base64:GoQmYiFHbf+sgZ0bUNykIasFDHHSvzbNNQ8b397iXQw=')
             this.getcartdetail();
             this.getaddressid();
        },
@@ -185,8 +191,12 @@ export default {
                 },
          },
         methods:{
+               checkdiscount(discount){
+
+                return this.$aes.decrypt(discount)
+            },
             async getcartdetail() {
-              
+
                 await  axios.get("/shopping/public/cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
 
@@ -203,24 +213,17 @@ export default {
             },
             gotopayment(){
                   if(this.paymentID !=''){
-                         window.location.href = "http://localhost/shopping/public/cart/checkout/payment/"+this.id+'/'+this.paymentID;
+                         window.location.href = "http://localhost/shopping/public/cart/checkout/payment/"+this.id+'/'+this.paymentID+'/'+this.discount;
                   }
                   else{
-                       const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 1500,
-                        timerProgressBar: true,
-                        onOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-                    Toast.fire({
-                        icon: 'error',
-                        title: 'เลือกรูปแบบการจัดส่ง'
-                    })
+                        toastr['info']('เลือกรูปแบบการจัดส่ง','', {
+                        progressBar: true,
+                        timeOut: 1500,
+                        extendedTimeOut: 1500,
+                        hideDuration: 1500,
+                        progressBar: false,
+                        });
+
                   }
             },
         }

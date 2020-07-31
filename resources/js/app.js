@@ -1,7 +1,7 @@
 
 
 require('./bootstrap');
- 
+
 import VueRouter from "vue-router";
 import router from "./routes";
 import Vuex from 'vuex';
@@ -16,11 +16,14 @@ import StarRating from 'vue-star-rating';
 import vSelect from "vue-select";
 
 
+import vueCrypt from 'vue-crypt'
+
 
 
 window.Vue = require('vue');
 // window.$ = require('jquery');
 window.bus = new Vue();
+Vue.use(vueCrypt)
 
 
 Vue.use(Vue2Filters);
@@ -61,22 +64,29 @@ const app = new Vue({
     },
     data() {
         return {
+            // discout_item:20
         };
     },
 
-    // mounted() {
-
-    // },
     created(){
         this.$store.dispatch("addItem")
         this.$store.dispatch("addFavorite")
 
+        // bus.$on('totla-discount', (total_discount) => {
+        //     this.setdiscount(total_discount);
+        // });
+
     },
 
     computed: {
-
+        // disTotal(){
+        //       return this.discout_item;
+        // },
     },
     methods: {
+        // setdiscount(total_discount){
+        //       this.discout_item=total_discount;
+        // }
     },
 
 

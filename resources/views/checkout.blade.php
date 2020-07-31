@@ -1,6 +1,9 @@
 @extends('layouts.frontend')
 @section('content')
 
-<check-out></check-out>
+{{-- <check-out :distotal="disTotal"></check-out> --}}
+<check-out discount={!!$discount!!}></check-out>
 
 @endsection
+
+

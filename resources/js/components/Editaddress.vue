@@ -151,7 +151,7 @@ class Errors{
                  hideDuration: 1500,
                  progressBar: false,
                 });
-                    
+
                })
                .catch(error => this.errors.record(error.response.data));
             },

@@ -124,11 +124,13 @@
                                 <div class="checkout__order__subtotal_other">
                                      <ul>
                                     <li>ราคารวม<span>{{ totalPrice | currency("฿") }}</span></li>
+                                     <li>ส่วนลด<span>{{ checkdiscount(discount) | currency("฿") }}</span></li>
                                       <li>ค่าบริการเพิ่มเติม<span>{{ otherprice | currency("฿") }}</span></li>
+                                       <li>ค่าจัดส่ง<span>{{ checkdelivery(totalPrice) | currency("฿") }}</span></li>
                                    </ul>
                                 </div>
 
-                                <div class="checkout__order__total">ยอดสั่งซื้อรวม <span>{{ totalPrice+otherprice | currency("฿") }}</span></div>
+                                <div class="checkout__order__total">ยอดสั่งซื้อรวม <span>{{ (totalPrice+otherprice+checkdelivery(totalPrice))-checkdiscount(discount) | currency("฿") }}</span></div>
                                <button type="submit"   class="primary-btn">ยืนยันสั่งซื้อสินค้า</button>
                             </div>
                         </div>
@@ -143,8 +145,9 @@
 
 <script>
 export default {
-      props:['paymentid','addressid','bankid'],
+      props:['paymentid','addressid','bankid','discount'],
         mounted() {
+             this.$aes.setKey('base64:GoQmYiFHbf+sgZ0bUNykIasFDHHSvzbNNQ8b397iXQw=')
             this.getcartdetail();
        },
 
@@ -180,12 +183,14 @@ export default {
                 },
          },
         methods:{
+                checkdiscount(discount){
+
+                return this.$aes.decrypt(discount)
+               },
+                 checkdelivery(totalprice){
+                return totalprice<3000 ? 50 :0;
+               },
             async getcartdetail() {
-
-                  console.log(this.paymentid)
-                  console.log(this.addressid)
-                  console.log(this.bankid)
-
 
 
                 await  axios.get("/shopping/public/cartdetail/detail").then(res => {
