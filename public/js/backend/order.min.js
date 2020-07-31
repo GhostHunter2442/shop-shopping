@@ -211,11 +211,11 @@ $(document).ready(function () {
 
                    }
                   else{
-                     // toastr[resp.status](resp.message.select_file, '', {
-                     //     progressBar: true,
-                     //     timeOut: 1500,
-                     //     extendedTimeOut: 1500
-                     //   });
+                    //  toastr[resp.status](resp.message.select_file, '', {
+                    //      progressBar: true,
+                    //      timeOut: 1500,
+                    //      extendedTimeOut: 1500
+                    //    });
                        $('#saveForm')[0].reset();
                        $('#uploadStatus').html('<p style="color:#EA4335;">'+resp.message.select_file+'.</p>');
 
@@ -223,18 +223,18 @@ $(document).ready(function () {
                        loading_btn.classList.add("d-none");
                    }
              }
-            //  ,
-            //  error: function (jqXHR, textStatus, errorThrown) {
-            //     toastr["warning"]('มีเลขพัสดุที่ลงทะเบียนเเล้ว',errorThrown, {
-            //         progressBar: true,
-            //         timeOut: 1500,
-            //         extendedTimeOut: 1500
-            //       });
-            //       $('#saveForm')[0].reset();
-            //       upload_btn.classList.remove("d-none");
-            //       loading_btn.classList.add("d-none");
+             ,
+             error: function (jqXHR, textStatus, errorThrown) {
+                toastr["warning"]('มีเลขพัสดุที่ลงทะเบียนเเล้ว',errorThrown, {
+                    progressBar: true,
+                    timeOut: 1500,
+                    extendedTimeOut: 1500
+                  });
+                  $('#saveForm')[0].reset();
+                  upload_btn.classList.remove("d-none");
+                  loading_btn.classList.add("d-none");
 
-            // }
+            }
             })
        });
 });
