@@ -153,7 +153,7 @@ export default {
 
         data(){
              return {
-            bankURL:'/shopping/public/img/',
+            bankURL:APP_URL+'img/',
             listCart: [],
 
               card :{
@@ -193,7 +193,7 @@ export default {
             async getcartdetail() {
 
 
-                await  axios.get("/shopping/public/cartdetail/detail").then(res => {
+                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
 
                }).catch(function (error) {
@@ -229,8 +229,7 @@ export default {
                             }
                                 else {
                                    let omise_token=response.id;
-                                   console.log(omise_token)
-                                   console.log(pricetotal)
+
                                        let formData = new FormData();
                                         formData.append("omiseToken",  omise_token);
                                         formData.append("pricetotal",   pricetotal);
@@ -238,10 +237,10 @@ export default {
                                         formData.append("bankid", bankid);
                                          formData.append("paymentid", paymentid);
 
-                                    axios.post("http://localhost/shopping/public/cart/checkout/confirmcard",formData,
+                                    axios.post(APP_URL+"cart/checkout/confirmcard",formData,
                                         ).then(response=> {
-                                            console.log(response.data)
-                                               window.location.href = "http://localhost/shopping/public/order/orderdetail/myorder";
+
+                                               window.location.href = APP_URL+'order/orderdetail/myorder';
                                     }).catch(function (error) {
                                         console.log(error);
                                     });

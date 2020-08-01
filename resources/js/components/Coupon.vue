@@ -1,9 +1,6 @@
 <template>
     <div>
-        <section
-            class="breadcrumb-section set-bg"
-            data-setbg="/shopping/public/img/breadcrumb.jpg"
-        >
+       <section class="breadcrumb-section set-bg" :data-setbg="herder_img">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -58,6 +55,7 @@ import moment from 'moment'
     export default {
         data(){
             return {
+                   herder_img:APP_URL+'img/breadcrumb.jpg',
                 couponList:[],
                 canCopy:false
             }
@@ -86,7 +84,7 @@ import moment from 'moment'
             },
                async getcoupong(){
 
-                   await  axios.get("/shopping/public/promotions/getcoupon").then(res => {
+                   await  axios.get(APP_URL+"promotions/getcoupon").then(res => {
                     this.couponList = res.data;
                     }).catch( error => {
                      console.log(error);

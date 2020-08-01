@@ -225,9 +225,9 @@ class Errors{
                   this.addresses.adress1 = address.subdistrict+', '+address.district+', '+address.province+', '+address.postalCode;
             },
             async getcartdetail() {
-               console.log(this.sumtotalPrice);
+               
 
-                await  axios.get("/shopping/public/cartdetail/detail").then(res => {
+                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
 
                }).catch(function (error) {
@@ -235,23 +235,23 @@ class Errors{
                 });
             },
              async getaddress() {
-                //   console.log(this.total_discount)
-                await  axios.get("/shopping/public/cart/checkout/address").then(res => {
+
+                await  axios.get(APP_URL+"cart/checkout/address").then(res => {
                       this.addressList = res.data
 
                        res.data.forEach(item => {
                               if(item.stdefalse == 1){
                                   this.addressID=item.id;
-                                //   console.log(item.firstname);
+
                               }
                          });
                      if(this.addressList != ''){
                          this.showaddress_defalse =false;
                          this.showaddress_one =true;
                          this.showaddress_two =false;
-                        //  console.log('มีที่อยู่')
+
                      }else{
-                        //   console.log('ไม่มีที่อยู่')
+
                             this.showaddress_defalse =false;
                             this.showaddress_one =false;
                             this.showaddress_two =true;
@@ -273,11 +273,11 @@ class Errors{
                 formData.append("adress3", adress3);
                 formData.append("other", other);
 
-                await  axios.post("http://localhost/shopping/public/cart/checkout/address/adddata" ,formData,
+                await  axios.post(APP_URL+"cart/checkout/address/adddata" ,formData,
                 {params:{addressID:this.addressID}}
                  ).then(response=> {
                     //   console.log(response.data.addressid.id);
-                      window.location.href = "http://localhost/shopping/public/cart/checkout/track/"+response.data.addressid.id+'/'+this.discount;
+                      window.location.href = APP_URL+'cart/checkout/track/'+response.data.addressid.id+'/'+this.discount;
                })
                .catch(error => this.errors.record(error.response.data),
                 //  console.log('errrrrr')

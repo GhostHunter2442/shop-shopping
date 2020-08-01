@@ -3,7 +3,7 @@
 
 
 
-          <section class="breadcrumb-section set-bg" data-setbg="http://localhost/shopping/public/img/breadcrumb.jpg">
+        <section class="breadcrumb-section set-bg" :data-setbg="herder_img">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -248,8 +248,9 @@ import "vue-select/dist/vue-select.css";
 export default {
     data() {
          return {
-             imageproURL:'/shopping/public/storage/images/',
-             shopURL:'/shopping/public/shop/',
+            herder_img:APP_URL+'img/breadcrumb.jpg',
+             imageproURL:APP_IMG,
+             shopURL:APP_URL+'shop/',
              shopdata:{},
              concerned:[],
              invoice_order:[],
@@ -264,7 +265,7 @@ export default {
              itempicture2:'',
              itempicture3:'',
              itempicture4:'',
-             tempnopic:'/shopping/public/storage/images/nopic.png',
+             tempnopic:APP_IMG+'nopic.png',
              quantity:1,
              loadingheart:false,
              heartset:false,
@@ -294,7 +295,7 @@ export default {
          },
         async  getRating(){
 
-              await  axios.get("/shopping/public/api/cartdetail/rating/"+this.id
+              await  axios.get(APP_URL+"api/cartdetail/rating/"+this.id
                    ).then(res => {
                         var maydata =res.data.data;
                         this.totaluser= maydata.length;
@@ -354,7 +355,7 @@ export default {
 
                 if(this.checkper == true){
                       if(this.selected!='เลือกคำสั่งซื้อ' && this.selected!=null){
-                       await  axios.get("/shopping/public/api/cartdetail/rating",
+                       await  axios.get(APP_URL+"api/cartdetail/rating",
                             {params:{product:this.id,rating:this.rating,invoice_id:this.selected}}
                             ).then(res => {
                                 let showicon='success';
@@ -374,13 +375,13 @@ export default {
 
                 }
                 else{
-                    window.location.href = "/shopping/public/login";
+                    window.location.href = APP_URL+'login';
                     }
 
          },
       async getInvoice(){
 
-                    await  axios.get("/shopping/public/api/cartdetail/getinvoice",
+                    await  axios.get(APP_URL+"api/cartdetail/getinvoice",
                       {params:{product_id:this.id}}
                        ).then(res => {
                            if(res.data!=false){
@@ -419,7 +420,7 @@ export default {
                         this.btnDisabled = true;
                                     let showicon='success';
                                     let showtitle ='เพิ่มสินค้าเรียบร้อย';
-                                            await  axios.get("/shopping/public/cartdetail/adddetail/"+this.id+"/"+this.quantity).then(response => {
+                                            await  axios.get(APP_URL+"cartdetail/adddetail/"+this.id+"/"+this.quantity).then(response => {
                                                     // bus.$emit('add-to-cart');
                                                      this.$store.dispatch("addItem")
                                                      this.showalert(showicon,showtitle);
@@ -440,14 +441,14 @@ export default {
                     }
                 }
                 else{
-                     window.location.href = "/shopping/public/login";
+                     window.location.href = APP_URL+'login';
                 }
 
           },
           async getshopdetil(){
 
 
-                 await axios.post("/shopping/public/shop/shopdetail/"+this.id).then(res => {
+                 await axios.post(APP_URL+"shop/shopdetail/"+this.id).then(res => {
                     this.shopdata = res.data;
                     this.getdata =  this.imageproURL + res.data.picture;
                     this.itempicture =  this.imageproURL + res.data.picture;
@@ -464,7 +465,7 @@ export default {
                     });
            },
                async getProductConcerned(){
-                 await axios.post("/shopping/public/shop/concerned/"+this.cat_id+'/'+this.id).then(res => {
+                 await axios.post(APP_URL+"shop/concerned/"+this.cat_id+'/'+this.id).then(res => {
                         this.concerned=res.data;
                 }).catch(error => {
                      console.log(res.data.errors)
@@ -472,21 +473,21 @@ export default {
            },
            async adddetail(id){
                  let qrt =1;
-                        await  axios.get("/shopping/public/cartdetail/adddetail/"+id+"/"+qrt).then(response => {
+                        await  axios.get(APP_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
                                      this.$store.dispatch("addItem")
                                     let showicon='success';
                                     let showtitle ='เพิ่มสินค้าเรียบร้อย';
                                    this.showalert(showicon,showtitle);
                         }).catch(function(error) {
                             if (error.response && error.response.status === 401) {
-                            window.location.href = "/shopping/public/login";
+                            window.location.href = APP_URL+'login';
                             }
                         });
              },
 
          async  gettofavorite() {
 
-                   await  axios.get("/shopping/public/api/cartdetail/getfavorite/"+this.id
+                   await  axios.get(APP_URL+"api/cartdetail/getfavorite/"+this.id
                    ).then(response => {
 
                                   if(response.data.favorite !== false){
@@ -516,13 +517,13 @@ export default {
          async  addtofavorite() {
 
                  if(this.checkper != false){
-                    // console.log('เพิ่มข้อมูลได้')
+
                           this.loadingheart=true;
-                               await  axios.get("/shopping/public/cartdetail/favorite/"+this.id,
+                               await  axios.get(APP_URL+"cartdetail/favorite/"+this.id,
                                ).then(response => {
                                 this.favoriteList = response.data;
                                   this.loadingheart=false;
-                                //   console.log(response.data.id)
+
                                     if(response.data.id !== undefined){
                                         this.$store.dispatch("addFavorite")
                                          this.heart=false;
@@ -538,8 +539,8 @@ export default {
                                     console.log(error.response);
                                 });
                  }else{
-                  window.location.href = "/shopping/public/login";
-                //    console.log('เพิ่มข้อมูลไม่ได้')
+                  window.location.href = APP_URL+'login';
+              
                  }
 
 

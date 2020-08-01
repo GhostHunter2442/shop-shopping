@@ -3,7 +3,7 @@
          <div id="preloder" v-if="loading">
     <div class="loader"></div>
 </div>
-    <section class="breadcrumb-section set-bg" data-setbg="/shopping/public/img/breadcrumb.jpg">
+  <section class="breadcrumb-section set-bg" :data-setbg="herder_img">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -153,12 +153,13 @@ this.$aes.setKey('base64:GoQmYiFHbf+sgZ0bUNykIasFDHHSvzbNNQ8b397iXQw=')
     },
 data() {
         return {
+              herder_img:APP_URL+'img/breadcrumb.jpg',
              listCart: [],
-             baseUrl:'http://localhost/shopping/public/',
-             NextUrl:'/shopping/public/cart/checkout/cartcheckout/',
+             baseUrl:APP_URL,
+             NextUrl:APP_URL+'cart/checkout/cartcheckout/',
              message: '',
-             imageUrl: "storage/images/resize/",
-             imageUrl_: "storage/images/",
+             imageUrl: APP_IMG+"resize/",
+             imageUrl_: APP_IMG,
              countitem:[],
              loading:false,
              code:'',
@@ -186,7 +187,7 @@ methods: {
                  var check_expire='';
             if(this.code !=''){
 
-                await  axios.get("/shopping/public/promotions/checkcoupon/"+this.code).then(res => {
+                await  axios.get(APP_URL+"promotions/checkcoupon/"+this.code).then(res => {
                        var mydata= res.data;
                        var myorder=this.listCart;
 
@@ -249,10 +250,7 @@ methods: {
                                                  var per= (this.totalPrice*mydata[z]['percen'])/100;
                                                  if(per > mydata[z]['discount']){
                                                         this.total_discount= mydata[z]['discount'];
-                                            // let encrypted = this.$aes.encrypt(''+parseInt(this.total_discount)+'')
-                                            // let decrypted = this.$aes.decrypt(encrypted)
-                                            // console.log(encrypted)
-                                            // console.log(decrypted)
+
                                                  }
                                                  else{
                                                       this.total_discount= per;
@@ -305,9 +303,9 @@ methods: {
                                         console.log(error.response);
                                 });
                                     }
-                                    else{
-                                           console.log('เพิ่มขอ้มูลไม่ได้เเล้ว')
-                                    }
+                                    // else{
+                                    //        console.log('เพิ่มขอ้มูลไม่ได้เเล้ว')
+                                    // }
                             }
 
                      });
@@ -360,7 +358,11 @@ methods: {
                     })
 
     },
+    // gotocheckout(){
+    //     console.log(this.NextUrl)
 
+    //       window.location.href = this.NextUrl;
+    // },
         showalert(showicon,showtitle) {
                 toastr[showicon](showtitle,'', {
                 progressBar: true,

@@ -85,7 +85,7 @@ export default {
                 formData.append("currentpassword", this.password.currentpassword);
                 formData.append("newpassword", this.password.newpassword);
                 formData.append("comfirmpassword", this.password.comfirmpassword);
-                await  axios.post("http://localhost/shopping/public/order/orderdetail/modifypass" ,formData,
+                await  axios.post(APP_URL+"order/orderdetail/modifypass" ,formData,
                  ).then(response=> {
                 this.errors.constructor();
                this.password.currentpassword ='';

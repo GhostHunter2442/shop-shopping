@@ -1,6 +1,6 @@
 <template>
     <div>
-    <section class="breadcrumb-section set-bg" data-setbg="/shopping/public/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" :data-setbg="herder_img">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -77,8 +77,9 @@ import moment from 'moment'
         data(){
             return {
                limit:3,
-               shopURL:'/shopping/public/shop/',
-               imageUrl: "/shopping/public/storage/images/",
+               herder_img:APP_URL+'img/breadcrumb.jpg',
+               shopURL:APP_URL+'shop/',
+               imageUrl: APP_IMG,
                discountList:{},
                timestamp: '',
                btnDisabled:'isEnabled' //isDisabled
@@ -112,7 +113,7 @@ import moment from 'moment'
                 },
             async getdiscount(page=1){
 
-                   await  axios.get("/shopping/public/show/getshowdiscount?page=" +page).then(res => {
+                   await  axios.get(APP_URL+"show/getshowdiscount?page=" +page).then(res => {
                     this.discountList = res.data;
 
                     }).catch( error => {
@@ -121,7 +122,7 @@ import moment from 'moment'
               },
                async adddetail(id){
                  let qrt =1;
-                        await  axios.get("/shopping/public/cartdetail/adddetail/"+id+"/"+qrt).then(response => {
+                        await  axios.get(APP_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
 
                                     toastr['success']('เพิ่มสินค้าเรียบร้อย','', {
                                     progressBar: true,

@@ -228,7 +228,7 @@ export default {
 
         data(){
              return {
-            bankURL:'/shopping/public/storage/images/bank/',
+            bankURL:APP_IMG+'bank/',
             listCart: [],
               bankID:'',
 
@@ -254,7 +254,7 @@ export default {
                },
                async getbanks() {
 
-                await  axios.get("/shopping/public/cart/checkout/banks").then(res => {
+                await  axios.get(APP_URL+"cart/checkout/banks").then(res => {
                   this.bank = res.data;
 
                }).catch(function (error) {
@@ -262,9 +262,8 @@ export default {
                 });
             },
             async getcartdetail() {
-                  console.log(this.paymentid)
-                   console.log(this.addressid)
-                await  axios.get("/shopping/public/cartdetail/detail").then(res => {
+                 
+                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
 
                }).catch(function (error) {
@@ -274,7 +273,7 @@ export default {
            async  gotocheckout(){
                   if(this.paymentid ==1){
                      if(this.bankID !=''){
-                        window.location.href = "http://localhost/shopping/public/cart/checkout/checkoutpament/"
+                        window.location.href = APP_URL+'cart/checkout/checkoutpament/'
                          +this.paymentid+'/'+this.addressid+'/'+this.bankID+'/'+this.discount;
                      }
                      else{
@@ -285,15 +284,15 @@ export default {
                         hideDuration: 1500,
                         progressBar: false,
                         });
-                 
+
                      }
                   }
                   else if(this.paymentid ==2){
-                        window.location.href = "http://localhost/shopping/public/cart/checkout/checkoutpament/"
+                        window.location.href = APP_URL+'cart/checkout/checkoutpament/'
                            +this.paymentid+'/'+this.addressid+'/0/'+this.discount;
                   }
                    else if(this.paymentid ==3){
-                        window.location.href = "http://localhost/shopping/public/cart/checkout/paymentomise/"
+                        window.location.href = APP_URL+'cart/checkout/paymentomise/'
                         +this.paymentid+'/'+this.addressid+'/0/'+this.discount;
                   }
             },

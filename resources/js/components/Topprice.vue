@@ -1,6 +1,6 @@
 <template>
    <div>
-    <section class="breadcrumb-section set-bg" data-setbg="/shopping/public/img/breadcrumb.jpg">
+   <section class="breadcrumb-section set-bg" :data-setbg="herder_img">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -82,11 +82,10 @@ import moment from 'moment'
         props:['cat_id'],
         data(){
             return {
-            //    limit:3,
-               shopURL:'/shopping/public/shop/',
-               imageUrl: "/shopping/public/storage/images/",
+            herder_img:APP_URL+'img/breadcrumb.jpg',
+               shopURL:APP_URL+'shop/',
+               imageUrl: APP_IMG,
                toppriceList:{},
-            //    toppriceList:[],
                timestamp: '',
                btnDisabled:'isEnabled' //isDisabled
             }
@@ -118,9 +117,7 @@ import moment from 'moment'
                 },
             async gettopprice(){
 
-                   await  axios.get("/shopping/public/show/gettopprice/"+this.cat_id).then(res => {
-                    // this.gettopprice = res.data;
-                    // var myname=res.data.name;
+                   await  axios.get(APP_URL+"show/gettopprice/"+this.cat_id).then(res => {
                     this.toppriceList=res.data;
                     console.log(res.data)
                     }).catch( error => {
@@ -129,7 +126,7 @@ import moment from 'moment'
               },
                async adddetail(id){
                  let qrt =1;
-                        await  axios.get("/shopping/public/cartdetail/adddetail/"+id+"/"+qrt).then(response => {
+                        await  axios.get(APP_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
 
                                      this.$store.dispatch("addItem")
                                         toastr['success']('เพิ่มสินค้าเรียบร้อย','', {
@@ -140,7 +137,7 @@ import moment from 'moment'
                                         progressBar: false,
                                         });
 
-                                  
+
                         }).catch(function(error) {
                             if (error.response && error.response.status === 401) {
                             window.location.href = "login";

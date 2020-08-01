@@ -110,7 +110,7 @@ class Errors{
                   this.addresses.adress1 = address.subdistrict+', '+address.district+', '+address.province+', '+address.postalCode;
             },
               async getaddress(){
-                await  axios.get("http://localhost/shopping/public/order/orderdetail/address",
+                await  axios.get(APP_URL+"order/orderdetail/address",
                  {params:{id:this.id}}
                    ).then(res=> {
                       let item=res.data.address;
@@ -139,10 +139,10 @@ class Errors{
                 formData.append("adress2", adress2);
                 formData.append("adress3", adress3);
                 formData.append("other", other);
-                await  axios.post("http://localhost/shopping/public/order/orderdetail/myorder/address/edit" ,formData,
+                await  axios.post(APP_URL+"order/orderdetail/myorder/address/edit" ,formData,
                 {params:{id:this.id}}
                  ).then(response=> {
-                    // console.log('บันทึกเรียบร้อย')
+                   
                      this.$router.back()
                  toastr['success']('บันทึกเรียบร้อย','', {
                 progressBar: true,

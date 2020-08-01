@@ -140,8 +140,8 @@ export default {
     methods:{
        async getprofile(){
             var simplebar = new Nanobar();
-             
-            await  axios.get("http://localhost/shopping/public/order/orderdetail/profile"
+
+            await  axios.get(APP_URL+"order/orderdetail/profile"
                  ).then(res=> {
 
                    res.data.userporfile.forEach(item => {
@@ -169,7 +169,7 @@ export default {
                 formData.append("mail", mail);
                 formData.append("dateofbirth", this.dateofbirth);
                 formData.append("gender", this.removelines);
-                await  axios.post("http://localhost/shopping/public/order/orderdetail/profile/update" ,formData,
+                await  axios.post(APP_URL+"order/orderdetail/profile/update" ,formData,
                    {params:{userid: this.userid,proid: this.proid}}
                  ).then(response=> {
                                toastr['success']('เเก้ไข้เรียบร้อย','', {

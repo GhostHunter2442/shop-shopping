@@ -1,13 +1,13 @@
 <template>
     <div>
-    <section class="breadcrumb-section set-bg" data-setbg="/shopping/public/img/breadcrumb.jpg">
+ <section class="breadcrumb-section set-bg" :data-setbg="herder_img">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <!-- <h2>Contact Us</h2> -->
+
                         <div class="breadcrumb__option">
-                            <!-- <a href="./index.html">รายการสินค้า</a> -->
+
                              <h5>G-SHOCK</h5>
                             <span>Its full form is Gravitaitional Shock.</span>
                         </div>
@@ -24,11 +24,10 @@
                     <div class="col-lg-12">
                         <div class="col-md-6 offset-md-5">
                             <div class="shoping__cart__table">
-                                <!-- <img src="{{asset('img/cart.png')}}" alt="" width="250"> -->
-                                   <!-- <img  src="img/cart.png"  width="200"> -->
+
                             </div>
                             <p>ไม่มีรายการที่ท่านสนใจ</p>
-                            <!-- <p>คลิกปุ่มด้านนล่างเพื่อเลือกซื้อสินค้าต่อ</p> -->
+
                         </div>
                     </div>
                 </div>
@@ -57,7 +56,7 @@
                                <div class="product__new__wrawper" v-if=" getcreateDate(list.created_at) == timestamp" >
                                   <div class="item_wrawper">ใหม่</div>
                                 </div>
-                                <!-- <div class="product__new__percent">-20%</div> -->
+
                         <ul class="product__item__pic__hover">
                               <li>
 
@@ -70,7 +69,7 @@
                     <div class="product__item__text">
                     <h6><a href="#"> {{ list.name | truncate(25)}}</a></h6>
                     <h5> {{ list.price | currency("฿")}}  </h5>
-                    <!-- <span class="review">{{ list.price | currency("฿")}}  </span> <h4> -50%</h4> -->
+
                      <div v-if="list.discount!=null">
                     <span class="review">{{ discount(list.price,list.discount) | currency("฿")}}  </span> <h4> -{{list.discount}}%</h4>
                     </div>
@@ -99,12 +98,13 @@ import moment from 'moment'
     export default {
         data(){
             return {
+               herder_img:APP_URL+'img/breadcrumb.jpg',
                limit:3,
-               shopURL:'/shopping/public/shop/',
-               imageUrl: "/shopping/public/storage/images/",
+               shopURL:APP_URL+'shop/',
+               imageUrl: APP_IMG,
                favoriteList:{},
                timestamp: '',
-               btnDisabled:'isEnabled' //isDisabled
+               btnDisabled:'isEnabled'
             }
         },
         mounted(){
@@ -146,7 +146,7 @@ computed: {
                 },
             async getfavorite(page=1){
 
-                   await  axios.get("/shopping/public/favorite/detail/getdata?page=" +page).then(res => {
+                   await  axios.get(APP_URL+"favorite/detail/getdata?page=" +page).then(res => {
                     this.favoriteList = res.data;
                     }).catch( error => {
                      console.log(error.response);
@@ -154,7 +154,7 @@ computed: {
               },
                async adddetail(id){
                  let qrt =1;
-                        await  axios.get("/shopping/public/cartdetail/adddetail/"+id+"/"+qrt).then(response => {
+                        await  axios.get(APP_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
 
                                     // bus.$emit('add-to-cart');
                                      this.$store.dispatch("addItem")
@@ -173,7 +173,7 @@ computed: {
                         });
              },
             async delfavorite(id,index){
-                await axios.get("/shopping/public/favorite/detail/getdata/delfavorite/"+id).then(res => {
+                await axios.get(APP_URL+"favorite/detail/getdata/delfavorite/"+id).then(res => {
 
                             this.getfavorite();
                             this.$store.dispatch("addFavorite")

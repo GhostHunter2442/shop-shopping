@@ -98,7 +98,7 @@ export default {
             },
             async getcartorder(page) {
 
-                await  axios.get("/shopping/public/order/orderdetail/datamyorder?page=" +page).then(res => {
+                await  axios.get(APP_URL+"order/orderdetail/datamyorder?page=" +page).then(res => {
                   this.listOrder = res.data.order;
 
 

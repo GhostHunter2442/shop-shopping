@@ -53,7 +53,7 @@
                                                                 </label>
                                                                 </div>
                                                             </div>
-                                                            <img class="card-img-top" src="/shopping/public/img/Kerry.png" alt="Card image cap">
+                                                            <img class="card-img-top" :src="kerry_img" alt="Card image cap">
                                                                 <p class="card-text">{{paylist.detail}}</p>
                                                         </div>
                                                 </div>
@@ -171,6 +171,7 @@ export default {
 
         data(){
              return {
+                 kerry_img:APP_URL+'img/Kerry.png',
               listCart: [],
               addressget:{},
               paymentID:'',
@@ -197,7 +198,7 @@ export default {
             },
             async getcartdetail() {
 
-                await  axios.get("/shopping/public/cartdetail/detail").then(res => {
+                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
 
                }).catch(function (error) {
@@ -205,7 +206,7 @@ export default {
                 });
             },
             async getaddressid() {
-                await  axios.get("/shopping/public/cart/checkout/addressid/"+this.id).then(res => {
+                await  axios.get(APP_URL+"cart/checkout/addressid/"+this.id).then(res => {
                   this.addressget = res.data;
                }).catch(function (error) {
                     console.log(error);
@@ -213,7 +214,7 @@ export default {
             },
             gotopayment(){
                   if(this.paymentID !=''){
-                         window.location.href = "http://localhost/shopping/public/cart/checkout/payment/"+this.id+'/'+this.paymentID+'/'+this.discount;
+                         window.location.href = APP_URL+'cart/checkout/payment/'+this.id+'/'+this.paymentID+'/'+this.discount;
                   }
                   else{
                         toastr['info']('เลือกรูปแบบการจัดส่ง','', {

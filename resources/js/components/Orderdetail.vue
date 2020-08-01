@@ -165,8 +165,8 @@ export default {
     },
     data() {
         return {
-            imageUrl: "http://localhost/shopping/public/storage/images/resize/",
-            imageUrlslip: "http://localhost/shopping/public/storage/images/slipbank/",
+            imageUrl: APP_IMG+"resize/",
+            imageUrlslip: APP_IMG+"slipbank/",
             invoiceorder:{},
             productorder:[],
             addressorder:{},
@@ -196,7 +196,7 @@ export default {
 
                             this.invoiceorder.forEach( async item => {
                                 if(item.status_order==1){
-                                      await  axios.get("http://localhost/shopping/public/cart/checkout/cancel",
+                                      await  axios.get(APP_URL+"cart/checkout/cancel",
                                         {params:{invoice_id:this.id}}
                                             ).then(res => {
                                                   this.getorder();
@@ -221,7 +221,7 @@ export default {
             },
          async getorder() {
 
-                await  axios.get("http://localhost/shopping/public/order/orderdetail/profile/getorder",
+                await  axios.get(APP_URL+"order/orderdetail/profile/getorder",
                {params:{invoice_id:this.id}}
                 ).then(res => {
 

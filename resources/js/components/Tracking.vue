@@ -83,7 +83,7 @@ export default {
             },
              async gettrack() {
 
-                await  axios.get("http://localhost/shopping/public/order/orderdetail/track",
+                await  axios.get(APP_URL+"order/orderdetail/track",
                {params:{track_number:this.id}}
                 ).then(res => {
                   this.trackdata=res.data.data.tracking;

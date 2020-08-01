@@ -160,7 +160,7 @@ export default {
 
         data(){
              return {
-            bankURL:'/shopping/public/img/',
+            bankURL:APP_URL+'img/',
             listCart: [],
             items:[],
               shopdata:{},
@@ -213,7 +213,7 @@ export default {
             async getcartdetail() {
 
 
-                await  axios.get("/shopping/public/cartdetail/detail").then(res => {
+                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
                       res.data.listcarts.forEach(item => {
                             this.items.push(item);
@@ -226,7 +226,7 @@ export default {
             },
             async gotocomfirm(){
 
-                await  axios.get("/shopping/public/cartdetail/detail").then(res => {
+                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
                       const product_check_stock = [];
                       var mylist = res.data.listcarts;
                       var count=0;
@@ -257,10 +257,10 @@ export default {
                                     formData.append("addressid", this.addressid);
                                      formData.append("bankid", this.bankid);
                                     formData.append("totalPrice", this.pricetotal);
-                                     axios.post("http://localhost/shopping/public/cart/checkout/confirm",formData,
+                                     axios.post(APP_URL+"cart/checkout/confirm",formData,
                                                 ).then(response=> {
 
-                                                window.location.href = "http://localhost/shopping/public/order/orderdetail/myorder";
+                                                window.location.href = APP_URL+'order/orderdetail/myorder';
 
                                             }).catch(error => this.errors.record(error.response.data));
                      }else{
@@ -268,7 +268,7 @@ export default {
                             if(item!=true){
                                      mylist.forEach(item_mylist => {
                                           if(item==item_mylist.id){
-                                                 
+
 
                                                   let showicon='info';
                                                   let showtitle = item_mylist.name+' ถูกสั่งซื้อไปเเล้ว กรุณาทำรายการใหม่';

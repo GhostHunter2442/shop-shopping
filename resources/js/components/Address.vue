@@ -143,7 +143,7 @@ class Errors{
                   this.addresses.adress1 = address.subdistrict+', '+address.district+', '+address.province+', '+address.postalCode;
             },
              async getaddress() {
-                await  axios.get("/shopping/public/cart/checkout/address").then(res => {
+                await  axios.get(APP_URL+"cart/checkout/address").then(res => {
                       this.addressList = res.data
                        res.data.forEach(item => {
                               if(item.stdefalse == 1){
@@ -175,18 +175,14 @@ class Errors{
                 formData.append("adress3", adress3);
                 formData.append("other", other);
 
-                await  axios.post("http://localhost/shopping/public/cart/checkout/address/adddata" ,formData,
+                await  axios.post(APP_URL+"cart/checkout/address/adddata" ,formData,
                 {params:{addressID:this.addressID}}
                  ).then(response=> {
-                    //   console.log(response.data.addressid.id);
                         this.getaddress();
-
-
                })
                .catch(error => this.errors.record(error.response.data));
             },
             edit(id){
-                // console.log('เเก้ไข'+id)
                 this.$router.push({ name: 'editaddress', params: { id: id } })
             },
              del(id,index,firstname){
@@ -194,7 +190,6 @@ class Errors{
                     Swal.fire({
                     title: 'ต้องการลบข้อมูล?',
                     text: 'คุณต้องการลบ '+firstname+' !',
-                    // icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#62cfc1',
                     cancelButtonColor: '#d33',
@@ -203,7 +198,7 @@ class Errors{
 
                     }).then((result) => {
                     if (result.value) {
-                          axios.get("http://localhost/shopping/public/order/orderdetail/del",
+                          axios.get(APP_URL+"order/orderdetail/del",
                            {params:{id:id}}
                           ).then(response => {
                                console.log(response.data);
@@ -220,7 +215,7 @@ class Errors{
                     })
              },
              chekmark(id){
-                       axios.get("http://localhost/shopping/public/order/orderdetail/checkmark",
+                       axios.get(APP_URL+"order/orderdetail/checkmark",
                        {params:{id:id}}
                           ).then(response => {
                                console.log(response.data);
