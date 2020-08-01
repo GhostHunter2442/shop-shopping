@@ -235,8 +235,24 @@ class CheckoutController extends Controller
             'status' => 'fail'
              ]);
     }
+    }
+    public function cancelOrder(Request $request){
 
 
+          $invoice = Invoice::find($request->invoice_id);
+          $invoice->status_order=5;
+          $invoice->update();
 
+          $order=Order::where('invoice_id',$request->invoice_id)->get();
+
+          foreach ($order  as $p) {
+            $product = Product::find($p->product_id);//คืน stok
+            $product->stock +=($p->qty);
+            $product->update();
+          }
+
+          return response()->json([
+            'status' => 'success'
+             ]);
     }
 }

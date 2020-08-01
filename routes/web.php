@@ -199,6 +199,7 @@ Route::group(['middleware' => ['auth']],function(){
         Route::get('checkoutpament/{address_id?}/{payment_id?}/{bank_id?}/{discount}', 'CheckoutController@checkoutpament')->name('cart.checkoutpament');
         Route::post('confirm', 'CheckoutController@confirm')->name('cart.confirm');
         Route::post('confirmcard', 'CheckoutController@confirmomise')->name('cart.confirmomise');
+        Route::get('cancel', 'CheckoutController@cancelOrder')->name('cart.cancelOrder');
     });
 
     //getorder

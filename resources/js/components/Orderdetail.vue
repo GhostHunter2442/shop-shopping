@@ -114,7 +114,7 @@
                         <div class="order__checkout ">
                                 <ul>
                                     <li>ราคารวม <span >{{ invoice.price | currency("฿")}}</span  > </li>
-                                    <li>ส่วนลด <span>$0.00</span></li>
+                                    <!-- <li>ส่วนลด <span>$0.00</span></li> -->
                                     <li>ยอดสั่งซื้อรวม <span class="totolprice"> {{ invoice.price | currency("฿")}}</span></li>
                                 </ul>
                         </div>
@@ -137,7 +137,7 @@
                                              <div class="card">
                                         <div class="card-body">
 
-                                            <a href="javascript:;" class="close"></a><br><br>
+                                            <a href="javascript:;" class="close" v-on:click="cancel(id)"></a><br><br>
 
                                           <span>ยกเลิกคำสั่งซื้อ</span>
                                           <p>  ไม่สามารถยกเลิกได้เมื่ออยู่ระหว่างการจัดส่ง</p>
@@ -191,25 +191,59 @@ export default {
            statusorder(status) {
                 return  (status  == 1) ? "ยืนยันการสั่งซื้อ" :(status  == 2) ? "จัดส่งสินค้าเเล้ว" : "ถูกยกเลิก" ;
             },
+            cancel(id){
+
+
+                            this.invoiceorder.forEach( async item => {
+                                if(item.status_order==1){
+                                      await  axios.get("http://localhost/shopping/public/cart/checkout/cancel",
+                                        {params:{invoice_id:this.id}}
+                                            ).then(res => {
+                                                  this.getorder();
+                                               
+                                   let showicon='success';
+                                  let showtitle ='ยกเลิกเรียบร้อย';
+                                  this.showalert(showicon,showtitle);
+                                        }).catch(function (error) {
+                                                console.log(error);
+                                            });
+                                }
+                                else{
+                                  let showicon='warning';
+                                  let showtitle ='รายการอยู่ระว่างจัดส่ง โปรติดต่อเจ้าหน้าที่';
+                                  this.showalert(showicon,showtitle);
+                                }
+                            })
+
+
+
+
+            },
          async getorder() {
 
                 await  axios.get("http://localhost/shopping/public/order/orderdetail/profile/getorder",
                {params:{invoice_id:this.id}}
                 ).then(res => {
 
-                    //   res.data.forEach(item => {
-                          // this.invoiceorder.push(res.data);
-                        //  });
-
                   this.invoiceorder=res.data.invoice;
                   this.productorder = res.data.product;
                   this.addressorder = res.data.address;
-                 // console.log(res.data)
 
                }).catch(function (error) {
                     console.log(error);
                 });
             },
+                  showalert(showicon,showtitle) {
+                toastr[showicon](showtitle,'', {
+                progressBar: true,
+                timeOut: 1500,
+                extendedTimeOut: 1500,
+                 hideDuration: 1500,
+                 progressBar: false,
+                });
+
+        },
+
     }
 };
 </script>
