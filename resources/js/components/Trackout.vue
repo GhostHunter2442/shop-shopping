@@ -161,6 +161,7 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 export default {
         props:['id','discount'],
         mounted() {
@@ -171,7 +172,7 @@ export default {
 
         data(){
              return {
-                 kerry_img:APP_URL+'img/Kerry.png',
+                 kerry_img:api.BASE_URL+'img/Kerry.png',
               listCart: [],
               addressget:{},
               paymentID:'',
@@ -198,7 +199,7 @@ export default {
             },
             async getcartdetail() {
 
-                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
+                await  axios.get(api.BASE_URL+"cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
 
                }).catch(function (error) {
@@ -206,7 +207,7 @@ export default {
                 });
             },
             async getaddressid() {
-                await  axios.get(APP_URL+"cart/checkout/addressid/"+this.id).then(res => {
+                await  axios.get(api.BASE_URL+"cart/checkout/addressid/"+this.id).then(res => {
                   this.addressget = res.data;
                }).catch(function (error) {
                     console.log(error);
@@ -214,7 +215,7 @@ export default {
             },
             gotopayment(){
                   if(this.paymentID !=''){
-                         window.location.href = APP_URL+'cart/checkout/payment/'+this.id+'/'+this.paymentID+'/'+this.discount;
+                         window.location.href = api.BASE_URL+'cart/checkout/payment/'+this.id+'/'+this.paymentID+'/'+this.discount;
                   }
                   else{
                         toastr['info']('เลือกรูปแบบการจัดส่ง','', {

@@ -94,14 +94,15 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 import moment from 'moment'
     export default {
         data(){
             return {
-               herder_img:APP_URL+'img/breadcrumb.jpg',
+               herder_img:api.BASE_URL+'img/breadcrumb.jpg',
                limit:3,
-               shopURL:APP_URL+'shop/',
-               imageUrl: APP_IMG,
+               shopURL:api.BASE_URL+'shop/',
+               imageUrl: api.BASE_URL_IMG,
                favoriteList:{},
                timestamp: '',
                btnDisabled:'isEnabled'
@@ -146,7 +147,7 @@ computed: {
                 },
             async getfavorite(page=1){
 
-                   await  axios.get(APP_URL+"favorite/detail/getdata?page=" +page).then(res => {
+                   await  axios.get(api.BASE_URL+"favorite/detail/getdata?page=" +page).then(res => {
                     this.favoriteList = res.data;
                     }).catch( error => {
                      console.log(error.response);
@@ -154,7 +155,7 @@ computed: {
               },
                async adddetail(id){
                  let qrt =1;
-                        await  axios.get(APP_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
+                        await  axios.get(api.BASE_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
 
                                     // bus.$emit('add-to-cart');
                                      this.$store.dispatch("addItem")
@@ -173,7 +174,7 @@ computed: {
                         });
              },
             async delfavorite(id,index){
-                await axios.get(APP_URL+"favorite/detail/getdata/delfavorite/"+id).then(res => {
+                await axios.get(api.BASE_URL+"favorite/detail/getdata/delfavorite/"+id).then(res => {
 
                             this.getfavorite();
                             this.$store.dispatch("addFavorite")

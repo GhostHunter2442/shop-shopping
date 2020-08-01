@@ -60,6 +60,7 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 import moment from 'moment'
 export default {
 
@@ -98,7 +99,7 @@ export default {
             },
             async getcartorder(page) {
 
-                await  axios.get(APP_URL+"order/orderdetail/datamyorder?page=" +page).then(res => {
+                await  axios.get(api.BASE_URL+"order/orderdetail/datamyorder?page=" +page).then(res => {
                   this.listOrder = res.data.order;
 
 

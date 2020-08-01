@@ -244,13 +244,14 @@
 } */
 </style>
 <script>
+import api  from '../config';
 import "vue-select/dist/vue-select.css";
 export default {
     data() {
          return {
-            herder_img:APP_URL+'img/breadcrumb.jpg',
-             imageproURL:APP_IMG,
-             shopURL:APP_URL+'shop/',
+            herder_img:api.BASE_URL+'img/breadcrumb.jpg',
+             imageproURL:api.BASE_URL_IMG,
+             shopURL:api.BASE_URL+'shop/',
              shopdata:{},
              concerned:[],
              invoice_order:[],
@@ -265,7 +266,7 @@ export default {
              itempicture2:'',
              itempicture3:'',
              itempicture4:'',
-             tempnopic:APP_IMG+'nopic.png',
+             tempnopic:api.BASE_URL_IMG+'nopic.png',
              quantity:1,
              loadingheart:false,
              heartset:false,
@@ -295,7 +296,7 @@ export default {
          },
         async  getRating(){
 
-              await  axios.get(APP_URL+"api/cartdetail/rating/"+this.id
+              await  axios.get(api.BASE_URL+"api/cartdetail/rating/"+this.id
                    ).then(res => {
                         var maydata =res.data.data;
                         this.totaluser= maydata.length;
@@ -355,7 +356,7 @@ export default {
 
                 if(this.checkper == true){
                       if(this.selected!='เลือกคำสั่งซื้อ' && this.selected!=null){
-                       await  axios.get(APP_URL+"api/cartdetail/rating",
+                       await  axios.get(api.BASE_URL+"api/cartdetail/rating",
                             {params:{product:this.id,rating:this.rating,invoice_id:this.selected}}
                             ).then(res => {
                                 let showicon='success';
@@ -375,13 +376,13 @@ export default {
 
                 }
                 else{
-                    window.location.href = APP_URL+'login';
+                    window.location.href = api.BASE_URL+'login';
                     }
 
          },
       async getInvoice(){
 
-                    await  axios.get(APP_URL+"api/cartdetail/getinvoice",
+                    await  axios.get(api.BASE_URL+"api/cartdetail/getinvoice",
                       {params:{product_id:this.id}}
                        ).then(res => {
                            if(res.data!=false){
@@ -420,7 +421,7 @@ export default {
                         this.btnDisabled = true;
                                     let showicon='success';
                                     let showtitle ='เพิ่มสินค้าเรียบร้อย';
-                                            await  axios.get(APP_URL+"cartdetail/adddetail/"+this.id+"/"+this.quantity).then(response => {
+                                            await  axios.get(api.BASE_URL+"cartdetail/adddetail/"+this.id+"/"+this.quantity).then(response => {
                                                     // bus.$emit('add-to-cart');
                                                      this.$store.dispatch("addItem")
                                                      this.showalert(showicon,showtitle);
@@ -441,14 +442,14 @@ export default {
                     }
                 }
                 else{
-                     window.location.href = APP_URL+'login';
+                     window.location.href = api.BASE_URL+'login';
                 }
 
           },
           async getshopdetil(){
 
 
-                 await axios.post(APP_URL+"shop/shopdetail/"+this.id).then(res => {
+                 await axios.post(api.BASE_URL+"shop/shopdetail/"+this.id).then(res => {
                     this.shopdata = res.data;
                     this.getdata =  this.imageproURL + res.data.picture;
                     this.itempicture =  this.imageproURL + res.data.picture;
@@ -465,7 +466,7 @@ export default {
                     });
            },
                async getProductConcerned(){
-                 await axios.post(APP_URL+"shop/concerned/"+this.cat_id+'/'+this.id).then(res => {
+                 await axios.post(api.BASE_URL+"shop/concerned/"+this.cat_id+'/'+this.id).then(res => {
                         this.concerned=res.data;
                 }).catch(error => {
                      console.log(res.data.errors)
@@ -473,21 +474,21 @@ export default {
            },
            async adddetail(id){
                  let qrt =1;
-                        await  axios.get(APP_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
+                        await  axios.get(api.BASE_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
                                      this.$store.dispatch("addItem")
                                     let showicon='success';
                                     let showtitle ='เพิ่มสินค้าเรียบร้อย';
                                    this.showalert(showicon,showtitle);
                         }).catch(function(error) {
                             if (error.response && error.response.status === 401) {
-                            window.location.href = APP_URL+'login';
+                            window.location.href = api.BASE_URL+'login';
                             }
                         });
              },
 
          async  gettofavorite() {
 
-                   await  axios.get(APP_URL+"api/cartdetail/getfavorite/"+this.id
+                   await  axios.get(api.BASE_URL+"api/cartdetail/getfavorite/"+this.id
                    ).then(response => {
 
                                   if(response.data.favorite !== false){
@@ -519,7 +520,7 @@ export default {
                  if(this.checkper != false){
 
                           this.loadingheart=true;
-                               await  axios.get(APP_URL+"cartdetail/favorite/"+this.id,
+                               await  axios.get(api.BASE_URL+"cartdetail/favorite/"+this.id,
                                ).then(response => {
                                 this.favoriteList = response.data;
                                   this.loadingheart=false;
@@ -539,8 +540,8 @@ export default {
                                     console.log(error.response);
                                 });
                  }else{
-                  window.location.href = APP_URL+'login';
-              
+                  window.location.href = api.BASE_URL+'login';
+
                  }
 
 

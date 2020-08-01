@@ -77,14 +77,15 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 import moment from 'moment'
     export default {
         props:['cat_id'],
         data(){
             return {
-            herder_img:APP_URL+'img/breadcrumb.jpg',
-               shopURL:APP_URL+'shop/',
-               imageUrl: APP_IMG,
+            herder_img:api.BASE_URL+'img/breadcrumb.jpg',
+               shopURL:api.BASE_URL+'shop/',
+               imageUrl: api.BASE_URL_IMG,
                toppriceList:{},
                timestamp: '',
                btnDisabled:'isEnabled' //isDisabled
@@ -117,7 +118,7 @@ import moment from 'moment'
                 },
             async gettopprice(){
 
-                   await  axios.get(APP_URL+"show/gettopprice/"+this.cat_id).then(res => {
+                   await  axios.get(api.BASE_URL+"show/gettopprice/"+this.cat_id).then(res => {
                     this.toppriceList=res.data;
                     console.log(res.data)
                     }).catch( error => {
@@ -126,7 +127,7 @@ import moment from 'moment'
               },
                async adddetail(id){
                  let qrt =1;
-                        await  axios.get(APP_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
+                        await  axios.get(api.BASE_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
 
                                      this.$store.dispatch("addItem")
                                         toastr['success']('เพิ่มสินค้าเรียบร้อย','', {

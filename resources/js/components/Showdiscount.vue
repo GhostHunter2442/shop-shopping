@@ -72,14 +72,15 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 import moment from 'moment'
     export default {
         data(){
             return {
                limit:3,
-               herder_img:APP_URL+'img/breadcrumb.jpg',
-               shopURL:APP_URL+'shop/',
-               imageUrl: APP_IMG,
+               herder_img:api.BASE_URL+'img/breadcrumb.jpg',
+               shopURL:api.BASE_URL+'shop/',
+               imageUrl: api.BASE_URL_IMG,
                discountList:{},
                timestamp: '',
                btnDisabled:'isEnabled' //isDisabled
@@ -113,7 +114,7 @@ import moment from 'moment'
                 },
             async getdiscount(page=1){
 
-                   await  axios.get(APP_URL+"show/getshowdiscount?page=" +page).then(res => {
+                   await  axios.get(api.BASE_URL+"show/getshowdiscount?page=" +page).then(res => {
                     this.discountList = res.data;
 
                     }).catch( error => {
@@ -122,7 +123,7 @@ import moment from 'moment'
               },
                async adddetail(id){
                  let qrt =1;
-                        await  axios.get(APP_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
+                        await  axios.get(api.BASE_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
 
                                     toastr['success']('เพิ่มสินค้าเรียบร้อย','', {
                                     progressBar: true,

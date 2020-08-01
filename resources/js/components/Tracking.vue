@@ -54,6 +54,7 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 import moment from 'moment'
 export default {
     props: ['id'],
@@ -83,7 +84,7 @@ export default {
             },
              async gettrack() {
 
-                await  axios.get(APP_URL+"order/orderdetail/track",
+                await  axios.get(api.BASE_URL+"order/orderdetail/track",
                {params:{track_number:this.id}}
                 ).then(res => {
                   this.trackdata=res.data.data.tracking;

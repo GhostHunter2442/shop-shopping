@@ -137,6 +137,7 @@
 </template>
 
 <script>
+import api  from '../config';
   class Errors{
     constructor(){
         this.errors = {};
@@ -160,7 +161,7 @@ export default {
 
         data(){
              return {
-            bankURL:APP_URL+'img/',
+            bankURL:api.BASE_URL+'img/',
             listCart: [],
             items:[],
               shopdata:{},
@@ -213,7 +214,7 @@ export default {
             async getcartdetail() {
 
 
-                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
+                await  axios.get(api.BASE_URL+"cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
                       res.data.listcarts.forEach(item => {
                             this.items.push(item);
@@ -226,7 +227,7 @@ export default {
             },
             async gotocomfirm(){
 
-                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
+                await  axios.get(api.BASE_URL+"cartdetail/detail").then(res => {
                       const product_check_stock = [];
                       var mylist = res.data.listcarts;
                       var count=0;
@@ -257,10 +258,10 @@ export default {
                                     formData.append("addressid", this.addressid);
                                      formData.append("bankid", this.bankid);
                                     formData.append("totalPrice", this.pricetotal);
-                                     axios.post(APP_URL+"cart/checkout/confirm",formData,
+                                     axios.post(api.BASE_URL+"cart/checkout/confirm",formData,
                                                 ).then(response=> {
 
-                                                window.location.href = APP_URL+'order/orderdetail/myorder';
+                                                window.location.href = api.BASE_URL+'order/orderdetail/myorder';
 
                                             }).catch(error => this.errors.record(error.response.data));
                      }else{

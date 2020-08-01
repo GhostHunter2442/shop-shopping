@@ -58,6 +58,7 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 import Errors from "../Form";
 export default {
     components: { Errors },
@@ -85,7 +86,7 @@ export default {
                 formData.append("currentpassword", this.password.currentpassword);
                 formData.append("newpassword", this.password.newpassword);
                 formData.append("comfirmpassword", this.password.comfirmpassword);
-                await  axios.post(APP_URL+"order/orderdetail/modifypass" ,formData,
+                await  axios.post(api.BASE_URL+"order/orderdetail/modifypass" ,formData,
                  ).then(response=> {
                 this.errors.constructor();
                this.password.currentpassword ='';

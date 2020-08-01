@@ -143,7 +143,7 @@
 
 <script>
 import moment from 'moment'
-
+import api  from '../config';
 export default {
 
 mounted() {
@@ -153,13 +153,13 @@ this.$aes.setKey('base64:GoQmYiFHbf+sgZ0bUNykIasFDHHSvzbNNQ8b397iXQw=')
     },
 data() {
         return {
-              herder_img:APP_URL+'img/breadcrumb.jpg',
+              herder_img:api.BASE_URL+'img/breadcrumb.jpg',
              listCart: [],
-             baseUrl:APP_URL,
-             NextUrl:APP_URL+'cart/checkout/cartcheckout/',
+             baseUrl:api.BASE_URL,
+             NextUrl:api.BASE_URL+'cart/checkout/cartcheckout/',
              message: '',
-             imageUrl: APP_IMG+"resize/",
-             imageUrl_: APP_IMG,
+             imageUrl: api.BASE_URL_IMG+"resize/",
+             imageUrl_: api.BASE_URL_IMG,
              countitem:[],
              loading:false,
              code:'',
@@ -187,7 +187,7 @@ methods: {
                  var check_expire='';
             if(this.code !=''){
 
-                await  axios.get(APP_URL+"promotions/checkcoupon/"+this.code).then(res => {
+                await  axios.get(api.BASE_URL+"promotions/checkcoupon/"+this.code).then(res => {
                        var mydata= res.data;
                        var myorder=this.listCart;
 

@@ -51,11 +51,12 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 import moment from 'moment'
     export default {
         data(){
             return {
-                   herder_img:APP_URL+'img/breadcrumb.jpg',
+                   herder_img:api.BASE_URL+'img/breadcrumb.jpg',
                 couponList:[],
                 canCopy:false
             }
@@ -84,7 +85,7 @@ import moment from 'moment'
             },
                async getcoupong(){
 
-                   await  axios.get(APP_URL+"promotions/getcoupon").then(res => {
+                   await  axios.get(api.BASE_URL+"promotions/getcoupon").then(res => {
                     this.couponList = res.data;
                     }).catch( error => {
                      console.log(error);

@@ -157,6 +157,7 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 import moment from 'moment'
 export default {
     props: ['id'],
@@ -165,8 +166,8 @@ export default {
     },
     data() {
         return {
-            imageUrl: APP_IMG+"resize/",
-            imageUrlslip: APP_IMG+"slipbank/",
+            imageUrl: api.BASE_URL_IMG+"resize/",
+            imageUrlslip: api.BASE_URL_IMG+"slipbank/",
             invoiceorder:{},
             productorder:[],
             addressorder:{},
@@ -196,7 +197,7 @@ export default {
 
                             this.invoiceorder.forEach( async item => {
                                 if(item.status_order==1){
-                                      await  axios.get(APP_URL+"cart/checkout/cancel",
+                                      await  axios.get(api.BASE_URL+"cart/checkout/cancel",
                                         {params:{invoice_id:this.id}}
                                             ).then(res => {
                                                   this.getorder();
@@ -221,7 +222,7 @@ export default {
             },
          async getorder() {
 
-                await  axios.get(APP_URL+"order/orderdetail/profile/getorder",
+                await  axios.get(api.BASE_URL+"order/orderdetail/profile/getorder",
                {params:{invoice_id:this.id}}
                 ).then(res => {
 

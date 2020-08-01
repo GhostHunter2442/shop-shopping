@@ -70,6 +70,7 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 class Errors{
     constructor(){
         this.errors = {};
@@ -119,7 +120,7 @@ class Errors{
                 formData.append("adress2", adress2);
                 formData.append("adress3", adress3);
                 formData.append("other", other);
-                await  axios.post(APP_URL+"order/orderdetail/myorder/address/add" ,formData
+                await  axios.post(api.BASE_URL+"order/orderdetail/myorder/address/add" ,formData
 
                  ).then(response=> {
                     // console.log('บันทึกเรียบร้อย')

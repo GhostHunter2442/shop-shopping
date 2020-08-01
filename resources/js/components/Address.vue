@@ -99,6 +99,7 @@
 
 </template>
 <script>
+import api  from '../config';
 class Errors{
     constructor(){
         this.errors = {};
@@ -143,7 +144,7 @@ class Errors{
                   this.addresses.adress1 = address.subdistrict+', '+address.district+', '+address.province+', '+address.postalCode;
             },
              async getaddress() {
-                await  axios.get(APP_URL+"cart/checkout/address").then(res => {
+                await  axios.get(api.BASE_URL+"cart/checkout/address").then(res => {
                       this.addressList = res.data
                        res.data.forEach(item => {
                               if(item.stdefalse == 1){
@@ -175,7 +176,7 @@ class Errors{
                 formData.append("adress3", adress3);
                 formData.append("other", other);
 
-                await  axios.post(APP_URL+"cart/checkout/address/adddata" ,formData,
+                await  axios.post(api.BASE_URL+"cart/checkout/address/adddata" ,formData,
                 {params:{addressID:this.addressID}}
                  ).then(response=> {
                         this.getaddress();
@@ -198,7 +199,7 @@ class Errors{
 
                     }).then((result) => {
                     if (result.value) {
-                          axios.get(APP_URL+"order/orderdetail/del",
+                          axios.get(api.BASE_URL+"order/orderdetail/del",
                            {params:{id:id}}
                           ).then(response => {
                                console.log(response.data);
@@ -215,7 +216,7 @@ class Errors{
                     })
              },
              chekmark(id){
-                       axios.get(APP_URL+"order/orderdetail/checkmark",
+                       axios.get(api.BASE_URL+"order/orderdetail/checkmark",
                        {params:{id:id}}
                           ).then(response => {
                                console.log(response.data);

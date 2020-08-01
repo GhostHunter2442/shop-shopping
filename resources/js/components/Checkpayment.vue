@@ -218,6 +218,7 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 export default {
       props:['paymentid','addressid','discount'],
         mounted() {
@@ -228,7 +229,7 @@ export default {
 
         data(){
              return {
-            bankURL:APP_IMG+'bank/',
+            bankURL:api.BASE_URL_IMG+'bank/',
             listCart: [],
               bankID:'',
 
@@ -254,7 +255,7 @@ export default {
                },
                async getbanks() {
 
-                await  axios.get(APP_URL+"cart/checkout/banks").then(res => {
+                await  axios.get(api.BASE_URL+"cart/checkout/banks").then(res => {
                   this.bank = res.data;
 
                }).catch(function (error) {
@@ -262,8 +263,8 @@ export default {
                 });
             },
             async getcartdetail() {
-                 
-                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
+
+                await  axios.get(api.BASE_URL+"cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
 
                }).catch(function (error) {
@@ -273,7 +274,7 @@ export default {
            async  gotocheckout(){
                   if(this.paymentid ==1){
                      if(this.bankID !=''){
-                        window.location.href = APP_URL+'cart/checkout/checkoutpament/'
+                        window.location.href = api.BASE_URL+'cart/checkout/checkoutpament/'
                          +this.paymentid+'/'+this.addressid+'/'+this.bankID+'/'+this.discount;
                      }
                      else{
@@ -288,11 +289,11 @@ export default {
                      }
                   }
                   else if(this.paymentid ==2){
-                        window.location.href = APP_URL+'cart/checkout/checkoutpament/'
+                        window.location.href = api.BASE_URL+'cart/checkout/checkoutpament/'
                            +this.paymentid+'/'+this.addressid+'/0/'+this.discount;
                   }
                    else if(this.paymentid ==3){
-                        window.location.href = APP_URL+'cart/checkout/paymentomise/'
+                        window.location.href = api.BASE_URL+'cart/checkout/paymentomise/'
                         +this.paymentid+'/'+this.addressid+'/0/'+this.discount;
                   }
             },

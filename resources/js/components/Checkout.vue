@@ -162,6 +162,7 @@
     </div>
 </template>
 <script>
+import api  from '../config';
 class Errors{
     constructor(){
         this.errors = {};
@@ -225,9 +226,9 @@ class Errors{
                   this.addresses.adress1 = address.subdistrict+', '+address.district+', '+address.province+', '+address.postalCode;
             },
             async getcartdetail() {
-               
 
-                await  axios.get(APP_URL+"cartdetail/detail").then(res => {
+
+                await  axios.get(api.BASE_URL+"cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
 
                }).catch(function (error) {
@@ -236,7 +237,7 @@ class Errors{
             },
              async getaddress() {
 
-                await  axios.get(APP_URL+"cart/checkout/address").then(res => {
+                await  axios.get(api.BASE_URL+"cart/checkout/address").then(res => {
                       this.addressList = res.data
 
                        res.data.forEach(item => {
@@ -273,11 +274,11 @@ class Errors{
                 formData.append("adress3", adress3);
                 formData.append("other", other);
 
-                await  axios.post(APP_URL+"cart/checkout/address/adddata" ,formData,
+                await  axios.post(api.BASE_URL+"cart/checkout/address/adddata" ,formData,
                 {params:{addressID:this.addressID}}
                  ).then(response=> {
                     //   console.log(response.data.addressid.id);
-                      window.location.href = APP_URL+'cart/checkout/track/'+response.data.addressid.id+'/'+this.discount;
+                      window.location.href = api.BASE_URL+'cart/checkout/track/'+response.data.addressid.id+'/'+this.discount;
                })
                .catch(error => this.errors.record(error.response.data),
                 //  console.log('errrrrr')

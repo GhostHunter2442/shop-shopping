@@ -96,7 +96,7 @@
 
 
 <script>
-
+import api  from '../config';
   import DatePicker from 'vue2-datepicker';
   import 'vue2-datepicker/index.css';
   class Errors{
@@ -141,7 +141,7 @@ export default {
        async getprofile(){
             var simplebar = new Nanobar();
 
-            await  axios.get(APP_URL+"order/orderdetail/profile"
+            await  axios.get(api.BASE_URL+"order/orderdetail/profile"
                  ).then(res=> {
 
                    res.data.userporfile.forEach(item => {
@@ -169,7 +169,7 @@ export default {
                 formData.append("mail", mail);
                 formData.append("dateofbirth", this.dateofbirth);
                 formData.append("gender", this.removelines);
-                await  axios.post(APP_URL+"order/orderdetail/profile/update" ,formData,
+                await  axios.post(api.BASE_URL+"order/orderdetail/profile/update" ,formData,
                    {params:{userid: this.userid,proid: this.proid}}
                  ).then(response=> {
                                toastr['success']('เเก้ไข้เรียบร้อย','', {

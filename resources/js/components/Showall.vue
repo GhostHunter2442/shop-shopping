@@ -176,6 +176,7 @@
 </template>
 
 <script>
+import api  from '../config';
 import carousel from 'vue-owl-carousel'
 import autocomplete from 'autocompleter';
 import 'autocompleter/autocomplete.min.css';
@@ -183,7 +184,7 @@ import moment from 'moment'
 export default {
   components: { carousel },
  mounted(){
-    //  console.log(this.showdata.created_at)
+
      this.getNow();
     this.showalldata();
     this.getautocomplate();
@@ -199,8 +200,8 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
    data() {
         return {
 
-              shopURL: APP_URL+'shop/',
-              topPriceURL: APP_URL+'show/topprice/',
+              shopURL: api.BASE_URL+'shop/',
+              topPriceURL: api.BASE_URL+'show/topprice/',
               itemsgetafory:'',
               getcatagoryID:'',
               showdata:{},
@@ -208,8 +209,8 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
               categorylist:[],
               totalpro:[],
               productlast:[],
-              imageUrl: APP_IMG,
-              imageUrlresize: APP_IMG+'resize/',
+              imageUrl: api.BASE_URL_IMG,
+              imageUrlresize: api.BASE_URL_IMG+'resize/',
               imageUrlbanner: "img/hero/banner.jpg",
               imageUrlbanner_two: "img/hero/banner_two.jpg",
               imageUrlbanner_three: "img/hero/banner_three.jpg",
@@ -253,7 +254,7 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
             return  parseInt(dis);
          },
             getautocomplate(){
-                axios.get(APP_URL+"show/autocomplate").then(res => {
+                axios.get(api.BASE_URL+"show/autocomplate").then(res => {
                         const listOfObjects = res.data.map(({id,name}) => {
                                 return {
                                     id: id,
@@ -288,7 +289,7 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
             async  showalldata(page){
 
                 this.loading = true;
-                await  axios.get(APP_URL+"showall?page=" +page ,
+                await  axios.get(api.BASE_URL+"showall?page=" +page ,
                 {params:{keywords:this.keywords,getcatagoryID:this.getcatagoryID}}
                 ).then(res => {
                       this.showdata = res.data;
@@ -299,7 +300,7 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
             },
              async getlastprice(){
                 this.loading = true;
-                await  axios.get(APP_URL+"show/lastprice"
+                await  axios.get(api.BASE_URL+"show/lastprice"
                 ).then(res => {
                       this.lastprice = res.data;
 
@@ -321,7 +322,7 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
                     this.timestamp = mont;
                 },
             async  getcatagory(){
-                await  axios.get(APP_URL+"show/category").then(res => {
+                await  axios.get(api.BASE_URL+"show/category").then(res => {
                     this.categorylist = res.data.category;
                     this.totalpro= res.data.total_product;
                     this.productlast = res.data.last_price;
@@ -332,7 +333,7 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
             async adddetail(id){
                  let qrt =1;
 
-                        await  axios.get(APP_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
+                        await  axios.get(api.BASE_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
                                 //   bus.$emit('add-to-cart',response.data);
                                     // bus.$emit('add-to-cart');
                                       this.$store.dispatch("addItem")
