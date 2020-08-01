@@ -155,12 +155,16 @@ export default {
         mounted() {
               this.$aes.setKey('base64:GoQmYiFHbf+sgZ0bUNykIasFDHHSvzbNNQ8b397iXQw=')
             this.getcartdetail();
+            // this.getshopdetil()
        },
 
         data(){
              return {
             bankURL:'/shopping/public/img/',
             listCart: [],
+            items:[],
+              shopdata:{},
+              listLength:0,
             getpaymentid:'',
               bankform: {
                 picturepay:"",
@@ -211,35 +215,90 @@ export default {
 
                 await  axios.get("/shopping/public/cartdetail/detail").then(res => {
                   this.listCart = res.data.listcarts;
+                      res.data.listcarts.forEach(item => {
+                            this.items.push(item);
+                        });
+
 
                }).catch(function (error) {
                     console.log(error);
                 });
             },
-             gotocomfirm(){
+            async gotocomfirm(){
 
-                this.pricetotal = (this.totalPrice-this.$aes.decrypt(this.discount))+this.checkdelivery(this.totalPrice)+this.checkassery(this.totalPrice);
+                await  axios.get("/shopping/public/cartdetail/detail").then(res => {
+                      const product_check_stock = [];
+                      var mylist = res.data.listcarts;
+                      var count=0;
+
+                        for(var i=0; i< mylist.length; i++){
+                        if(mylist[i]['stock']>0){
+                            product_check_stock.push(true);
+                        }
+                        else{
+                            product_check_stock.push(mylist[i]['id']);
+                        }
+                      }
+                    product_check_stock.forEach(item => {
+                                    if(item==true){
+                                       count+=1;
+                                    }
+                        });
+                     if(count==mylist.length){
+
+                            this.pricetotal = (this.totalPrice-this.$aes.decrypt(this.discount))+this.checkdelivery(this.totalPrice)+this.checkassery(this.totalPrice);
+
+                                    let formData = new FormData();
+                                    const { pricepay,accoutnpay} = this.bankform;
+                                    formData.append("picturepay",  this.bankform.picturepay);
+                                    formData.append("pricepay", pricepay);
+                                    formData.append("accoutnpay", accoutnpay);
+                                    formData.append("paymentid", this.paymentid);
+                                    formData.append("addressid", this.addressid);
+                                     formData.append("bankid", this.bankid);
+                                    formData.append("totalPrice", this.pricetotal);
+                                     axios.post("http://localhost/shopping/public/cart/checkout/confirm",formData,
+                                                ).then(response=> {
+
+                                                window.location.href = "http://localhost/shopping/public/order/orderdetail/myorder";
+
+                                            }).catch(error => this.errors.record(error.response.data));
+                     }else{
+                            product_check_stock.forEach(item => {
+                            if(item!=true){
+                                     mylist.forEach(item_mylist => {
+                                          if(item==item_mylist.id){
+                                                 
+
+                                                  let showicon='info';
+                                                  let showtitle = item_mylist.name+' ถูกสั่งซื้อไปเเล้ว กรุณาทำรายการใหม่';
+                                                  this.showalert(showicon,showtitle);
+                                          }
+
+                                     });
+                              }
+                            });
+
+                      }
+
+                        }).catch(function (error) {
+                                console.log(error);
+                            });
 
 
-                        let formData = new FormData();
-                        const { pricepay,accoutnpay} = this.bankform;
-                        formData.append("picturepay",  this.bankform.picturepay);
-                        formData.append("pricepay", pricepay);
-                        formData.append("accoutnpay", accoutnpay);
-                        formData.append("paymentid", this.paymentid);
-                        formData.append("addressid", this.addressid);
-                         formData.append("bankid", this.bankid);
-                        formData.append("totalPrice", this.pricetotal);
 
-                        // console.log(formData)
-                         axios.post("http://localhost/shopping/public/cart/checkout/confirm",formData,
-                                    ).then(response=> {
-
-                                    window.location.href = "http://localhost/shopping/public/order/orderdetail/myorder";
-
-                                }).catch(error => this.errors.record(error.response.data));
 
             },
+       showalert(showicon,showtitle) {
+                toastr[showicon](showtitle,'', {
+                progressBar: true,
+                timeOut: 1500,
+                extendedTimeOut: 1500,
+                 hideDuration: 1500,
+                 progressBar: false,
+                });
+
+        },
         },
 
 

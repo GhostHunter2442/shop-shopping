@@ -360,11 +360,7 @@ methods: {
                     })
 
     },
-    // gotocheckout(){
-    //     console.log(this.NextUrl)
 
-    //       window.location.href = this.NextUrl;
-    // },
         showalert(showicon,showtitle) {
                 toastr[showicon](showtitle,'', {
                 progressBar: true,
