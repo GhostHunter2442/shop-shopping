@@ -126,7 +126,7 @@
                         </li>
                     <li class=" {{ request()->routeIs('contact.index') ? 'active' :''  }}">
                         <a href="{{ route('contact.index')}}">ติดต่อเรา</a></li>
-                          {{-- <a href="{{ route('keyry.index')}}">kerry api</a></li> --}}
+                        
 
                     </ul>
                 </nav>

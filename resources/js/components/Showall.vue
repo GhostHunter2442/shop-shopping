@@ -88,7 +88,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero__item set-bg my-4" v-bind:data-setbg="imageUrlbanner" v-if="showbanner">
+                    <carousel :items="1" :autoplay="true" :nav="false" v-if="showbanner">
+                   <div class="hero__item set-bg my-4" v-bind:data-setbg="imageUrlbanner" >
                         <div class="hero__text">
                             <span>smart watch</span>
                             <h2>Apple Watch <br />100% </h2>
@@ -96,6 +97,25 @@
                             <a href="#" class="site-btn">ซื้อเลย</a>
                         </div>
                     </div>
+                       <div class="hero__item set-bg my-4" v-bind:data-setbg="imageUrlbanner_two">
+                        <div class="hero__text">
+                            <span>classic watch</span>
+                            <h2>Seiko Watch <br />100% </h2>
+                            <p>ฟรีบริการจัดส่ง</p>
+                            <a href="#" class="site-btn">ซื้อเลย</a>
+                        </div>
+                    </div>
+                        <div class="hero__item set-bg my-4" v-bind:data-setbg="imageUrlbanner_three">
+                        <div class="hero__text">
+                            <span>digital watch</span>
+                            <h2>G-SHOCK <br />100% </h2>
+                            <p>ฟรีบริการจัดส่ง</p>
+                            <a href="#" class="site-btn">ซื้อเลย</a>
+                        </div>
+                    </div>
+
+                    </carousel>
+
 
             </div>
         </div>
@@ -156,11 +176,12 @@
 </template>
 
 <script>
+import carousel from 'vue-owl-carousel'
 import autocomplete from 'autocompleter';
 import 'autocompleter/autocomplete.min.css';
 import moment from 'moment'
 export default {
-
+  components: { carousel },
  mounted(){
     //  console.log(this.showdata.created_at)
      this.getNow();
@@ -190,6 +211,8 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
               imageUrl: "storage/images/",
               imageUrlresize: "storage/images/resize/",
               imageUrlbanner: "img/hero/banner.jpg",
+              imageUrlbanner_two: "img/hero/banner_two.jpg",
+              imageUrlbanner_three: "img/hero/banner_three.jpg",
               keywords:'',
               productId: 0,
               showbanner:true,
@@ -316,7 +339,7 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
                                   let showicon='success';
                                   let showtitle ='เพิ่มสินค้าเรียบร้อย';
                                   this.showalert(showicon,showtitle);
-                                   
+
                         }).catch(function(error) {
                             if (error.response && error.response.status === 401) {
                             window.location.href = "login";

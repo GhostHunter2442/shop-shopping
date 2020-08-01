@@ -1537,8 +1537,8 @@ ol {
   margin-left: 10px;
 }
 
-.product__discount__slider .col-lg-4 {
-  max-width: 30%;
+.product__discount__slider .col-lg-12 {
+  width: 500%;
 }
 
 .product__discount__slider.owl-carousel .owl-dots {
