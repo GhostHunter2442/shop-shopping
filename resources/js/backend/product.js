@@ -54,7 +54,14 @@ $(document).ready(function () {
             targets: 3,
             orderable: false,
             render: function (data, type, row) {
-                var dataStock = row['stock'];
+                 if(row['stock']==0){
+                    var dataStock = row['stock']+'<div class="progress progress-xs"><div class="progress-bar bg-danger" style="width: 55%"></div></div>';
+                 }else if(row['stock']==1){
+                    var dataStock = row['stock']+'<div class="progress progress-xs"><div class="progress-bar bg-warning" style="width: 55%"></div></div>';
+                 }else{
+                    var dataStock = row['stock'];
+                 }
+
                 return dataStock;
             },
         },

@@ -189,7 +189,7 @@ export default {
                 return  (status  == 1) ? "จ่ายเงินผ่านธนาคาร" :(status  == 2) ? "เก็บเงินปลายทาง" : "ชำระผ่านบัตรเครดิต" ;
             },
            statusorder(status) {
-                return  (status  == 1) ? "ยืนยันการสั่งซื้อ" :(status  == 2) ? "จัดส่งสินค้าเเล้ว" : "ถูกยกเลิก" ;
+                return  (status  == 1) ? "ยืนยันการสั่งซื้อ" :(status  == 2) ? "จัดส่งสินค้าเเล้ว" :(status  == 4) ? "จัดส่งสินค้าเเล้ว": "ถูกยกเลิก" ;
             },
             cancel(id){
 
@@ -200,7 +200,7 @@ export default {
                                         {params:{invoice_id:this.id}}
                                             ).then(res => {
                                                   this.getorder();
-                                               
+
                                    let showicon='success';
                                   let showtitle ='ยกเลิกเรียบร้อย';
                                   this.showalert(showicon,showtitle);
