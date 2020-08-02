@@ -119,7 +119,12 @@
                     <input class="custom-control-input" type="checkbox" name="readToppic[]"  id="readReport" value="7" {{in_array(7,$permissions)? 'checked': ''}}>
                     <label for="readReport" class="custom-control-label">Dashboard รายงาน</label>
                   </div>
-                </div>
+
+                    <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" name="readToppic[]"  id="readCoupon" value="8" {{in_array(8,$permissions)? 'checked': ''}}>
+                      <label for="readCoupon" class="custom-control-label">คูปองส่วนลด</label>
+                    </div>
+                  </div>
               </div>
         </div>
           </div>

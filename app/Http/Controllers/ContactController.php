@@ -8,14 +8,18 @@ class ContactController extends Controller
 {
    public function index(){
 
-    $email= 'dataghosthunter@gmail.com';
-    $phone= '081-9999XX1';
-    // $count_cart =  Cart::where('user_id',auth()->user()->id)->sum('qty');
        $data_general =General::all();
 
     return view('contact',[
         'generals' => $data_general,
     ]);
+   }
+
+   public function getdatageneral(){
+
+    $data_general =General::all();
+    return response()->json( $data_general);
+
    }
 }
 

@@ -67,7 +67,7 @@ Route::prefix('login')->group(function () {
 });
 
 Route::get('contact','ContactController@index')->name('contact.index');
-
+Route::get('getdata','ContactController@getdatageneral')->name('contact.getdatageneral');
 Auth::routes(); // ถ้า rout ไหนอยู่หลัง Auth rout ต้อง login ถึงจะเข้าได้
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -119,6 +119,7 @@ Route::group(['middleware' => ['auth']],function(){
 
     });
 
+     //bank
     Route::prefix('backend/bank')->group(function () {
         Route::get('', 'BankController@index')->name('bank.index');
         Route::post('insert', 'BankController@store');
@@ -129,6 +130,7 @@ Route::group(['middleware' => ['auth']],function(){
     });
 
 
+    //report
     Route::prefix('backend/report')->group(function () {
         Route::get('', 'ReportbackendController@index')->name('report.index')->middleware('permission:viewDashboardReport');
         Route::get('chartyear', 'ReportbackendController@getchartYearNow');
@@ -146,7 +148,7 @@ Route::group(['middleware' => ['auth']],function(){
 
      //coupon
     Route::prefix('backend/coupon')->group(function () {
-        Route::get('', 'CouponbackendController@index')->name('backend.coupon.index');
+        Route::get('', 'CouponbackendController@index')->name('backend.coupon.index')->middleware('permission:viewCoupon');
         Route::post('', 'CouponbackendController@store');
         Route::patch('{id}', 'CouponbackendController@update');
         Route::delete('{id}', 'CouponbackendController@delete');

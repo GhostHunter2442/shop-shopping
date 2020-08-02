@@ -82,8 +82,8 @@
                         <div class="hero__search__phone__icon">
                             <i class="fa fa-phone"></i>
                         </div>
-                        <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
+                        <div class="hero__search__phone__text" >
+                            <h5>{{phone}}</h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>
@@ -190,6 +190,7 @@ export default {
     this.getautocomplate();
     this.getcatagory();
     this.getlastprice();
+    this.getPhone();
     this.isActive = true;
 },
 
@@ -209,6 +210,7 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
               categorylist:[],
               totalpro:[],
               productlast:[],
+              phone:'',
               imageUrl: api.BASE_URL_IMG,
               imageUrlresize: api.BASE_URL_IMG+'resize/',
               imageUrlbanner: "img/hero/banner.jpg",
@@ -297,6 +299,20 @@ beforeDestroy(){ //เคลียรข้อมูลหลังเลิก�
                        console.log(error.response);
                 });
 
+            },
+           async getPhone(){
+                    await  axios.get(api.BASE_URL+"getdata"
+                ).then(res => {
+                      var phone = res.data;
+                     
+                       phone.forEach(element => {
+                          this.phone=element.phonenumber;
+                       });
+
+
+                }).catch( error => {
+                       console.log(error);
+                });
             },
              async getlastprice(){
                 this.loading = true;

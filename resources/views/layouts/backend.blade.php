@@ -203,6 +203,7 @@
             </a>
           </li>
           @endcan
+          @can('viewCoupon')
           <li class="nav-item">
             <a href="{{ route('backend.coupon.index') }}" class="nav-link {{ request()->routeIs('backend.coupon.index') ? 'active' :''  }}">
               <i class="nav-icon fa fa-gift"></i>
@@ -212,7 +213,7 @@
               </p>
             </a>
           </li>
-
+          @endcan
           @if(Gate::check('viewPreOrder') || Gate::check('viewPreOrder') || Gate::check('viewSentOrder'))
             <li class="nav-header">ข้อมูลการขาย</li>
           @endif
