@@ -11,9 +11,9 @@
 
                 <div class="card card-info card-outline">
                     <div class="card-header">
-                      
+
                         <div class="pull-right">
-                            <a data-href="http://localhost/shopping/public/backend/invoice/order_file/export" role="button" class="btn btn-success btn-exportall">
+                            <a data-href="/invoice/order_file/export" role="button" class="btn btn-success btn-exportall">
                                 จัดส่งทั้งหมด
                             </a>
 

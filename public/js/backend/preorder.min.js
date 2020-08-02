@@ -112,8 +112,8 @@ $(document).ready(function () {
      $('body').on('click', '.btn-exportall', async function (e) {
         var url = $(this).data('href');
 
-        window.location.href = url;
-        var url_all=url+'/all';
+        window.location.href = APP_URL+url;
+        var url_all=APP_URL+url+'/all';
         var methodType ='GET';
 
         $.ajaxSetup({
@@ -124,7 +124,7 @@ $(document).ready(function () {
 
 
     await $.ajax({
-          url:url,
+          url:APP_URL+url,
           method:methodType,
           data: 1,
           success:function(resp)

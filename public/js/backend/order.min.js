@@ -111,7 +111,7 @@ $(document).ready(function () {
         var url = $(this).data('href');
 
 
-        window.location.href = url;
+        window.location.href = APP_URL+url;
 
         var methodType ='GET';
         event.preventDefault();
@@ -121,7 +121,7 @@ $(document).ready(function () {
             }
         });
     await $.ajax({
-          url:url,
+          url:APP_URL+url,
           method:methodType,
           data: 1,
           success:function(resp)

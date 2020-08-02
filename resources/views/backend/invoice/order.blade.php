@@ -13,7 +13,7 @@
                     <div class="card-header">
                         <div class="pull-left">
                             {{-- <button class="btn btn-success btn-exporttrack" >โหลดฟอร์ม</button> --}}
-                            <a data-href="http://localhost/shopping/public/backend/invoice/order_file/trackexport" id="btn_exporttrack" role="button" class="btn btn-success btn-exporttrack">
+                            <a data-href="/invoice/order_file/trackexport" id="btn_exporttrack" role="button" class="btn btn-success btn-exporttrack">
                                 โหลดฟอร์ม
                             </a>
                             <button class="btn btn-success d-none" id="loading_btn_export" type="button" disabled>
