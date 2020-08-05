@@ -51,7 +51,7 @@ $(document).ready(function () {
             render: function (data, type, row) {
                 var dataName = row['email'];
                 var btnEdit = '<a href="#" data-href="' + APP_URL + '/user/form/' + data + '" data-modal-name="ajaxModal" role="button" data-id="' + data + '" class="btn btn-outline-dark btn-sm btn-edit"><i class="fa fa-edit"></i> แก้ไข</a> ';
-                var btnDelete = '<a href="#" data-href="' + APP_URL + '/user/' + data + '" data-id="' + data + '" data-name="' + dataName + '" role="button" class="btn btn-outline-danger btn-sm btn-delete"><i class="fa fa-trash"></i> ลบ</a>';
+                var btnDelete = '<a href="#" data-href="' + APP_URL + '/user/delete/' + data + '" data-id="' + data + '" data-name="' + dataName + '" role="button" class="btn btn-outline-danger btn-sm btn-delete"><i class="fa fa-trash"></i> ลบ</a>';
                 btnDelete = APP_USERID != data ? btnDelete : '';
                 return btnEdit + btnDelete;
 

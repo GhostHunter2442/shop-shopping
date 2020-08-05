@@ -79,9 +79,9 @@ Route::group(['middleware' => ['auth']],function(){
 //catergory
     Route::prefix('backend/category')->group(function () {
         Route::get('', 'CategoryController@index')->name('category.index')->middleware('permission:viewCategory');
-        Route::post('', 'CategoryController@store');
-        Route::patch('{id}', 'CategoryController@update');
-        Route::delete('{id}', 'CategoryController@delete');
+        Route::post('insert', 'CategoryController@store');
+        Route::post('{id}', 'CategoryController@update');
+        Route::post('delete/{id}', 'CategoryController@delete');
         Route::get('datatables', 'CategoryController@getDatatables');
         Route::get('form/{id}', 'CategoryController@renderForm');
     });
@@ -91,7 +91,7 @@ Route::group(['middleware' => ['auth']],function(){
         Route::get('', 'ProductController@index')->name('product.index')->middleware('permission:viewProduct');
         Route::post('insert', 'ProductController@store');
         Route::post('{id}', 'ProductController@update');
-        Route::delete('{id}', 'ProductController@delete');
+        Route::post('delete/{id}', 'ProductController@delete');
         Route::get('datatables', 'ProductController@getDatatables');
         Route::get('form/{id}', 'ProductController@renderForm');
         Route::get('check_slug', 'ProductController@checkSlug');
@@ -104,7 +104,7 @@ Route::group(['middleware' => ['auth']],function(){
         Route::get('preorder', 'InvoicebackendController@preorder')->name('invoice.preorder')->middleware('permission:viewPreOrder');
         Route::get('order', 'InvoicebackendController@order')->name('invoice.order')->middleware('permission:viewSentOrder');
         Route::post('{id}', 'InvoicebackendController@update');
-        Route::delete('{id}', 'InvoicebackendController@delete');
+        // Route::delete('{id}', 'InvoicebackendController@delete');
         Route::get('datatables', 'InvoicebackendController@getDatatables');
         Route::get('preorder/datatables', 'InvoicebackendController@getPreordertables');
         Route::get('order/datatables', 'InvoicebackendController@getOrdertables');
@@ -124,7 +124,7 @@ Route::group(['middleware' => ['auth']],function(){
         Route::get('', 'BankController@index')->name('bank.index');
         Route::post('insert', 'BankController@store');
         Route::post('{id}', 'BankController@update');
-        Route::delete('{id}', 'BankController@delete');
+        Route::post('delete/{id}', 'BankController@delete');
         Route::get('datatables', 'BankController@getDatatables');
         Route::get('form/{id}', 'BankController@renderForm');
     });
@@ -149,9 +149,9 @@ Route::group(['middleware' => ['auth']],function(){
      //coupon
     Route::prefix('backend/coupon')->group(function () {
         Route::get('', 'CouponbackendController@index')->name('backend.coupon.index')->middleware('permission:viewCoupon');
-        Route::post('', 'CouponbackendController@store');
-        Route::patch('{id}', 'CouponbackendController@update');
-        Route::delete('{id}', 'CouponbackendController@delete');
+        Route::post('insert', 'CouponbackendController@store');
+        Route::post('{id}', 'CouponbackendController@update');
+        Route::post('delete/{id}', 'CouponbackendController@delete');
         Route::get('datatables', 'CouponbackendController@getDatatables');
         Route::get('form/{id}', 'CouponbackendController@renderForm');
     });
@@ -172,9 +172,9 @@ Route::group(['middleware' => ['auth']],function(){
 
     Route::prefix('backend/user')->group(function () {
         Route::get('', 'UserController@index')->name('user.index')->middleware('role:admin');
-        Route::post('', 'UserController@store');
-        Route::patch('{id}', 'UserController@update');
-        Route::delete('{id}', 'UserController@delete');
+        Route::post('insert', 'UserController@store');
+        Route::post('{id}', 'UserController@update');
+        Route::post('delete/{id}', 'UserController@delete');
         Route::get('datatables', 'UserController@getDatatables');
         Route::get('form/{id}', 'UserController@renderForm');
         Route::get('username_check', 'UserController@usernameCheck');
@@ -205,23 +205,24 @@ Route::group(['middleware' => ['auth']],function(){
     });
 
     //getorder
-    Route::prefix('order/orderdetail')->group(function () {
-        Route::get('myorder/{any?}', 'InvoiceController@index')->name('order.index')->where('any', '.*');
-        Route::get('datamyorder', 'InvoiceController@myorder')->name('order.datamyorder');
-        Route::get('profile', 'ProfileController@getprofile')->name('order.getprofile');
-        Route::post('profile/update', 'ProfileController@updateprofile')->name('order.updateprofile');
-        Route::get('profile/getorder', 'InvoiceController@getorder')->name('order.getorder');
+    // Route::prefix('order/orderdetail/{any?}')->group(function () {
+        Route::get('/order/orderdetail/myorder/{any?}', 'InvoiceController@index')->name('order.index')->where('any', '.*');
+        Route::get('/order/orderdetail/datamyorder', 'InvoiceController@myorder')->name('order.datamyorder');
+        Route::get('/order/orderdetail/profile', 'ProfileController@getprofile')->name('order.getprofile');
+        Route::post('/order/orderdetail/profile/update', 'ProfileController@updateprofile')->name('order.updateprofile');
+        Route::get('/order/orderdetail/profile/getorder', 'InvoiceController@getorder')->name('order.getorder');
+
 
         //track
-        Route::get('track', 'InvoiceController@gettrack')->name('order.track');
+        Route::get('/order/orderdetail/track', 'InvoiceController@gettrack')->name('order.track');
         //address
-        Route::post('myorder/address/add', 'AddressController@addaddress')->name('order.addaddress');
-        Route::get('address', 'AddressController@getdataaddress')->name('order.getdataaddress');
-        Route::post('myorder/address/edit', 'AddressController@editaddress')->name('order.editaddress');
-        Route::get('del', 'AddressController@deleteaddress')->name('order.deleteaddress');
-        Route::get('checkmark', 'AddressController@checkmark')->name('order.checkmark');
-        Route::post('modifypass', 'AddressController@modifypass')->name('order.modifypass');
-    });
+        Route::post('/order/orderdetail/myorder/address/add', 'AddressController@addaddress')->name('order.addaddress');
+        Route::get('/order/orderdetail/address', 'AddressController@getdataaddress')->name('order.getdataaddress');
+        Route::post('/order/orderdetail/myorder/address/edit', 'AddressController@editaddress')->name('order.editaddress');
+        Route::get('/order/orderdetail/del', 'AddressController@deleteaddress')->name('order.deleteaddress');
+        Route::get('/order/orderdetail/checkmark', 'AddressController@checkmark')->name('order.checkmark');
+        Route::post('/order/orderdetail/modifypass', 'AddressController@modifypass')->name('order.modifypass');
+    // });
 
 
 
@@ -240,12 +241,25 @@ Route::group(['middleware' => ['auth']],function(){
 
     //Favorite
     Route::prefix('favorite/detail')->group(function () {
-        Route::get('', 'Favoritecontroller@index')->name('favorite.index');
-        Route::get('getdata', 'Favoritecontroller@getfavorite')->name('favorite.getfavorite');
-        Route::get('getdata/delfavorite/{product_id}', 'Favoritecontroller@delfavorite')->name('favorite.delfavorite');
+        Route::get('', 'FavoriteController@index')->name('favorite.index');
+        Route::get('getdata', 'FavoriteController@getfavorite')->name('favorite.getfavorite');
+        Route::get('getdata/delfavorite/{product_id}', 'FavoriteController@delfavorite')->name('favorite.delfavorite');
     });
 
 });
 
+Route::get('/clear', function() {
 
+   Artisan::call('cache:clear');
+   Artisan::call('config:clear');
+   Artisan::call('config:cache');
+   Artisan::call('view:clear');
 
+   return "Cleared!";
+
+});
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+   return "linked!";
+
+});

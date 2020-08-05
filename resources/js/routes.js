@@ -9,53 +9,48 @@ import order from "./components/Orderdetail.vue";
 import tracking from "./components/Tracking.vue";
 const routes =[
             {
-                path: "/shopping/public/order/orderdetail/myorder",
+                path: "/order/orderdetail/myorder",
                 component: myorder,
                 name: "order",
 
             },
             {
-                path: "/shopping/public/order/orderdetail/myorder/profile",
+                path: "/order/orderdetail/myorder/profile",
                 component: myprofile,
                 name: "profile",
 
            },
            {
-                path: "/shopping/public/order/orderdetail/myorder/address",
+                path: "/order/orderdetail/myorder/address",
                 component: myaddress,
                 name: "address",
 
           },
           {
-                path: "/shopping/public/order/orderdetail/myorder/modify",
+                path: "/order/orderdetail/myorder/modify",
                 component: modifypass,
                 name: "password",
 
          },
          {
-                path: "/shopping/public/logout",
-                name: "logout",
-
-         },
-         {
-            path: "/shopping/public/order/orderdetail/myorder/address/add",
+            path: "/order/orderdetail/myorder/address/add",
             name: "addaddress",
             component:addaddress
          },
          {
-            path: "/shopping/public/order/orderdetail/myorder/address/edit/:id",
+            path: "/order/orderdetail/myorder/address/edit/:id",
             name: "editaddress",
             component:editaddress,
             props: true
          },
          {
-            path: "/shopping/public/order/orderdetail/myorder/detail/:id",
+            path: "/order/orderdetail/myorder/detail/:id",
             name: "orders",
             component:order,
             props: true
          },
          {
-            path: "/shopping/public/order/orderdetail/myorder/track/:id",
+            path: "/order/orderdetail/myorder/track/:id",
             name: "track",
             component:tracking,
             props: true

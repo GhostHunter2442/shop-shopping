@@ -183,5 +183,5 @@
 <script>
 
 </script>
-<script src="{{ asset('js/backend/create-Charts.min.js') }}"></script>
+<script src="{{ asset('js/backend/create-charts.min.js') }}"></script>
 @endsection

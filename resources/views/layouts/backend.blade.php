@@ -47,15 +47,16 @@
     <link rel="stylesheet" href="{{ asset('css/toastr.css')}}">
 
 
-    <script type="text/javascript">
-        const APP_URL = {!! json_encode(url('http://localhost/shopping/public/backend')) !!}
+ <script type="text/javascript">
+        const APP_URL = {!! json_encode(url('/backend')) !!}
         const APP_LINK = {!! json_encode(Storage::url('images')) !!}
-        const APP_IMG = {!! json_encode(url('http://localhost/shopping/public/storage/images/resize/')) !!}
-        const APP_IMG_SLIP = {!! json_encode(url('http://localhost/shopping/public/storage/images/slipbank/')) !!}
-        const APP_IMG_BANK = {!! json_encode(url('http://localhost/shopping/public/storage/images/bank/')) !!}
+        const APP_IMG = {!! json_encode(Storage::url('images/resize/')) !!}
+        const APP_IMG_SLIP = {!! json_encode(Storage::url('images/slipbank/')) !!}
+        const APP_IMG_BANK = {!! json_encode(Storage::url('images/bank/')) !!}
         const APP_USERID = {!! json_encode(Auth::id()) !!}
         const APP_LANG = {!! json_encode(asset('js/backend/datatables-th.lang')) !!}
     </script>
+
 
 </head>
 
@@ -203,7 +204,6 @@
             </a>
           </li>
           @endcan
-          @can('viewCoupon')
           <li class="nav-item">
             <a href="{{ route('backend.coupon.index') }}" class="nav-link {{ request()->routeIs('backend.coupon.index') ? 'active' :''  }}">
               <i class="nav-icon fa fa-gift"></i>
@@ -213,7 +213,7 @@
               </p>
             </a>
           </li>
-          @endcan
+
           @if(Gate::check('viewPreOrder') || Gate::check('viewPreOrder') || Gate::check('viewSentOrder'))
             <li class="nav-header">ข้อมูลการขาย</li>
           @endif

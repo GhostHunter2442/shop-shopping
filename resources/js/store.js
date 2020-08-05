@@ -1,3 +1,4 @@
+import api from '../js/config';
 export default{
       state:{
            countItem:0,
@@ -25,7 +26,7 @@ export default{
         async  addItem(contex,value){
             let cart= [];
             let totlaitem=0;
-            await axios.get("/shopping/public/api/cartdetail/detail"
+            await axios.get(api.BASE_URL+"api/cartdetail/detail"
                          ).then(response => {
                               cart = response.data;
                           }).catch( error => {
@@ -40,7 +41,7 @@ export default{
           async addFavorite(contex,value){
             let favorite= [];
             let totlaitem=0;
-            await  axios.get("/shopping/public/api/cartdetail/getallfavorite"
+            await  axios.get(api.BASE_URL+"api/cartdetail/getallfavorite"
                          ).then(response => {
                             favorite = response.data;
                           }).catch( error => {

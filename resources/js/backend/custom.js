@@ -118,8 +118,8 @@ var saveForm = function (id, url, table) {
     });
 
     var formData = $('#saveForm').serialize();
-    var methodType = (id) ? 'patch' : 'post';
-    var castUrl = (id) ? url + '/' + id : url;
+    var methodType = 'post';
+    var castUrl = (id) ? url + '/' + id : url+'/insert';
     $.ajax({
         url: castUrl,
         type: methodType,
@@ -237,7 +237,7 @@ var deleteForm = function(url, table) {
     setTimeout(function () {
         $.ajax({
             url: url,
-            type: 'delete',
+            type: 'post',
             success: function (resp) {
                 toastr[resp.status](resp.message, '', {
                     progressBar: true,

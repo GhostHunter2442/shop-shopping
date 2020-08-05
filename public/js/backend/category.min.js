@@ -31,7 +31,7 @@ $(document).ready(function () {
             render: function (data, type, row) {
                 var dataName = row['name'];
                 var btnEdit = '<a href="#" data-href="' + APP_URL + '/category/form/' + data + '" data-modal-name="ajaxModal" role="button" data-id="' + data + '" class="btn btn-outline-dark btn-sm btn-edit"><i class="fa fa-edit"></i> แก้ไข</a> ';
-                var btnDelete = '<a href="#" data-href="' + APP_URL + '/category/' + data + '" data-id="' + data + '" data-name="' + dataName + '" role="button" class="btn btn-outline-danger btn-sm btn-delete"><i class="fa fa-trash"></i> ลบ</a>';
+                var btnDelete = '<a href="#" data-href="' + APP_URL + '/category/delete/' + data + '" data-id="' + data + '" data-name="' + dataName + '" role="button" class="btn btn-outline-danger btn-sm btn-delete"><i class="fa fa-trash"></i> ลบ</a>';
                 return btnEdit + btnDelete;
             },
         }]

@@ -1,6 +1,6 @@
 const CONFIG = {
-    BASE_URL: 'http://localhost/shopping/public/',
-    BASE_URL_IMG: 'http://localhost/shopping/public/storage/images/',
+    BASE_URL: 'https://shopping.dataghosthunter.com/',
+    BASE_URL_IMG: 'https://shopping.dataghosthunter.com/storage/images/',
   }
 
   export default CONFIG;
