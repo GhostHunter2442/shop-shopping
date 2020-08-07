@@ -124,7 +124,7 @@ import moment from 'moment'
                async adddetail(id){
                  let qrt =1;
                         await  axios.get(api.BASE_URL+"cartdetail/adddetail/"+id+"/"+qrt).then(response => {
-
+                                       this.$store.dispatch("addItem")
                                     toastr['success']('เพิ่มสินค้าเรียบร้อย','', {
                                     progressBar: true,
                                     timeOut: 1500,

@@ -260,7 +260,6 @@ export default {
                                     formData.append("totalPrice", this.pricetotal);
                                      axios.post(api.BASE_URL+"cart/checkout/confirm",formData,
                                                 ).then(response=> {
-
                                                 window.location.href = api.BASE_URL+'order/orderdetail/myorder';
 
                                             }).catch(error => this.errors.record(error.response.data));
